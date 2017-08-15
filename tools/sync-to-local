@@ -1,0 +1,137 @@
+#!/bin/bash
+set -e
+
+# Quiet - well more like dont ask
+quiet=false
+site_alias=
+sync_sql=false
+sync_files=false
+
+_drush () {
+  bin/drush -r `readlink -f public` $@
+}
+
+# Get and move to repo root for command execution
+project_path=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd | xargs dirname)
+cd $project_path
+
+# Handle script args
+if ! options=$(getopt -o hqsfa: -l help,quiet,sql,files,site-alias: -- "$@") ; then
+  # something went wrong, getopt will put out an error message for us
+  exit 1
+fi
+set -- $options
+while [ $# -gt 0 ]
+do
+  case $1 in
+  # Dont ask questions
+  -h|--help)
+    echo -e 'Options:\nSite alias: -a, --sitealias="@production"\nSync SQL: -s, --sql\nSync files: -f, --files\nDont ask questions: -q, --quiet'
+    exit 0
+    ;;
+  # Dont ask questions
+  -q|--quiet) quiet=true ;;
+  # Sync SQL
+  -s|--sql) sync_sql=true ;;
+  # Sync files
+  -f|--files) sync_files=true ;;
+  # Site alias
+  -a|--site-alias) eval site_alias="$2" ; shift;;
+  (--) shift; break;;
+  (-*) echo "$0: error - unrecognized option $1" 1>&2; exit 1;;
+  (*) break;;
+  esac
+  shift
+done
+
+# Get all possible environments
+valid_envs=$(_drush site-alias)' Quit'
+
+# If quiet flag is provided, skip asking questions
+if [ ${quiet} = false ] ; then
+
+  # Choose environment
+  if [ -z ${site_alias} ] ; then
+    echo "What environment to sync from?"
+    select site_alias in $valid_envs[@];
+    do
+      case $site_alias in
+        'Quit[@]')
+          echo "Exiting."
+          exit 0
+          ;;
+        *)
+          if [ "$site_alias" == "" ] ; then
+            echo "Invalid option selected, try again!"
+          else
+            echo -e "\nSelected: $site_alias\n"
+            break
+          fi
+          ;;
+      esac
+    done
+  fi
+
+  _options="Yes No Quit"
+  # Sync SQL
+  if [ ${sync_sql} = false ] ; then
+    echo "Sync SQL?"
+    select selected in $_options[@];
+    do
+      case $selected in
+        'Quit[@]')
+          echo "Exiting."
+          exit 0
+          ;;
+        *)
+          if [ "$selected" == "" ] ; then
+            echo "Invalid option selected, try again!"
+          elif [ "$selected" == "Yes" ] ; then
+            sync_sql=true
+            break
+          else
+            break
+          fi
+          ;;
+      esac
+    done
+  fi
+
+  # Sync files
+  if [ ${sync_files} = false ] ; then
+    echo "Sync files?"
+    select selected in $_options[@];
+    do
+      case $selected in
+        'Quit[@]')
+          echo "Exiting."
+          exit 0
+          ;;
+        *)
+          if [ "$selected" == "" ] ; then
+            echo "Invalid option selected, try again!"
+          elif [ "$selected" == "Yes" ] ; then
+            sync_files=true
+            break
+          else
+            break
+          fi
+          ;;
+      esac
+    done
+  fi
+
+fi
+
+if [ ${sync_sql} = true ] ; then
+  echo -e "\nSQL sync starting..\n"
+  _drush -y sql-drop
+  _drush -y sql-sync $site_alias @self
+  echo -e "\nSQL sync done!\n"
+fi
+
+if [ ${sync_files} = true ] ; then
+  echo -e "\nFile sync starting..\n"
+  _drush -y rsync $site_alias:%files @self:%files
+  echo -e "\nFile sync done!\n"
+fi

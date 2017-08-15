@@ -1,0 +1,15 @@
+uuid: bf9c01a2-4df7-402d-9297-e28615f2af74
+name: 'UH Research Data Service Channel'
+mail: noreply@helsinki.fi
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: AyT9s8OUcclfALRE_imByOMgtZ19eOlqdF6zI3p7yqo
+mail_notification: ''

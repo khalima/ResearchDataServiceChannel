@@ -1,0 +1,23 @@
+# Ignore project files that should not be in version control
+/bin
+/drush/contrib/
+/files
+/files_private
+/node_modules
+/public/*.*
+/public/core/
+/public/modules/contrib/
+/public/themes/contrib/
+/public/profiles/config_installer/
+/public/profiles/contrib/
+/public/libraries/
+/public/sites
+/tools/init-tools-status
+/vendor/
+
+# Ignore the folder created by PhpStorm
+.idea/*
+
+# Ignore OSX generated files
+.DS_Store
+._*

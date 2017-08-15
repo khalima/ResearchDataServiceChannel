@@ -1,0 +1,39 @@
+name: Site setup
+type: profile
+description: Profile for site.
+core: 8.x
+
+# Required modules
+dependencies:
+  - node
+  - history
+  - block
+  - breakpoint
+  - ckeditor
+  - config
+  - contextual
+  - contact
+  - menu_link_content
+  - datetime
+  - block_content
+  - editor
+  - help
+  - image
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - dynamic_page_cache
+  - taxonomy
+  - dblog
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - rdf
+  - views
+  - views_ui
+  - automated_cron
+
+themes:
+  - seven

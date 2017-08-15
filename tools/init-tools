@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+import argparse
+import hashlib
+import os
+from shutil import copy
+
+
+def get_script_directory():
+    return os.path.dirname(os.path.abspath(__file__))
+
+
+def get_status_file_path():
+    return get_script_directory() + '/init-tools-status'
+
+
+def get_installed_hash():
+    if not os.path.isfile(get_status_file_path()):
+        return ''
+    return open(get_status_file_path()).read()
+
+
+def get_current_hash():
+    return hashlib.sha1(open(__file__).read()).hexdigest()
+
+
+def is_installed():
+    return get_current_hash() == get_installed_hash()
+
+
+def install():
+    # Set the pre-commit Git hook.
+    copy(get_script_directory() + '/init-tools-resources/pre-commit', get_script_directory() + '/../.git/hooks/pre-commit')
+
+    # Confirm the installation.
+    status_file = open(get_status_file_path(), 'w')
+    status_file.write(get_current_hash())
+    status_file.close()
+
+parser = argparse.ArgumentParser(description='Initializes the project.')
+parser.add_argument('--force',
+                    help='Force initializes the project. Useful for corrupted initializations.', action='store_true')
+
+arguments = parser.parse_args()
+
+if arguments.force or not is_installed():
+    install()

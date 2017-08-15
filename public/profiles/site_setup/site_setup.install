@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the site_setup installation profile.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function site_setup_install() {
+  // Set front page to "node".
+  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/node')->save(TRUE);
+
+  // Hardcode uuid.
+  //\Drupal::configFactory()->getEditable('system.site')->set('uuid', '7d9a8723-9828-4ab4-8500-f1eaf26a5fa6')->save(TRUE);
+
+  // Allow account registration by admins only.
+  $user_settings = \Drupal::configFactory()->getEditable('user.settings');
+  $user_settings->set('register', USER_REGISTER_ADMINISTRATORS_ONLY)->save(TRUE);
+
+  // Enable Seven as admin theme.
+  \Drupal::configFactory()->getEditable('system.theme')->set('admin', 'seven')->save(TRUE);
+
+  // Enable the admin theme when editing nodes.
+  \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
+}

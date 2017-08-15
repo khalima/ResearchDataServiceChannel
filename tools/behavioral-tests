@@ -1,0 +1,5 @@
+#!/bin/bash
+
+SIMPLETEST_BASE_URL=$APP_URL SIMPLETEST_DB=$DB_URL bash -c './bin/phpunit -c ./phpunit.xml.dist --testsuite  functional'
+
+BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"'"$APP_URL"'"},"Drupal\\DrupalExtension":{"drupal":{"drupal_root":"./public"}}}}' ./bin/behat -v --strict --colors -c ./behat/behat.yml

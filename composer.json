@@ -1,0 +1,138 @@
+{
+  "name": "druidfi/drupal-project",
+  "description": "Druid's project template for Drupal 8-based applications.",
+  "require": {
+    "composer/installers": "^1.2",
+    "cweagans/composer-patches": "~1.0",
+    "drupal-composer/drupal-scaffold": "^2.2",
+    "drupal/adminimal_theme": "^1.3",
+    "drupal/adminimal_admin_toolbar": "^1.3",
+    "drupal/config_installer": "^1.3",
+    "drupal/core": "~8.3",
+    "drupal/pathauto": "^1.0",
+    "drupal/swiftmailer": "^1.0@beta",
+    "drupal/system_status": "^2.4",
+    "drush/drush": "^8.1.12"
+  },
+  "require-dev": {
+    "drupal/coder": "^8.2.12",
+    "drupal/console": "~1.0",
+    "drupal/drupal-extension": "~3.2",
+    "phpunit/phpunit": "~5.5"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "merge-plugin": {
+      "include": [
+        "public/modules/custom/*/composer.json"
+      ]
+    },
+    "installer-paths": {
+      "public/core": ["type:drupal-core"],
+      "public/libraries/{$name}": ["type:drupal-library"],
+      "public/modules/contrib/{$name}": ["type:drupal-module"],
+      "public/modules/custom/{$name}": ["type:drupal-module-custom"],
+      "public/profiles/{$name}": ["type:drupal-profile"],
+      "public/themes/contrib/{$name}": ["type:drupal-theme"],
+      "public/themes/custom/{$name}": ["type:drupal-theme-custom"],
+      "drush/{$name}": ["type:drupal-drush"]
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "config": {
+    "bin-dir": "bin",
+    "process-timeout": 0
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+    ],
+    "post-update-cmd": [
+      "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+    ],
+    "post-create-project-cmd": [
+      "@build-dev"
+    ],
+    "symlink-files": [
+      "mkdir -p public/sites/default/files",
+      "ln -sfn ../../../../files public/sites/default/files/public",
+      "ln -sfn ../../../../files_private public/sites/default/files/private",
+      "chmod 0750 public/sites/default"
+    ],
+    "build-ci": [
+      "npm install --engine-strict true",
+      "composer install --prefer-dist --no-suggest --optimize-autoloader --ansi",
+      "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
+      "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
+      "@symlink-files",
+      "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
+      "ln -sfn ../../../conf/env_ci/services.env.yml public/sites/default/services.env.yml",
+      "ln -sfn ../../../conf/env_ci/settings.env.php public/sites/default/settings.env.php"
+    ],
+    "build-dev": [
+      "tools/init-tools",
+      "npm install --engine-strict true",
+      "composer update --no-suggest --prefer-dist --ansi",
+      "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
+      "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
+      "@symlink-files",
+      "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
+      "ln -sfn ../../../conf/env_development/services.env.yml public/sites/default/services.env.yml",
+      "ln -sfn ../../../conf/env_development/settings.env.php public/sites/default/settings.env.php"
+    ],
+    "build-testing": [
+      "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ansi",
+      "@symlink-files",
+      "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
+      "ln -sfn ../../../conf/env_testing/services.env.yml public/sites/default/services.env.yml",
+      "ln -sfn ../../../conf/env_testing/settings.env.php public/sites/default/settings.env.php"
+    ],
+    "build-staging": [
+      "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ansi",
+      "@symlink-files",
+      "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
+      "ln -sfn ../../../conf/env_staging/services.env.yml public/sites/default/services.env.yml",
+      "ln -sfn ../../../conf/env_staging/settings.env.php public/sites/default/settings.env.php"
+    ],
+    "build-production": [
+      "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ansi",
+      "@symlink-files",
+      "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
+      "ln -sfn ../../../conf/env_production/services.env.yml public/sites/default/services.env.yml",
+      "ln -sfn ../../../conf/env_production/settings.env.php public/sites/default/settings.env.php"
+    ],
+    "artifact": [
+      "tar -hczf artifact.tar.gz --files-from=conf/artifact.include --exclude-from=conf/artifact.exclude"
+    ],
+    "test-behavioral": [
+      "tools/behavioral-tests"
+    ],
+    "test-static-php": [
+      "bin/phpcs --colors --standard=Drupal --extensions=php,module --ignore='*.css,*.md' ./public/modules/custom",
+      "bin/phpcs --colors --standard=Drupal --extensions=php,theme --ignore='*.css,*.md' ./public/themes/custom"
+    ],
+    "test-static-js": [
+      "node_modules/eslint/bin/eslint.js --color --ignore-pattern '**/vendor/*' --c ./public/core/.eslintrc.json --global nav,moment,responsiveNav:true ./public/modules/custom/*/js",
+      "node_modules/eslint/bin/eslint.js --color --ignore-pattern '**/vendor/*' --c ./public/core/.eslintrc.json --global nav,moment,responsiveNav:true ./public/themes/custom/*/js"
+    ],
+    "test-unit": [
+      "bin/phpunit -c phpunit.xml.dist --testsuite unit"
+    ],
+    "test": [
+      "@test-behavioral",
+      "@test-static-php",
+      "@test-static-js",
+      "@test-unit"
+    ],
+    "fix": [
+      "bin/phpcbf --colors --standard=Drupal --extensions=php,module ./public/modules/custom",
+      "bin/phpcbf --colors --standard=Drupal --extensions=php,theme ./public/themes/custom"
+    ]
+  }
+}

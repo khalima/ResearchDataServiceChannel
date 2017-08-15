@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+cd "$(dirname ${0})/../.."
+composer test-static-php
+composer test-static-js

@@ -1,0 +1,53 @@
+language: php
+
+php:
+  - 7.1
+
+env:
+  global:
+    # The host is also defined in addons.hosts in this file.
+    - APP_HOST=d8template.druid.fi
+    - APP_URL=http://$APP_HOST:8080
+    # The database name is also defined in ./conf/env_ci/settings.env.php.
+    - APP_DB_NAME=d8template
+    - NODEJS_VERSION=6.6.0
+
+addons:
+  hosts:
+    # We cannot use $APP_HOST here, because Travis does not perform variable substitution for hosts.
+    - d8template.druid.fi
+
+services:
+  - mysql
+
+mysql:
+  database: $APP_DB_NAME
+  encoding: utf8
+
+cache:
+  directories:
+  - $HOME/.composer/cache
+  - $HOME/.npm
+
+install:
+  # Update to latest version of composer.
+  - composer self-update
+
+  # Update Node.js to a recent version.
+  - nvm install $NODEJS_VERSION
+  - nvm use $NODEJS_VERSION
+
+before_script:
+  # Build the application.
+  - composer build-ci
+
+  # Install the application.
+  - /usr/bin/env PHP_OPTIONS="-d sendmail_path=`which true`" ./bin/drush --root=./public site-install standard -y
+
+  # Start a web server in the background and wait for initialization.
+  - ./bin/drush --root=`readlink -f ./public` runserver 127.0.0.1:8080 &
+  - sleep 5
+
+script:
+  # Run all the tests
+  - composer test
