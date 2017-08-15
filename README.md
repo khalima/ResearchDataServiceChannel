@@ -1,7 +1,5 @@
 # Druid Drupal 8 project template
 
-[![Build Status](https://travis-ci.com/druidfi/drupal-project.svg?token=aRvVZBxy62ah4uAw3D6F&branch=master)](https://travis-ci.com/druidfi/drupal-project)
-
 ## About the site
 
 - Configuration is in `conf` folder
