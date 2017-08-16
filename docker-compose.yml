@@ -26,7 +26,7 @@ services:
       VIRTUAL_HOST: *hostname
     image: amazeeio/drupal:php70-basic
     volumes:
-      - .:/var/www/drupal/public_html
+      - .:/var/www/drupal/public_html:delegated
     volumes_from:
       - container:amazeeio-ssh-agent
     container_name: *hostname
