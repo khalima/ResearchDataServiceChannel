@@ -66,7 +66,6 @@
       "chmod 0750 public/sites/default"
     ],
     "build-ci": [
-      "npm install --engine-strict true",
       "composer install --prefer-dist --no-suggest --optimize-autoloader --ansi",
       "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
       "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
@@ -77,7 +76,6 @@
     ],
     "build-dev": [
       "tools/init-tools",
-      "npm install --engine-strict true",
       "composer update --no-suggest --prefer-dist --ansi",
       "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
       "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
