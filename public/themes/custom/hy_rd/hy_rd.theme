@@ -70,6 +70,10 @@ function hy_rd_theme_suggestions_node_alter(array &$suggestions, array $variable
  */
 function hy_rd_preprocess_block(array &$variables) {
 
+  // TODO: Turn this into a switch statement.
+  if (in_array($variables['elements']['#id'], array('navigation'))) {
+    $variables['attributes']['class'][] = 'quick-menu';
+  }
 }
 
 /**
