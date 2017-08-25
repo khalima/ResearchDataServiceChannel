@@ -115,8 +115,8 @@
       "tools/behavioral-tests"
     ],
     "test-static-php": [
-      "bin/phpcs --colors --standard=Drupal --extensions=php,module --ignore='*.css,*.md' ./public/modules/custom",
-      "bin/phpcs --colors --standard=Drupal --extensions=php,theme --ignore='*.css,*.md' ./public/themes/custom"
+      "bin/phpcs --colors --standard=Drupal --extensions=php,module --ignore='*.css,*.md, *.txt' ./public/modules/custom",
+      "bin/phpcs --colors --standard=Drupal --extensions=php,theme --ignore='*.css,*.md, *.txt' ./public/themes/custom"
     ],
     "test-static-js": [
       "node_modules/eslint/bin/eslint.js --color --ignore-pattern '**/vendor/*' --c ./public/core/.eslintrc.json --global nav,moment,responsiveNav:true ./public/modules/custom/*/js",
