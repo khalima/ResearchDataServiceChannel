@@ -1,0 +1,5 @@
+hy_base_styles:
+  version: 1.x
+  css:
+    theme:
+      Styleguide/css/styles.css: {}
