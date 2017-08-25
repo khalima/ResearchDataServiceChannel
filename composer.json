@@ -62,8 +62,7 @@
     "symlink-files": [
       "mkdir -p public/sites/default/files",
       "ln -sfn ../../../../files public/sites/default/files/public",
-      "ln -sfn ../../../../files_private public/sites/default/files/private",
-      "chmod 0750 public/sites/default"
+      "ln -sfn ../../../../files_private public/sites/default/files/private"
     ],
     "update-deps": [
       "composer update --no-suggest --prefer-dist --ignore-platform-reqs --ansi"
