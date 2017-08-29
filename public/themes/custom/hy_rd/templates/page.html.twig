@@ -102,10 +102,21 @@
     {{ page.after_content }}
   </main>
 
-  {% if page.footer %}
+
     <footer role="contentinfo">
-      {{ page.footer }}
+
+      <div class="l-footer">
+        {% if page.footer %}
+        <div class="l-footer__subregion">
+          {{ page.footer }}
+        </div>
+        {% endif %}
+        <div class="l-footer__copyright">
+          <p>
+            &copy; {{ 'University of Helsinki'|trans }} {{ "now"|date("Y") }}
+          </p>
+        </div>
+      </div>
     </footer>
-  {% endif %}
 
 </div>{# /.layout-container #}
