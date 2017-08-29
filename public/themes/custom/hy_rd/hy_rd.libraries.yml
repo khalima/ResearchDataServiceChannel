@@ -1,5 +1,5 @@
-hy_base_styles:
+styles:
   version: 1.x
   css:
     theme:
-      Styleguide/css/styles.css: {}
+      css/styles.css: {}
