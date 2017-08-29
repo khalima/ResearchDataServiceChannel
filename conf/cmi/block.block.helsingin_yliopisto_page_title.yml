@@ -1,0 +1,20 @@
+uuid: 84a32d61-ec5f-48fc-9adc-6cacfae956e1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - helsingin_yliopisto
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: helsingin_yliopisto_page_title
+theme: helsingin_yliopisto
+region: content
+weight: -50
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

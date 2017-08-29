@@ -1,0 +1,20 @@
+uuid: 9260c43b-b20c-4857-975f-48534392a35c
+langcode: en
+status: false
+dependencies:
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: hy_rd_local_actions
+theme: hy_rd
+region: before_content
+weight: -8
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }
