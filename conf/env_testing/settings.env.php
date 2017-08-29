@@ -21,6 +21,9 @@ $databases['default']['default'] = array (
  */
 $config['environment']['env'] = 'testing';
 
+$settings['reverse_proxy'] = TRUE;
+$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
+
 $settings['trusted_host_patterns'] = array(
     '^dev\.researchdata-hy\.com',
 );
