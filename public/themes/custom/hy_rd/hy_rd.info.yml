@@ -6,7 +6,7 @@ core: 8.x
 libraries:
   - hy_rd/global-styling
 
-base theme: hy_styleguide
+base theme: stable
 
 regions:
   content: Content
