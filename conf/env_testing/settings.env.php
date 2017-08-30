@@ -6,11 +6,11 @@
 
 // Database configuration for the project.
 $databases['default']['default'] = array (
-    'database' => 'mildred1',
+    'database' => 'mildred1db',
     'username' => 'mildred1',
-    'password' => 'mildred1',
+    'password' => 'cdvowrUPQUBZZ7Ny7Ep8',
     'prefix' => '',
-    'host' => 'mildred1',
+    'host' => '192.168.3.170',
     'port' => '3306',
     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
     'driver' => 'mysql',
