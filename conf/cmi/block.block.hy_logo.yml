@@ -1,0 +1,25 @@
+uuid: df778971-7a72-47fc-9a82-dcae9df4ec16
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9bc8dd91-31f0-4d81-b33f-12bda4bb4abd'
+  module:
+    - block_content
+  theme:
+    - hy_rd
+id: hy_logo
+theme: hy_rd
+region: header_left
+weight: -7
+provider: null
+plugin: 'block_content:9bc8dd91-31f0-4d81-b33f-12bda4bb4abd'
+settings:
+  id: 'block_content:9bc8dd91-31f0-4d81-b33f-12bda4bb4abd'
+  label: 'Hy - logo'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

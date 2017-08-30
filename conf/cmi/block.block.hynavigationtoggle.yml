@@ -1,0 +1,29 @@
+uuid: 6eeba32b-0e5f-451e-bf7d-1392d51e67ad
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c4583c9d-e94a-48c7-93ea-e73f23563ccf'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - hy_rd
+third_party_settings:
+  block_class:
+    classes: ''
+id: hynavigationtoggle
+theme: hy_rd
+region: header_right
+weight: -8
+provider: null
+plugin: 'block_content:c4583c9d-e94a-48c7-93ea-e73f23563ccf'
+settings:
+  id: 'block_content:c4583c9d-e94a-48c7-93ea-e73f23563ccf'
+  label: 'Hy - navigation toggle'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

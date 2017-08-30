@@ -1,0 +1,20 @@
+uuid: c31b9c4b-59ef-4055-a970-7f926bb26eda
+langcode: en
+status: true
+dependencies:
+  theme:
+    - helsingin_yliopisto
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: helsingin_yliopisto_local_actions
+theme: helsingin_yliopisto
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

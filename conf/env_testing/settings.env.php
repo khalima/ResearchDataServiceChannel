@@ -6,11 +6,11 @@
 
 // Database configuration for the project.
 $databases['default']['default'] = array (
-    'database' => 'otava_lcms',
-    'username' => 'otava',
-    'password' => 'jUBnxiTu0VrK',
+    'database' => 'mildred1',
+    'username' => 'mildred1',
+    'password' => 'mildred1',
     'prefix' => '',
-    'host' => 'localhost',
+    'host' => 'mildred1',
     'port' => '3306',
     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
     'driver' => 'mysql',
@@ -21,6 +21,9 @@ $databases['default']['default'] = array (
  */
 $config['environment']['env'] = 'testing';
 
+$settings['reverse_proxy'] = TRUE;
+$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
+
 $settings['trusted_host_patterns'] = array(
-    '^otava-lcms-test\.druid\.fi',
+    '^dev\.researchdata-hy\.com',
 );
