@@ -21,8 +21,10 @@ $databases['default']['default'] = array (
  */
 $config['environment']['env'] = 'testing';
 
-$settings['reverse_proxy'] = TRUE;
-$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
+$settings['hash_salt'] = 'bvZQQ28Qq1xxTW7uEND-XWGIKso9tClM0nzWJ8xoYM9cG0j_a_mlH8thumoZiGDkRHIpPKCHGQ';
+
+//$settings['reverse_proxy'] = TRUE;
+//$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 
 $settings['trusted_host_patterns'] = array(
     '^dev\.researchdata-hy\.com',
