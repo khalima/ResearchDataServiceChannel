@@ -43,9 +43,9 @@
 #  'remote-user' => 'root',
 #);
 
-#$aliases['testing'] = array(
-#  'uri' => 'http://testing.example.com',
-#  'root' => '/var/www/example.com/current',
-#  'remote-host' => 'testing.example.com',
-#  'remote-user' => 'root',
-#);
+$aliases['testing'] = array(
+  'uri' => 'http://testing.example.com',
+  'root' => '/var/www/dev.researchdata-hy.com/public',
+  'remote-host' => '192.168.103.54',
+  'remote-user' => 'centos',
+);
