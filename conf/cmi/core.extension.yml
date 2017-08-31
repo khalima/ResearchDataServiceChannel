@@ -25,7 +25,6 @@ module:
   help: 0
   history: 0
   image: 0
-  kint: 0
   language: 0
   link: 0
   locale: 0
@@ -60,8 +59,6 @@ theme:
   bartik: 0
   seven: 0
   adminimal_theme: 0
-  helsingin_yliopisto: 0
-  hy_styleguide: 0
   hy_rd: 0
 profile: standard
 _core:
