@@ -4,9 +4,9 @@ description: Helsinki University - Research Data
 package: Helsinki
 core: 8.x
 libraries:
-  - hy_rd/global-styling
+  - hy_rd/styles
 
-base theme: hy_styleguide
+base theme: stable
 
 regions:
   content: Content

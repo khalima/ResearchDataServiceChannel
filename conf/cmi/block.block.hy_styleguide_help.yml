@@ -1,0 +1,22 @@
+uuid: c648508a-6083-4d3f-8c2c-5570e7ee5b83
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - hy_styleguide
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: hy_styleguide_help
+theme: hy_styleguide
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

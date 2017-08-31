@@ -1,0 +1,29 @@
+uuid: f6d2421d-82fd-4d6b-87f0-7b470cde4dbe
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:00cf6446-2cb3-4cae-b370-81b76f06e1b8'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - hy_rd
+third_party_settings:
+  block_class:
+    classes: ''
+id: hysearchtoggle
+theme: hy_rd
+region: header_right
+weight: -9
+provider: null
+plugin: 'block_content:00cf6446-2cb3-4cae-b370-81b76f06e1b8'
+settings:
+  id: 'block_content:00cf6446-2cb3-4cae-b370-81b76f06e1b8'
+  label: 'Hy - search toggle'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: db1df36e-3ebe-4a0e-ad16-f84e9922f6dd
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: za-39d5WDUg6XvbyqSnuVYEeq6QM4qKJxW8MnoAha5A
+id: hy_rd_search
+theme: hy_rd
+region: before_content
+weight: -1
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }
