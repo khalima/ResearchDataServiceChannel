@@ -1,0 +1,20 @@
+uuid: dfa82e4e-ff81-4f11-8808-03e642919f09
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_efecte_id
+field_name: field_efecte_id
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

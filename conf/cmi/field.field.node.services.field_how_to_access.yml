@@ -1,0 +1,21 @@
+uuid: a6480f11-fcb4-44cf-bea1-8628ff2eaa7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_how_to_access
+    - node.type.services
+  module:
+    - text
+id: node.services.field_how_to_access
+field_name: field_how_to_access
+entity_type: node
+bundle: services
+label: 'How to access'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

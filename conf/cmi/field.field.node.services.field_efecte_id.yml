@@ -1,0 +1,23 @@
+uuid: 0cb34cea-b040-4244-aab0-2c6e51cee24c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_efecte_id
+    - node.type.services
+id: node.services.field_efecte_id
+field_name: field_efecte_id
+entity_type: node
+bundle: services
+label: 'Efecte ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
