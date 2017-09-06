@@ -12,8 +12,8 @@ _core:
   default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
 id: hy_rd_main_menu
 theme: hy_rd
-region: content
-weight: 1
+region: header_middle
+weight: -4
 provider: null
 plugin: 'system_menu_block:main'
 settings:

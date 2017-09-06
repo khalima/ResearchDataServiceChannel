@@ -1,0 +1,25 @@
+uuid: de0529dc-4fde-4daa-802c-6231d2ecc192
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:70717a42-bda9-4e4b-bde8-702ae4a3cf4d'
+  module:
+    - block_content
+  theme:
+    - hy_rd
+id: hytopbarlinks
+theme: hy_rd
+region: top_bar
+weight: 0
+provider: null
+plugin: 'block_content:70717a42-bda9-4e4b-bde8-702ae4a3cf4d'
+settings:
+  id: 'block_content:70717a42-bda9-4e4b-bde8-702ae4a3cf4d'
+  label: 'Hy - top bar links'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
