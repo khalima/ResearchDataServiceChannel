@@ -6,11 +6,11 @@
 
 // Database configuration for the project.
 $databases['default']['default'] = array (
-    'database' => 'mildred1',
+    'database' => 'mildred1db',
     'username' => 'mildred1',
-    'password' => 'mildred1',
+    'password' => 'cdvowrUPQUBZZ7Ny7Ep8',
     'prefix' => '',
-    'host' => 'mildred1',
+    'host' => '192.168.3.170',
     'port' => '3306',
     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
     'driver' => 'mysql',
@@ -21,8 +21,10 @@ $databases['default']['default'] = array (
  */
 $config['environment']['env'] = 'testing';
 
-$settings['reverse_proxy'] = TRUE;
-$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
+$settings['hash_salt'] = 'bvZQQ28Qq1xxTW7uEND-XWGIKso9tClM0nzWJ8xoYM9cG0j_a_mlH8thumoZiGDkRHIpPKCHGQ';
+
+//$settings['reverse_proxy'] = TRUE;
+//$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 
 $settings['trusted_host_patterns'] = array(
     '^dev\.researchdata-hy\.com',

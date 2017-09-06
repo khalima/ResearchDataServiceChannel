@@ -7,23 +7,6 @@
  */
 
 /**
- * Amazee.io magic. Use only if site uses Amazee.io hosting
- */
-// Don't change anything here, it's magic!
-//global $aliases_stub;
-//if (empty($aliases_stub)) {
-//  $ch = curl_init();
-//  curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
-//  curl_setopt($ch, CURLOPT_HEADER, 0);
-//  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//  curl_setopt($ch, CURLOPT_URL, 'https://drush-alias.amazeeio.cloud/aliases.drushrc.php.stub');
-//  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-//  $aliases_stub = curl_exec($ch);
-//  curl_close($ch);
-//}
-//eval($aliases_stub);
-
-/**
  * Placeholder aliases. Remove the leading hash signs to enable.
  *
  * These are the environment names we have decided to use, please don't change
@@ -43,9 +26,9 @@
 #  'remote-user' => 'root',
 #);
 
-#$aliases['testing'] = array(
-#  'uri' => 'http://testing.example.com',
-#  'root' => '/var/www/example.com/current',
-#  'remote-host' => 'testing.example.com',
-#  'remote-user' => 'root',
-#);
+$aliases['testing'] = array(
+  'uri' => 'https://dev.researchdata-hy.com/',
+  'root' => '/var/www/dev.researchdata-hy.com/public',
+  'remote-host' => '192.168.103.54',
+  'remote-user' => 'centos',
+);
