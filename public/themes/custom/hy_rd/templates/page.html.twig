@@ -79,8 +79,14 @@
 
   {{ page.help }}
 
-  <main role="main" class="l-main-wrapper">
+  {% if page.before_content %}
+  <div class="l-before-content">
     {{ page.before_content }}
+  </div>
+  {% endif %}
+
+  <main role="main" class="l-main-wrapper">
+
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
     <div class="l-main">
       <div class="l-content">
@@ -102,21 +108,26 @@
     {{ page.after_content }}
   </main>
 
+  {% if page.after_content %}
+  <div class="l-after-content">
+    {{ page.after_content }}
+  </div>
+  {% endif %}
 
-    <footer role="contentinfo">
+  <footer role="contentinfo">
 
-      <div class="l-footer">
-        {% if page.footer %}
-        <div class="l-footer__subregion">
-          {{ page.footer }}
-        </div>
-        {% endif %}
-        <div class="l-footer__copyright">
-          <p>
-            &copy; {{ 'University of Helsinki'|trans }} {{ "now"|date("Y") }}
-          </p>
-        </div>
+    <div class="l-footer">
+      {% if page.footer %}
+      <div class="l-footer__subregion">
+        {{ page.footer }}
       </div>
-    </footer>
+      {% endif %}
+      <div class="l-footer__copyright">
+        <p>
+          &copy; {{ 'University of Helsinki'|trans }} {{ "now"|date("Y") }}
+        </p>
+      </div>
+    </div>
+  </footer>
 
 </div>{# /.layout-container #}
