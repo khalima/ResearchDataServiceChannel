@@ -3,3 +3,4 @@ styles:
   css:
     theme:
       css/styles.css: {}
+      css/flexboxgrid.min.css: {}

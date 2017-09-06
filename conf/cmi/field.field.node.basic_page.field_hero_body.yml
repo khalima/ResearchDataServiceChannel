@@ -1,0 +1,21 @@
+uuid: 84aa55e0-7cee-45d2-91c0-7aec0b6f0190
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero_body
+    - node.type.basic_page
+  module:
+    - text
+id: node.basic_page.field_hero_body
+field_name: field_hero_body
+entity_type: node
+bundle: basic_page
+label: 'Hero Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
