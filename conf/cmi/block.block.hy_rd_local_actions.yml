@@ -1,6 +1,6 @@
-uuid: 9260c43b-b20c-4857-975f-48534392a35c
+uuid: 95ea02b9-c2c3-49d2-9fad-ff2817d09776
 langcode: en
-status: false
+status: true
 dependencies:
   theme:
     - hy_rd
@@ -8,8 +8,8 @@ _core:
   default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
 id: hy_rd_local_actions
 theme: hy_rd
-region: before_content
-weight: -8
+region: content
+weight: -3
 provider: null
 plugin: local_actions_block
 settings:

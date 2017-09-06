@@ -1,6 +1,6 @@
-uuid: 5f24906c-2ac9-4caa-a425-f84d6afcf4b8
+uuid: 0ae10310-178d-49a8-b041-33c8af9f1639
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - help
@@ -10,8 +10,8 @@ _core:
   default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
 id: hy_rd_help
 theme: hy_rd
-region: before_content
-weight: -8
+region: content
+weight: -4
 provider: null
 plugin: help_block
 settings:

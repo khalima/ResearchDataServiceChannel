@@ -1,0 +1,21 @@
+uuid: 788f94c6-c64d-43c2-8a4d-b2e6839b3adc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_who_is_this_for
+    - node.type.services
+  module:
+    - text
+id: node.services.field_who_is_this_for
+field_name: field_who_is_this_for
+entity_type: node
+bundle: services
+label: 'Who is this for'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
