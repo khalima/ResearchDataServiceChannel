@@ -1,0 +1,112 @@
+uuid: 24cb053a-fa8d-4287-8df7-da2d61309d31
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.services.body
+    - field.field.node.services.field_costs
+    - field.field.node.services.field_description
+    - field.field.node.services.field_efecte_id
+    - field.field.node.services.field_how_to_access
+    - field.field.node.services.field_image
+    - field.field.node.services.field_links
+    - field.field.node.services.field_who_is_this_for
+    - node.type.services
+  module:
+    - ds
+    - image
+    - link
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_twocol
+      library: layout_discovery/twocol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      first:
+        - node_title
+        - field_description
+        - field_who_is_this_for
+        - field_how_to_access
+        - field_links
+      second:
+        - field_image
+        - body
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: ''
+          link: false
+id: node.services.full
+targetEntityType: node
+bundle: services
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 6
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: second
+  field_description:
+    type: text_trimmed
+    weight: 1
+    region: first
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_how_to_access:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    type: text_trimmed
+    region: first
+  field_image:
+    weight: 5
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: second
+  field_links:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: first
+  field_who_is_this_for:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    type: text_trimmed
+    region: first
+hidden:
+  field_costs: true
+  field_efecte_id: true
+  langcode: true
+  links: true

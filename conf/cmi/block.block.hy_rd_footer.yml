@@ -1,6 +1,6 @@
-uuid: 0b71c93d-84d2-46ab-b70e-a02ac85796ec
+uuid: c4c97d66-016d-425b-96bd-8fa9b95c839c
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.footer
@@ -12,7 +12,7 @@ _core:
   default_config_hash: kkISXE1LT2FJEoYnqCrCpeFB-2pmGmMxMklVk7rQcfg
 id: hy_rd_footer
 theme: hy_rd
-region: before_content
+region: content
 weight: 0
 provider: null
 plugin: 'system_menu_block:footer'

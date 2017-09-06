@@ -1,16 +1,16 @@
-uuid: ba4ed68b-2798-4a9f-ba42-aead8cf9afdd
+uuid: ed96521d-4bc4-4e68-8286-482d6d98b89f
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.page
+    - node.type.services
   module:
     - text
-id: node.page.body
+id: node.services.body
 field_name: body
 entity_type: node
-bundle: page
+bundle: services
 label: Body
 description: ''
 required: false
