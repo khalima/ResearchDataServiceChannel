@@ -44,8 +44,8 @@
 #);
 
 $aliases['testing'] = array(
-  'uri' => 'http://testing.example.com',
+  'uri' => 'http://dev.researchdata-hy.com',
   'root' => '/var/www/dev.researchdata-hy.com/public',
-  'remote-host' => '192.168.103.54',
+  'remote-host' => 'dev.researchdata-hy.com',
   'remote-user' => 'centos',
 );
