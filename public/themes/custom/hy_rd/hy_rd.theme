@@ -73,7 +73,7 @@ function hy_rd_preprocess_block(array &$variables) {
   // TODO: Turn this into a switch statement.
   // TODO: There is probably a better way with smaller
   // nested arrays.
-  if (in_array($variables['elements']['#id'], 'hy_rd_main_menu')) {
+  if ($variables['elements']['#id'] == 'hy_rd_main_menu') {
     $variables['attributes']['class'][] = 'quick-menu';
   }
 }
