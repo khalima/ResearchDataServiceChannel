@@ -146,30 +146,34 @@ function hy_rd_preprocess_details(array &$variables) {
   /*$variables['attributes']['class'][] = 'details';
   $variables['summary_attributes']['class'] = 'summary';*/
 }
+
 /**
  * Implements template_preprocess_region().
  */
-function hy_rd_preprocess_region( array &$variables ) {
+function hy_rd_preprocess_region(array &$variables) {
 
-  switch( $variables['region'] ) {
+  switch ($variables['region']) {
     case 'before_content':
       $variables['wrapper'] = TRUE;
       $variables['attributes']['class'] = [
         'l-region',
-        'l-region--before-content'
+        'l-region--before-content',
       ];
       break;
+
     case 'after_content':
       $variables['wrapper'] = TRUE;
       $variables['attributes']['class'] = [
         'l-region',
-        'l-region--before-content'
+        'l-region--before-content',
       ];
       break;
+
     default:
       break;
   }
 }
+
 /**
  * Implements hook_theme_suggestions_details_alter().
  */
