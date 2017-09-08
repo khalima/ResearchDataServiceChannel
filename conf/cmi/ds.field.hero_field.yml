@@ -1,0 +1,11 @@
+id: hero_field
+label: 'Hero field'
+ui_limit: ''
+properties:
+  content:
+    value: "<div class=\"hero-medium\" style=\"background-image: url([node:field_hero_image:entity:url]);\">\r\n<div class=\"hero-medium__top\">\r\n<div class=\"hero-medium__content\">\r\n<h2 class=\"hero-medium__title\">[node:field_hero_title]</h2>\r\n\r\n<div class=\"hero-medium__ingress\">[node:field_hero_body]</div>\r\n</div>\r\n</div>\r\n</div>\r\n"
+    format: full_html
+type: token
+type_label: 'Token field'
+entities:
+  node: node
