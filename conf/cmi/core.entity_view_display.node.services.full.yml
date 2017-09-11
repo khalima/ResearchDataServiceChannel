@@ -37,7 +37,13 @@ third_party_settings:
       second:
         - field_image
         - body
+        - 'dynamic_token_field:node-tilauslomake_linkki'
     fields:
+      'dynamic_token_field:node-tilauslomake_linkki':
+        plugin_id: 'dynamic_token_field:node-tilauslomake_linkki'
+        weight: 7
+        label: hidden
+        formatter: default
       node_title:
         plugin_id: node_title
         weight: 0
