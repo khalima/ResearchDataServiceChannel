@@ -26,13 +26,14 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   webform:
     weight: 102
     label: hidden
-    settings: {  }
+    settings:
+      source_entity: true
     third_party_settings: {  }
     type: webform_entity_reference_entity_view
     region: content

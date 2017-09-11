@@ -10,7 +10,7 @@ id: service_order_form
 title: 'Service order form'
 description: ''
 category: ''
-elements: "service_need:\n  '#type': textarea\n  '#title': 'Service Need'\npayer:\n  '#type': textarea\n  '#title': Payer\ndate_of_service_need:\n  '#type': textarea\n  '#title': 'Date of Service Need'\nadditional_information:\n  '#type': textarea\n  '#title': 'Additional information'\nservice:\n  '#type': entity_autocomplete\n  '#title': Service\n  '#default_value': '[current-page:query:ordered_service]'\n  '#disabled': true\n  '#required': true\n  '#target_type': node\n  '#selection_handler': 'default:node'\n  '#selection_settings':\n    target_bundles:\n      services: services\n"
+elements: "intended_use_of_service:\n  '#type': textfield\n  '#title': 'Intended use of service?'\nwhen_do_you_need_the_service:\n  '#type': textfield\n  '#title': 'When do you need the service'\nwho_will_pay_for_this:\n  '#type': textfield\n  '#title': 'Who will pay for this?'\nadditional_information:\n  '#type': textarea\n  '#title': 'Additional information?'\nservice:\n  '#type': entity_autocomplete\n  '#title': Service\n  '#default_value': '[current-page:query:ordered_service]'\n  '#disabled': true\n  '#required': true\n  '#target_type': node\n  '#selection_handler': 'default:node'\n  '#selection_settings':\n    target_bundles:\n      services: services\n"
 css: ''
 javascript: ''
 settings:
