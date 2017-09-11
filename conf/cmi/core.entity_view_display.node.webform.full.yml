@@ -9,6 +9,7 @@ dependencies:
     - node.type.webform
   module:
     - ds
+    - text
     - user
     - webform
 third_party_settings:
@@ -23,6 +24,7 @@ third_party_settings:
       first:
         - 'dynamic_block_field:node-order_form_service_block'
       second:
+        - body
         - webform
     fields:
       'dynamic_block_field:node-order_form_service_block':
@@ -37,8 +39,16 @@ targetEntityType: node
 bundle: webform
 mode: full
 content:
-  webform:
+  body:
+    type: text_trimmed
     weight: 1
+    region: second
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  webform:
+    weight: 2
     label: hidden
     settings:
       source_entity: true
@@ -46,6 +56,5 @@ content:
     type: webform_entity_reference_entity_view
     region: second
 hidden:
-  body: true
   langcode: true
   links: true
