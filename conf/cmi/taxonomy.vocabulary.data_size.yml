@@ -1,0 +1,9 @@
+uuid: e66c25bb-ccdc-40f6-87ab-a865607b2685
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data size'
+vid: data_size
+description: ''
+hierarchy: 0
+weight: 0

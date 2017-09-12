@@ -1,0 +1,11 @@
+uuid: 98cb8284-0522-46ad-ae0c-142d780cc3b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.data_process
+id: taxonomy_term.data_process
+target_entity_type_id: taxonomy_term
+target_bundle: data_process
+default_langcode: site_default
+language_alterable: false

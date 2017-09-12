@@ -5,11 +5,18 @@ dependencies:
   config:
     - field.field.node.services.body
     - field.field.node.services.field_costs
+    - field.field.node.services.field_data_process
+    - field.field.node.services.field_data_sensitivity
+    - field.field.node.services.field_data_size
     - field.field.node.services.field_description
     - field.field.node.services.field_efecte_id
     - field.field.node.services.field_how_to_access
     - field.field.node.services.field_image
     - field.field.node.services.field_links
+    - field.field.node.services.field_project_members_access_to_
+    - field.field.node.services.field_project_phase
+    - field.field.node.services.field_publishing_options
+    - field.field.node.services.field_service_type
     - field.field.node.services.field_who_is_this_for
     - image.style.thumbnail
     - node.type.services
@@ -45,6 +52,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_data_process:
+    weight: 39
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_data_sensitivity:
+    weight: 40
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_data_size:
+    weight: 41
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_description:
     weight: 38
@@ -84,6 +109,30 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_project_members_access_to_:
+    weight: 42
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_project_phase:
+    weight: 43
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_publishing_options:
+    weight: 44
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_service_type:
+    weight: 45
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_who_is_this_for:
     weight: 32

@@ -1,0 +1,28 @@
+uuid: af0eed95-878a-4579-ab59-0fa74d1cf6d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_sensitivity
+    - node.type.services
+    - taxonomy.vocabulary.data_sensitivity
+id: node.services.field_data_sensitivity
+field_name: field_data_sensitivity
+entity_type: node
+bundle: services
+label: 'Data sensitivity'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      data_sensitivity: data_sensitivity
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

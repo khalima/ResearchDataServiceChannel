@@ -1,0 +1,28 @@
+uuid: 902907b1-f7cc-47fe-9487-936e9a04585a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_members_access_to_
+    - node.type.services
+    - taxonomy.vocabulary.project_members_access_to_uh_net
+id: node.services.field_project_members_access_to_
+field_name: field_project_members_access_to_
+entity_type: node
+bundle: services
+label: 'Project members access to UH network'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project_members_access_to_uh_net: project_members_access_to_uh_net
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
