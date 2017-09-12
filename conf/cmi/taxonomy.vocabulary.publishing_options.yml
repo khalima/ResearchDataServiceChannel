@@ -1,0 +1,9 @@
+uuid: d813e731-8445-4db9-8bec-932ed7ca0d9c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Publishing options'
+vid: publishing_options
+description: ''
+hierarchy: 0
+weight: 0

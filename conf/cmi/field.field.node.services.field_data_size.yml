@@ -1,0 +1,28 @@
+uuid: d8c792b9-b963-4a92-bae3-e7cd0241d722
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data_size
+    - node.type.services
+    - taxonomy.vocabulary.data_size
+id: node.services.field_data_size
+field_name: field_data_size
+entity_type: node
+bundle: services
+label: 'Data size'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      data_size: data_size
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
