@@ -9,7 +9,7 @@ _core:
 id: hy_rd_local_actions
 theme: hy_rd
 region: content
-weight: -4
+weight: -5
 provider: null
 plugin: local_actions_block
 settings:

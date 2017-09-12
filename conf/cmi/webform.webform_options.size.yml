@@ -1,0 +1,13 @@
+uuid: bc7706f1-d0f7-4058-8d8a-ac8d87ad5dbf
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - webform
+_core:
+  default_config_hash: Xov05v5Uq4t3ek0hXVcvr83sYGxDkMP3qG01pzendv8
+id: size
+label: Size
+category: General
+options: "Extra Small: Extra Small\nSmall: Small\nMedium: Medium\nLarge: Large\nExtra Large: Extra Large\n"
