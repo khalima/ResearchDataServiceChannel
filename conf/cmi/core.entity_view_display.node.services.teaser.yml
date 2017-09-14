@@ -87,7 +87,14 @@ content:
 hidden:
   body: true
   field_costs: true
+  field_data_process: true
+  field_data_sensitivity: true
+  field_data_size: true
   field_efecte_id: true
   field_image: true
+  field_project_members_access_to_: true
+  field_project_phase: true
+  field_publishing_options: true
+  field_service_type: true
   langcode: true
   links: true
