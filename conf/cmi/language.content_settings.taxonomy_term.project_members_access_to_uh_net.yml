@@ -1,0 +1,11 @@
+uuid: 9464b351-c8ec-4f18-b399-b2500f3ff575
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.project_members_access_to_uh_net
+id: taxonomy_term.project_members_access_to_uh_net
+target_entity_type_id: taxonomy_term
+target_bundle: project_members_access_to_uh_net
+default_langcode: site_default
+language_alterable: false

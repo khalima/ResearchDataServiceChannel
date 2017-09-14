@@ -1,0 +1,28 @@
+uuid: 4fb364b7-4bfd-4601-b41d-5b4769cbacfd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publishing_options
+    - node.type.services
+    - taxonomy.vocabulary.publishing_options
+id: node.services.field_publishing_options
+field_name: field_publishing_options
+entity_type: node
+bundle: services
+label: 'Publishing options'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      publishing_options: publishing_options
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

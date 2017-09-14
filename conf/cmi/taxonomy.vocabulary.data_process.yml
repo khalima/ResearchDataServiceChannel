@@ -1,0 +1,9 @@
+uuid: a1ab6e4e-290a-416c-b2d1-86e602f17780
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data process'
+vid: data_process
+description: ''
+hierarchy: 0
+weight: 0

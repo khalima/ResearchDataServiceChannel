@@ -1,0 +1,9 @@
+uuid: 1306acfe-5fdb-49be-baa0-72044d60c187
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data sensitivity'
+vid: data_sensitivity
+description: ''
+hierarchy: 0
+weight: 0
