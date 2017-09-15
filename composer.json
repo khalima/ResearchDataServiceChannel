@@ -70,7 +70,6 @@
       "@build-dev"
     ],
     "symlink-files": [
-      "chmod 0755 public/sites/default",
       "mkdir -p public/sites/default/files",
       "ln -sfn ../../../../files public/sites/default/files/public",
       "ln -sfn ../../../../files_private public/sites/default/files/private"
