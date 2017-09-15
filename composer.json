@@ -98,6 +98,7 @@
     ],
     "build-testing": [
       "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
+      "sudo chmod -R 0775 public/sites/default/",
       "@symlink-files",
       "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
       "ln -sfn ../../../conf/env_testing/services.env.yml public/sites/default/services.env.yml",
