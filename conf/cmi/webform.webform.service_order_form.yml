@@ -10,7 +10,7 @@ id: service_order_form
 title: 'Service order form'
 description: ''
 category: ''
-elements: "intended_use_of_service:\n  '#type': textfield\n  '#title': 'Intended use of service?'\nwhen_do_you_need_the_service:\n  '#type': textfield\n  '#title': 'When do you need the service'\nwho_will_pay_for_this:\n  '#type': textfield\n  '#title': 'Who will pay for this?'\nadditional_information:\n  '#type': textarea\n  '#title': 'Additional information?'\nservice:\n  '#type': entity_autocomplete\n  '#title': Service\n  '#default_value': '[current-page:query:ordered_service]'\n  '#disabled': true\n  '#required': true\n  '#target_type': node\n  '#selection_handler': 'default:node'\n  '#selection_settings':\n    target_bundles:\n      services: services\n"
+elements: "webform_container:\n  '#type': container\n  '#attributes':\n    class:\n      - row\n  webform_container_top:\n    '#type': container\n    '#attributes':\n      class:\n        - col-sm-12\n    webform_text:\n      '#type': webform_markup\n      '#markup': \"<strong>ORDER FORM</strong>\\n<p><strong>You are about to submit an order. Please check your information and provide additional information when applicable.</strong></p>\"\n  layout__region__first:\n    '#type': container\n    '#attributes':\n      class:\n        - col-sm-6\n    intended_use_of_service:\n      '#type': textfield\n      '#title': 'Intended use of service?'\n    when_do_you_need_the_service:\n      '#type': textfield\n      '#title': 'When do you need the service'\n    who_will_pay_for_this:\n      '#type': textfield\n      '#title': 'Who will pay for this?'\n    additional_information:\n      '#type': textarea\n      '#title': 'Additional information?'\n    service:\n      '#type': entity_autocomplete\n      '#title': Service\n      '#default_value': '[current-page:query:ordered_service]'\n      '#disabled': true\n      '#required': true\n      '#target_type': node\n      '#selection_handler': 'default:node'\n      '#selection_settings':\n        target_bundles:\n          services: services\n  layout__region__second:\n    '#type': container\n    '#attributes':\n      class:\n        - col-sm-6\n    webform_user_information:\n      '#type': processed_text\n      '#text': \"<h4>YOUR INFORMATION</h4>\\r\\n\\r\\n<p><span class=\\\"icon icon--person\\\"></span> Francisco Mason<br />\\r\\n<span class=\\\"icon icon--mail\\\"></span> fmason@yahoo.com<br />\\r\\n<span class=\\\"icon icon--phone\\\"></span> 132-064-7230<br />\\r\\n<span class=\\\"icon icon--units-and-faculties\\\"></span> Department of silly science</p>\\r\\n\"\n      '#format': full_html\n"
 css: ''
 javascript: ''
 settings:
@@ -40,11 +40,11 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
-  wizard_progress_bar: true
+  wizard_progress_bar: false
   wizard_progress_pages: false
   wizard_progress_percentage: false
   wizard_start_label: ''
-  wizard_complete: true
+  wizard_complete: false
   wizard_complete_label: ''
   preview: 0
   preview_label: ''
@@ -80,7 +80,6 @@ settings:
 access:
   create:
     roles:
-      - anonymous
       - authenticated
     users: {  }
     permissions: {  }
