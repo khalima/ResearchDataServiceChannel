@@ -11,7 +11,7 @@ _core:
 id: hy_rd_content
 theme: hy_rd
 region: content
-weight: -1
+weight: -2
 provider: null
 plugin: system_main_block
 settings:
