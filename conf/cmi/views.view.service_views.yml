@@ -257,14 +257,16 @@ display:
       display_extenders: {  }
       path: services
       style:
-        type: html_list
+        type: grid
         options:
           grouping: {  }
-          row_class: 'box-story theme-plain-alt col-sm-4'
-          default_row_class: true
-          type: ul
-          wrapper_class: item-list
-          class: ''
+          columns: 2
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: true
+          col_class_custom: col-sm-6
+          row_class_default: true
+          row_class_custom: ''
       defaults:
         style: false
         row: false
