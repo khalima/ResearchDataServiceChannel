@@ -80,10 +80,10 @@
       "ln -sfn ../../../../files_private public/sites/default/files/private"
     ],
     "update-deps": [
-      "composer update --no-scripts --no-suggest --prefer-dist --ignore-platform-reqs --ansi"
+      "@composer update --no-scripts --no-suggest --prefer-dist --ignore-platform-reqs --ansi"
     ],
     "build-ci": [
-      "composer install --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
+      "@composer install --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
       "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
       "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
       "@symlink-files",
@@ -92,8 +92,7 @@
       "ln -sfn ../../../conf/env_ci/settings.env.php public/sites/default/settings.env.php"
     ],
     "build-dev": [
-      "tools/init-tools",
-      "composer install --no-suggest --prefer-dist --ignore-platform-reqs --ansi",
+      "@composer install --no-suggest --prefer-dist --ignore-platform-reqs --ansi",
       "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
       "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
       "@symlink-files",
@@ -102,7 +101,7 @@
       "ln -sfn ../../../conf/env_development/settings.env.php public/sites/default/settings.env.php"
     ],
     "build-testing": [
-      "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
+      "@composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
       "sudo chmod -R 0775 public/sites/default/",
       "@symlink-files",
       "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
@@ -110,14 +109,14 @@
       "ln -sfn ../../../conf/env_testing/settings.env.php public/sites/default/settings.env.php"
     ],
     "build-staging": [
-      "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
+      "@composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
       "@symlink-files",
       "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
       "ln -sfn ../../../conf/env_staging/services.env.yml public/sites/default/services.env.yml",
       "ln -sfn ../../../conf/env_staging/settings.env.php public/sites/default/settings.env.php"
     ],
     "build-production": [
-      "composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
+      "@composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
       "@symlink-files",
       "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
       "ln -sfn ../../../conf/env_production/services.env.yml public/sites/default/services.env.yml",
