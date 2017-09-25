@@ -12,7 +12,7 @@ dependencies:
 id: hyfrontpagelink
 theme: hy_rd
 region: content
-weight: 0
+weight: -4
 provider: null
 plugin: 'block_content:8a886bd0-4ab5-45ff-a673-646440a46b2b'
 settings:
