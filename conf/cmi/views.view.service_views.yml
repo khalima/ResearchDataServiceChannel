@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_description
     - node.type.services
+    - system.menu.main
     - taxonomy.vocabulary.data_process
     - taxonomy.vocabulary.data_sensitivity
     - taxonomy.vocabulary.data_size
@@ -871,6 +872,15 @@ display:
             format: full_html
           plugin_id: text
       use_ajax: true
+      menu:
+        type: normal
+        title: 'Service catalogue'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 5
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
