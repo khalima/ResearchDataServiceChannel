@@ -1,7 +1,7 @@
 #block-hy-rd-local-tasks {
   background-color: $blue;
 
-  ul {
+  ul.local-tasks {
     @include condensed--narrow;
     display: flex;
 
