@@ -1,0 +1,30 @@
+.layout {
+  .layout__region--content {
+    margin: 0 auto;
+    max-width: 75em;
+    padding: 3em 1em;
+  }
+
+  .layout__region--first {
+    background: $blue;
+    color: $white;
+    padding: 4em;
+
+    h3, h6, a {
+      color: $white;
+    }
+
+    .field--name-field-links a {
+      text-decoration: underline;
+    }
+  }
+
+  .layout__region--second {
+    padding: 4em;
+  }
+}
+
+#block-hy-rd-content article {
+  @include condensed--narrow;
+  @include default-region-padding;
+}

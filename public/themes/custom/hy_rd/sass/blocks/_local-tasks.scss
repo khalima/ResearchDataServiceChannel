@@ -1,0 +1,26 @@
+#block-hy-rd-local-tasks {
+  background-color: $blue;
+
+  ul {
+    @include condensed--narrow;
+    display: flex;
+
+    li {
+      flex-grow: 1;
+      text-align: center;
+      padding: 12px;
+      border-left: 1px solid $white;
+
+      a {
+        color: $white;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+
+      &:last-child() {
+        border-right: 1px solid $white;
+      }
+    }
+  }
+}
