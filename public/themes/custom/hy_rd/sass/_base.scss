@@ -43,3 +43,19 @@ hr {
   display: inline-block;
   text-transform: none;
 }
+
+.center {
+  text-align: center;
+}
+
+@media screen and (max-width: $bp-small) {
+  .row {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    padding-left: $horz-spacing-unit / 2;
+    padding-right: $horz-spacing-unit / 2;
+  }
+}

@@ -22,3 +22,17 @@
     padding-right: $vert-spacing-unit;
   }
 }
+
+@mixin default-region {
+  @include condensed--narrow;
+  @include default-region-padding;
+}
+
+@mixin default-region--tall {
+  @include condensed;
+
+  @media screen and (min-width: $medium) {
+    margin-top: $vert-spacing-unit * 2;
+    margin-bottom: $vert-spacing-unit * 2;
+  }
+}

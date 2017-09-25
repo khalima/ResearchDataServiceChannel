@@ -1,8 +1,6 @@
 .layout {
   .layout__region--content {
-    margin: 0 auto;
-    max-width: 75em;
-    padding: 3em 1em;
+    @include default-region;
   }
 
   .layout__region--first {
@@ -24,7 +22,7 @@
   }
 }
 
+// Cannot target single id since it is used in full page width containers.
 #block-hy-rd-content article {
-  @include condensed--narrow;
-  @include default-region-padding;
+  @include default-region;
 }
