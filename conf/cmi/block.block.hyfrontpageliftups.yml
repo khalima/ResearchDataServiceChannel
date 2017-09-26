@@ -12,7 +12,7 @@ dependencies:
 id: hyfrontpageliftups
 theme: hy_rd
 region: content
-weight: 1
+weight: -3
 provider: null
 plugin: 'block_content:ec070724-e2ec-419f-879e-7503ba7facdf'
 settings:
