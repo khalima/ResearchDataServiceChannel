@@ -34,7 +34,6 @@ dependencies:
   module:
     - better_exposed_filters
     - ds
-    - masonry_views
     - node
     - taxonomy
     - text
@@ -259,22 +258,14 @@ display:
       display_extenders: {  }
       path: services
       style:
-        type: masonry
+        type: html_list
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          layoutColumnWidth: '50'
-          layoutColumnWidthUnit: '%'
-          gutterWidth: '0'
-          stampSelector: ''
-          isLayoutResizable: 1
-          isLayoutAnimated: 1
-          layoutAnimationDuration: '500'
-          isLayoutFitsWidth: 1
-          isLayoutRtlMode: 0
-          isLayoutImagesLoadedFirst: 1
-          isItemsPositionInPercent: 0
+          type: ul
+          wrapper_class: item-list
+          class: ''
       defaults:
         style: false
         row: false
