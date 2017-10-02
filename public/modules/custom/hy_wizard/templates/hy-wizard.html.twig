@@ -6,13 +6,16 @@
     </div>
     <div class="wizard">
       <div class="wizard__header">
-        <p>In case you're new here or don't exactly know what service is good for ou, this wizard is meant to guide you through the selection process.</p>
+        <p>In case you're new here or don't exactly know what service is good for you, this wizard is meant to guide you through the selection process.</p>
       </div>
       <div class="wizard__content">
         <div class="wizard__selections">
           {% for key,value in data %}
             <div class="wizard__selection">
               <a class="wizard-button button--action icon--arrow-right" data-tid="{{ value.tid }}">{{ value.name }}</a>
+              {% if is_admin %}
+                <a href="/taxonomy/term/{{ value.tid}}/edit?destination=/wizard">Edit term</a>
+              {% endif %}
             </div>
           {% endfor %}
         </div>

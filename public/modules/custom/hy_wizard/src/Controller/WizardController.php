@@ -23,18 +23,26 @@ class WizardController extends ControllerBase {
    */
   public function page() {
     $this->entityTypeManager = \Drupal::entityTypeManager();
+    $user = \Drupal::currentUser();
 
     $build = [];
 
-    $taxonomy_list = $this->load(WIZARD_VOCABULARY_VID);
+    // We could add a dynamic parameter for the wizard since then it could
+    // be used without any javascript for those who decide to live on the
+    // old days or just want to be safe from any threats of internet.
+    // @todo Implement a way to have dynamic variable, like:
+    // /wizard/{tid}/{tid} so that this function can be used without js.
+    $taxonomy_list = $this->load(HY_WIZARD_VOCABULARY_VID);
 
     $build = [
       '#theme' => 'hy_wizard',
       '#data' => $taxonomy_list,
+      '#is_admin' => $user->hasPermission('access administration pages'),
       '#attached' => [
         'drupalSettings' => [
-          'testvar' => $taxonomy_list,
+          'questions' => $taxonomy_list,
         ],
+        'library' => ['hy_wizard/hy_wizard_controller'],
       ],
     ];
 
@@ -77,6 +85,8 @@ class WizardController extends ControllerBase {
     }
 
     $tree[$object->tid] = $object;
+
+    // Add edit link to the mix.
     $tree[$object->tid]->children = [];
     $object_children = &$tree[$object->tid]->children;
     $children = $this->entityTypeManager->getStorage('taxonomy_term')->loadChildren($object->tid);

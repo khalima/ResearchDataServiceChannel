@@ -44,13 +44,17 @@ function hy_wizard_form_taxonomy_vocabulary_form_alter(&$form, $form_state) {
 
 /**
  * Helper to retrieve popup content.
+ *
+ * @todo Implement admin tools for term handling.
  */
 function _hy_wizard_popup_content() {
   return "<h1>Title</h1>";
 }
 
 /**
- * Implements hook_form_FORM_ID_alert().
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Basically a placeholder for modifying overview list.
  */
 function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $vocabulary) {
 
@@ -101,6 +105,7 @@ function hy_wizard_theme($existing, $type, $theme, $path) {
     'hy_wizard' => [
       'variables' => [
         'data' => [],
+        'is_admin' => FALSE,
       ],
     ],
   ];
@@ -112,6 +117,7 @@ function hy_wizard_theme($existing, $type, $theme, $path) {
  * @todo Not implemented in MVP.
  */
 function hy_wizard_add_content() {
+
 }
 
 /**

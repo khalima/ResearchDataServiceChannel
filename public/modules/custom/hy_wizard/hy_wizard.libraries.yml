@@ -2,3 +2,7 @@ hy_wizard_overview:
   version: 1
   js:
     js/taxonomy-overview.js: {}
+hy_wizard_controller:
+  version: 1
+  js:
+    js/hy-wizard.js: {}
