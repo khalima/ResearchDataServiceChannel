@@ -1,0 +1,26 @@
+<!-- Add you custom twig html here -->
+<div class="layout">
+  <div class="layout__region layout__region--content">
+    <div class="wizard__before">
+      <!-- Insert any block with description here, optional information -->
+    </div>
+    <div class="wizard">
+      <div class="wizard__header">
+        <p>In case you're new here or don't exactly know what service is good for ou, this wizard is meant to guide you through the selection process.</p>
+      </div>
+      <div class="wizard__content">
+        <div class="wizard__selections">
+          {% for key,value in data %}
+            <div class="wizard__selection">
+              <a class="wizard-button button--action icon--arrow-right" data-tid="{{ value.tid }}">{{ value.name }}</a>
+            </div>
+          {% endfor %}
+        </div>
+        <noscript>Unfortunately, wizard requires javascript to work.</noscript>
+      </div>
+    </div>
+    <div class="wizard__after">
+      <!-- Insert any block with description here, maybe feedback form? -->
+    </div>
+  </div>
+</div>

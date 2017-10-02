@@ -1,0 +1,4 @@
+hy_wizard_overview:
+  version: 1
+  js:
+    js/taxonomy-overview.js: {}
