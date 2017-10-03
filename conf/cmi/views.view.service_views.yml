@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_description
     - node.type.services
+    - system.menu.main
     - taxonomy.vocabulary.data_process
     - taxonomy.vocabulary.data_sensitivity
     - taxonomy.vocabulary.data_size
@@ -33,6 +34,7 @@ dependencies:
   module:
     - better_exposed_filters
     - ds
+    - masonry_views
     - node
     - taxonomy
     - text
@@ -257,14 +259,22 @@ display:
       display_extenders: {  }
       path: services
       style:
-        type: html_list
+        type: masonry
         options:
           grouping: {  }
-          row_class: 'box-story theme-plain-alt col-sm-4'
+          row_class: ''
           default_row_class: true
-          type: ul
-          wrapper_class: item-list
-          class: ''
+          layoutColumnWidth: '50'
+          layoutColumnWidthUnit: '%'
+          gutterWidth: '0'
+          stampSelector: ''
+          isLayoutResizable: 1
+          isLayoutAnimated: 1
+          layoutAnimationDuration: '500'
+          isLayoutFitsWidth: 1
+          isLayoutRtlMode: 0
+          isLayoutImagesLoadedFirst: 1
+          isItemsPositionInPercent: 0
       defaults:
         style: false
         row: false
@@ -275,6 +285,7 @@ display:
         pager: false
         arguments: false
         header: false
+        use_ajax: false
       row:
         type: fields
         options:
@@ -421,7 +432,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "  <a href=\"{{ path }}\" class=\"box-story__link-wrapper\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n    <div class=\"box-story__content\">\n      {{ field_description }} \n    </div>\n     <div class=\"box-story__link  theme-transparent\">\n      Click for more info\n    </div>\n  </a>"
+            text: "  <a href=\"{{ path }}\" class=\"box-story__link-wrapper\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n    <div class=\"box-story__content\">\n      {{ field_description }} \n    </div>\n     <div class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </div>\n  </a>"
             make_link: false
             path: ''
             absolute: false
@@ -793,7 +804,7 @@ display:
               autosubmit: true
               autosubmit_hide: true
             field_data_process_target_id:
-              bef_format: bef_links
+              bef_format: bef
               more_options:
                 bef_select_all_none: false
                 bef_collapsible: false
@@ -801,7 +812,7 @@ display:
                 rewrite:
                   filter_rewrite_values: ''
             field_data_sensitivity_target_id:
-              bef_format: bef_links
+              bef_format: bef
               more_options:
                 bef_select_all_none: false
                 bef_collapsible: false
@@ -809,7 +820,7 @@ display:
                 rewrite:
                   filter_rewrite_values: ''
             field_data_size_target_id:
-              bef_format: bef_links
+              bef_format: bef
               more_options:
                 bef_select_all_none: false
                 bef_collapsible: false
@@ -817,7 +828,7 @@ display:
                 rewrite:
                   filter_rewrite_values: ''
             field_project_members_access_to__target_id:
-              bef_format: bef_links
+              bef_format: bef
               more_options:
                 bef_select_all_none: false
                 bef_collapsible: false
@@ -825,7 +836,7 @@ display:
                 rewrite:
                   filter_rewrite_values: ''
             field_project_phase_target_id:
-              bef_format: bef_links
+              bef_format: bef
               more_options:
                 bef_select_all_none: false
                 bef_collapsible: false
@@ -833,7 +844,7 @@ display:
                 rewrite:
                   filter_rewrite_values: ''
             field_publishing_options_target_id:
-              bef_format: bef_links
+              bef_format: bef
               more_options:
                 bef_select_all_none: false
                 bef_collapsible: false
@@ -860,6 +871,16 @@ display:
             value: "<h2>Service catalogue</h2>\n<p>Here you can browse & search all the services we provide. You can narrow down the selection with the filters below.</p>"
             format: full_html
           plugin_id: text
+      use_ajax: true
+      menu:
+        type: normal
+        title: 'Service catalogue'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 5
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:

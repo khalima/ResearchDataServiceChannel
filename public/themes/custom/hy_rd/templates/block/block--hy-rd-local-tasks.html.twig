@@ -27,7 +27,13 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes }}horizontal-tabs clearfix>
+{%
+set classes = [
+'horizontal-tabs',
+'clearfix',
+]
+%}
+<div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
   {% block content %}

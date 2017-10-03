@@ -1,6 +1,6 @@
 uuid: a586dfb9-7f8c-43b6-b28f-7c5cee280eb1
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -11,7 +11,7 @@ _core:
 id: hy_rd_breadcrumbs
 theme: hy_rd
 region: content
-weight: -4
+weight: -2
 provider: null
 plugin: system_breadcrumb_block
 settings:
