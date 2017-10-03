@@ -82,14 +82,15 @@
     $wizardServices.html('');
 
     if (data.services && data.services.length > 0) {
+      $wizardServices.append('<h2>Recommended services</h2>');
       for (var i = 0; i < data.services.length; i++) {
         // Drupal returns these horrific array monstrosities.
         var service = data.services[i];
 
-        var $serviceContainer = $('<div class="wizard__service"></div>');
-        $serviceContainer.append('<h2>' + service.title[0].value + '</h2>');
+        var $serviceContainer = $('<div class="wizard__service textarea-infobox"></div>');
+        $serviceContainer.append('<h4>' + service.title[0].value + '</h4>');
         $serviceContainer.append(service.body[0].value);
-
+        $serviceContainer.append('<a href="#" class="button--action icon--arrow-right theme-transparent-alt">Read more</a>');
         $wizardServices.append($serviceContainer);
       }
     }
