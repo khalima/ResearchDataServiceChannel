@@ -1,0 +1,7 @@
+hy_wizard.wizard_controller_page:
+  path: '/wizard'
+  defaults:
+    _controller: '\Drupal\hy_wizard\Controller\WizardController::page'
+    _title: 'Wizard'
+  requirements:
+    _permission: 'access content'

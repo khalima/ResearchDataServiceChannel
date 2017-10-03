@@ -15,6 +15,7 @@
     "drupal/masonry": "~1.0@rc",
     "drupal/masonry_views": "1.0-rc-1",
     "drupal/pathauto": "^1.0",
+    "drupal/restui": "^1.15",
     "drupal/swiftmailer": "^1.0@beta",
     "drupal/token": "~1.0",
     "drupal/samlauth": "^2.0@alpha",
