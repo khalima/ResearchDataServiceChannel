@@ -1,13 +1,14 @@
-(function ($) {
+(function ($, Drupal) {
   'use strict';
+  console.log('sss');
 
   Drupal.behaviors.hyMobileMenuv2 = {
     attach: function (context, settings) {
-      var medium = settings.omega.mediaQueries['layout-medium'];
-      var mainmenuv2 = $('.main-menu-v2');
-      var mainmenuv2Ul = $('.main-menu-v2 > ul');
+      //var medium = settings.omega.mediaQueries['layout-medium'];
+      var mainmenuv2 = $('#block-mainnavigation');
+      var mainmenuv2Ul = $('#block-mainnavigation > ul');
       var mainmenuv2Expand = mainmenuv2.find('.main-menu-v2__expand');
-
+/*
       // Media Queries Matching
       if (typeof matchMedia !== 'undefined') {
         var mq = window.matchMedia(medium);
@@ -20,11 +21,12 @@
           mainmenuv2.find('ul.menu').removeAttr('style');
         }
       }
-
+*/
       // Overlay toggle
       var overlayToggle = $('.overlay-toggle');
 
       overlayToggle.click(function (event) {
+        console.log('haistakaa paskaa!!');
         overlayToggle.removeClass('is-closing');
         if (overlayToggle.hasClass('is-active')) {
           overlayToggle.addClass('is-closing');
@@ -64,4 +66,4 @@
       }
     }
   };
-})(jQuery);
+})(jQuery, Drupal);
