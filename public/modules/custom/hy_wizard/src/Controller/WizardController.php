@@ -102,12 +102,22 @@ class WizardController extends ControllerBase {
       return;
     }
 
+    // We need to access field data also. This might be better off
+    // with views.
+    $term = $this->entityTypeManager()->getStorage('taxonomy_term')->load($object->tid);
+
+    // Services of a term.
+    $services = $term->field_services->referencedEntities();
+
+    // This holds all the variables. REST service does not
+    // work if this contains objects.
     $term_array = [
       'name' => $object->name,
       'tid' => $object->tid,
       'description' => $object->description__value,
       'depth' => $object->depth,
       'parents' => $object->parents,
+      'services' => $services,
       'weight' => $object->weight,
     ];
 

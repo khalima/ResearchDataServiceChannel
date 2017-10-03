@@ -3,9 +3,11 @@
 
   // jQuerified variables.
   // var $wizard               = $('.wizard');
+  // var $wizardContent = $('.wizard__content');
   var $wizardHeaderTitle = $('.wizard__header__title');
   var $wizardHeaderContent = $('.wizard__header__content');
-  var $wizardContent = $('.wizard__content');
+  var $wizardSelections = $('.wizard__selections');
+  var $wizardServices = $('.wizard__services');
   var $wizardFooterContent = $('.wizard__footer__content');
 
   // Default values
@@ -53,13 +55,12 @@
    * Helper to render wizard.
    */
   function renderWizard(data) {
-
     $wizardHeaderTitle.text(data.name ? data.name : page_title);
     $wizardHeaderContent.html((data.parents) ? data.description : page_content);
 
     var $selections = $('<div class="wizard__selections"></div>');
 
-    // MVP.
+    // Remember that this is MVP.
     var terms = data.children ? data.children : data;
 
     // @todo Add front end sorting.
@@ -74,8 +75,26 @@
       }
     }
 
-    $wizardContent.html($selections);
+    $wizardSelections.html($selections);
 
+    // Append services if there are any. First clear any services
+    // that are applied to page.
+    $wizardServices.html('');
+
+    if (data.services && data.services.length > 0) {
+      for (var i = 0; i < data.services.length; i++) {
+        // Drupal returns these horrific array monstrosities.
+        var service = data.services[i];
+
+        var $serviceContainer = $('<div class="wizard__service"></div>');
+        $serviceContainer.append('<h2>' + service.title[0].value + '</h2>');
+        $serviceContainer.append(service.body[0].value);
+
+        $wizardServices.append($serviceContainer);
+      }
+    }
+
+    // Add back button and link to it.
     if (data.parents) {
       $wizardFooterContent.html(
         $('<a class="wizard-button button--action-before icon--arrow-left theme-transparent" data-tid="' + data.parents[0] + '">Back</a>')
