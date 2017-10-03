@@ -55,7 +55,7 @@
   function renderWizard(data) {
 
     $wizardHeaderTitle.text(data.name ? data.name : page_title);
-    $wizardHeaderContent.html((data.description !== 'undefined') ? data.description : page_content);
+    $wizardHeaderContent.html((data.parents) ? data.description : page_content);
 
     var $selections = $('<div class="wizard__selections"></div>');
 
