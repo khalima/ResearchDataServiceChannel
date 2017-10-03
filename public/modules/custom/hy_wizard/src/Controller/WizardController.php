@@ -2,6 +2,7 @@
 
 namespace Drupal\hy_wizard\Controller;
 
+use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
@@ -16,13 +17,21 @@ class WizardController extends ControllerBase {
   protected $entityTypeManager;
 
   /**
+   * Constructor.
+   *
+   * @todo Add this as a dependency injection.
+   */
+  public function __construct() {
+    $this->entityTypeManager = \Drupal::entityTypeManager();
+  }
+
+  /**
    * Page.
    *
    * @return array
    *   Return Page array.
    */
   public function page() {
-    $this->entityTypeManager = \Drupal::entityTypeManager();
     $user = \Drupal::currentUser();
 
     $build = [];
@@ -34,10 +43,14 @@ class WizardController extends ControllerBase {
     // /wizard/{tid}/{tid} so that this function can be used without js.
     $taxonomy_list = $this->load(HY_WIZARD_VOCABULARY_VID);
 
+    $vocabulary = Vocabulary::load(HY_WIZARD_VOCABULARY_VID);
+
     $build = [
       '#theme' => 'hy_wizard',
       '#data' => $taxonomy_list,
       '#is_admin' => $user->hasPermission('access administration pages'),
+      '#title' => $vocabulary->get('name'),
+      '#description' => $vocabulary->get('description'),
       '#attached' => [
         'drupalSettings' => [
           'questions' => $taxonomy_list,
@@ -58,10 +71,15 @@ class WizardController extends ControllerBase {
    * @return array
    *   An array tree of terms.
    */
-  public function load($vocabulary) {
-    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vocabulary);
-    $tree = [];
+  public function load($vocabulary = NULL) {
+    // Add default value.
+    // @todo Add this through a service.
+    if (!$vocabulary) {
+      $vocabulary = 'hy_wizard';
+    }
 
+    $terms = $this->entityTypeManager()->getStorage('taxonomy_term')->loadTree($vocabulary);
+    $tree = [];
     foreach ($terms as $tree_object) {
       $this->buildTree($tree, $tree_object, $vocabulary);
     }
@@ -84,11 +102,22 @@ class WizardController extends ControllerBase {
       return;
     }
 
-    $tree[$object->tid] = $object;
+    $term_array = [
+      'name' => $object->name,
+      'tid' => $object->tid,
+      'description' => $object->description__value,
+      'depth' => $object->depth,
+      'parents' => $object->parents,
+      'weight' => $object->weight,
+    ];
+
+    // Maybe add here an alter hook so that other modules can change data
+    // that is sent from the controller.
+    $tree[$object->tid] = $term_array;
 
     // Add edit link to the mix.
-    $tree[$object->tid]->children = [];
-    $object_children = &$tree[$object->tid]->children;
+    $tree[$object->tid]['children'] = [];
+    $object_children = &$tree[$object->tid]['children'];
     $children = $this->entityTypeManager->getStorage('taxonomy_term')->loadChildren($object->tid);
 
     if (!$children) {

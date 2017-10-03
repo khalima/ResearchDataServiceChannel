@@ -1,113 +1,91 @@
-(function ($, Drupal, questions) {
+(function ($, Drupal) {
   'use strict';
 
-  // var current_terms = [];
-  // var current_term = [];
-  // var current_term_id = 0;
-  // var previous_term_id = 0;
-  // var previous_term = [];
+  // jQuerified variables.
+  // var $wizard               = $('.wizard');
+  var $wizardHeaderTitle = $('.wizard__header__title');
+  var $wizardHeaderContent = $('.wizard__header__content');
+  var $wizardContent = $('.wizard__content');
+  var $wizardFooterContent = $('.wizard__footer__content');
 
-  // // jQuerified variables.
-  // var $wizard = $('.wizard');
+  // Default values
+  var page_title = $wizardHeaderTitle.text();
+  var page_content = $wizardHeaderContent.html();
 
-  // Drupal.behaviors.hy_wizard_controller = {
-  //   attach: function (context, settings) {
-  //     attachHandlers();
-  //   }
-  // };
+  // This should be injected from JS.
+  // @todo inject this from JS.
+  var api_url = '/api/wizard-questions/';
 
-  // /**
-  //  * Helper to attach click handlers
-  //  */
-  // function attachHandlers() {
-  //   $('.wizard__selections .wizard-button').once().on('click', wizardClickHandler);
-  // }
+  Drupal.behaviors.hy_wizard_controller = {
+    attach: function (context, settings) {
+      attachHandlers();
+    }
+  };
 
-  // /**
-  //  * Helper to reset wizard to default values.
-  //  * @todo Implement resetting values.
-  //  */
-  // function resetWizard() {
-  //   current_terms = questions;
-  //   previous_term = [];
-  //   renderWizard();
-  // }
+  /**
+   * Helper to attach click handlers
+   */
+  function attachHandlers() {
+    $('.wizard-button').once().on('click', wizardClickHandler);
+  }
 
-  // /**
-  //  *  Helper to recurse through array of questions
-  //  */
+  /**
+   * Click handler to set stage for second batch of questions.
+   */
+  function wizardClickHandler() {
+    var selected_id = $(this).data('tid');
 
-  // /**
-  //  * Clickhandler to go back in the form.
-  //  */
-  // function goBack() {
-  //   console.log( typeof questions );
-  //   // Lets find the correct index for current term
-  //   var term = questions.filter( question => question.tid === current_term.tid);
-  //   console.log( term, "did we find it?");
+    if (selected_id === 0) {
+      selected_id = 'all';
+    }
 
-  //   renderWizard();
+    var url = api_url + selected_id + '?_format=json';
 
-  // }
+    // @todo Add error handling.
+    $.ajax({
+      url: url,
+      method: 'GET',
+      success: renderWizard
+    });
+  }
 
-  // /**
-  //  * Click handler to set stage for second batch of questions.
-  //  */
-  // function wizardClickHandler() {
-  //   current_term_id = $(this).data('tid');
+  /**
+   * Helper to render wizard.
+   */
+  function renderWizard(data) {
 
-  //   console.log( current_terms, "current terms");
-  //   console.log( current_terms.length, "current terms length" );
+    $wizardHeaderTitle.text(data.name ? data.name : page_title);
+    $wizardHeaderContent.html((data.description !== 'undefined') ? data.description : page_content);
 
-  //   if ( current_terms.length !== 0 ) {
-  //     previous_term = current_term;
-  //     current_term = current_terms[ current_term_id ];
-  //     current_terms = current_term.children;
-  //   } else {
-  //     current_term = questions[ current_term_id ];
-  //     current_terms = questions[ current_term_id].children;
-  //   }
+    var $selections = $('<div class="wizard__selections"></div>');
 
-  //   renderWizard();
+    // MVP.
+    var terms = data.children ? data.children : data;
 
-  // }
+    // @todo Add front end sorting.
+    for (var tid in terms) {
+      if (terms.hasOwnProperty(tid)) {
+        var term = terms[tid];
+        var $selection = $('<div class="wizard__selection"></div>');
+        var $link = $('<a data-tid="' + term.tid + '">' + term.name + '</a>').addClass('wizard-button button--action icon--arrow-right');
 
-  // /**
-  //  * Helper to render wizard.
-  //  */
-  // function renderWizard() {
-  //   // We should load these from the backend.
-  //   // @todo Add rest-route for getting question data.
-  //   var $content    = $('<div class="wizard"></div>');
-  //   var $header     = $('<div class="wizard__header"></div>');
-  //   var $selections = $('<div class="wizard__selections"></div>');
-  //   var $footer     = $('<div class="wizard__footer"></div>');
+        $selection.append($link);
+        $selections.append($selection);
+      }
+    }
 
-  //   $header.append('<h2>' + current_term.name + '</h2>');
-  //   $header.append(current_term.description__value);
+    $wizardContent.html($selections);
 
-  //   // Get stuff from the backend.
-  //   $content.append( $header );
+    if (data.parents) {
+      $wizardFooterContent.html(
+        $('<a class="wizard-button button--action-before icon--arrow-left theme-transparent" data-tid="' + data.parents[0] + '">Back</a>')
+      );
+    }
+    else {
+      $wizardFooterContent.html('');
+    }
 
-  //   // MVP.
-  //   for ( var tid in current_terms ) {
-  //     var term = current_terms[tid];
-  //     var $selection = $('<div class="wizard__selection"></div>');
-  //     var $link = $('<a data-tid="' + term.tid + '">' + term.name + '</a>').addClass('wizard-button button--action icon--arrow-right');
+    attachHandlers();
 
-  //     $selection.append( $link );
-  //     $selections.append( $selection );
-  //   }
-
-  //   $content.append( $selections );
-
-  //   $footer.append( $('<a class="button--action-before icon--arrow-left theme-transparent">Back</a>').on('click', goBack));
-  //   $content.append( $footer );
-
-  //   // A pretty worn out fade out & in.
-  //   $wizard.fadeOut( function() {
-  //     $wizard.html( $content );
-  //     attachHandlers();
-  //   }).fadeIn();
-  // }
-})(jQuery, Drupal, drupalSettings.questions);
+  }
+})(jQuery, Drupal);
