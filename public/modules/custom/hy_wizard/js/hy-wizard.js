@@ -82,15 +82,18 @@
     $wizardServices.html('');
 
     if (data.services && data.services.length > 0) {
+      // @todo Add this as a value that is obtained from admin.
       $wizardServices.append('<h2>Recommended services</h2>');
+
       for (var i = 0; i < data.services.length; i++) {
-        // Drupal returns these horrific array monstrosities.
+        // 'service' is already preformatted to a specific format.
+        // Drupal naming conventions (like 'body') are still used.
         var service = data.services[i];
 
         var $serviceContainer = $('<div class="wizard__service textarea-infobox"></div>');
-        $serviceContainer.append('<h4>' + service.title[0].value + '</h4>');
-        $serviceContainer.append(service.body[0].value);
-        $serviceContainer.append('<a href="#" class="button--action icon--arrow-right theme-transparent-alt">Read more</a>');
+        $serviceContainer.append('<h4>' + service.title + '</h4>');
+        $serviceContainer.append(service.body);
+        $serviceContainer.append('<a href="' + service.path + '" class="button--action icon--arrow-right theme-transparent-alt">Read more</a>');
         $wizardServices.append($serviceContainer);
       }
     }

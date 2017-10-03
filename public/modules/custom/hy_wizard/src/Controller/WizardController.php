@@ -42,6 +42,9 @@ class WizardController extends ControllerBase {
     // @todo Implement a way to have dynamic variable, like:
     // /wizard/{tid}/{tid} so that this function can be used without js.
     $taxonomy_list = $this->load(HY_WIZARD_VOCABULARY_VID);
+
+    // We need this to extract vocabulary info. Probably will change
+    // for custom options at some point.
     $vocabulary = Vocabulary::load(HY_WIZARD_VOCABULARY_VID);
 
     // @todo Add page title
@@ -108,6 +111,19 @@ class WizardController extends ControllerBase {
 
     // Services of a term.
     $services = $term->field_services->referencedEntities();
+    $services_array = [];
+
+    if ($services) {
+      // Create a simpler array from Drupal Node object.
+      foreach ($services as $service) {
+        $services_array[] = [
+          'body' => $service->get('body')->value,
+          'title' => $service->getTitle(),
+          'nid' => $service->id(),
+          'path' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $service->id()),
+        ];
+      }
+    }
 
     // This holds all the variables. REST service does not
     // work if this contains objects.
@@ -117,7 +133,7 @@ class WizardController extends ControllerBase {
       'description' => $object->description__value,
       'depth' => $object->depth,
       'parents' => $object->parents,
-      'services' => $services,
+      'services' => $services_array,
       'weight' => $object->weight,
     ];
 
