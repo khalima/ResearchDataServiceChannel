@@ -900,6 +900,10 @@
                     "homepage": "https://www.drupal.org/u/matio89"
                 },
                 {
+                    "name": "bolbol",
+                    "homepage": "https://www.drupal.org/user/3400070"
+                },
+                {
                     "name": "eme",
                     "homepage": "https://www.drupal.org/user/542492"
                 },
@@ -1663,7 +1667,7 @@
                 "issues": "http://drupal.org/project/issues/libraries",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-03-15T17:04:08+00:00"
+            "time": "2017-03-15 17:04:08"
         },
         {
             "name": "drupal/mailsystem",
