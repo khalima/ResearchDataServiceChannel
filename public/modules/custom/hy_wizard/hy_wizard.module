@@ -8,6 +8,7 @@
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
+// @todo Convert these to be used from a service.
 define('HY_WIZARD_VOCABULARY_NAME', 'Wizard');
 define('HY_WIZARD_VOCABULARY_VID', 'hy_wizard');
 define('HY_WIZARD_VOCABULARY_DESCRIPTION', 'Used to create hierarchy of questions');

@@ -42,9 +42,9 @@ class WizardController extends ControllerBase {
     // @todo Implement a way to have dynamic variable, like:
     // /wizard/{tid}/{tid} so that this function can be used without js.
     $taxonomy_list = $this->load(HY_WIZARD_VOCABULARY_VID);
-
     $vocabulary = Vocabulary::load(HY_WIZARD_VOCABULARY_VID);
 
+    // @todo Add page title
     $build = [
       '#theme' => 'hy_wizard',
       '#data' => $taxonomy_list,
