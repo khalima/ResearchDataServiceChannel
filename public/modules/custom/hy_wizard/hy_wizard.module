@@ -61,17 +61,6 @@ function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $voca
 
   // Add description field to array.
   $form['terms']['#header'][] = t('Description');
-  $form['terms']['#header'][] = t('Add siblin / child');
-
-  $form['#prefix'] = '<div id="taxonomy-overview-form">';
-  $form['#suffix'] = '</div>';
-
-  // Add popup markup.
-  // @todo Not needed in MVP
-  $form['popup'] = [
-    '#type' => 'markup',
-    '#markup' => '<div class="hiddens">' . _hy_wizard_popup_content() . '</div>',
-  ];
 
   // Construct a new table structure.
   foreach ($form['terms'] as $term_name => &$data) {
@@ -80,21 +69,12 @@ function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $voca
     }
 
     $term = $data['#term'];
-
     $data['description'] = [
       '#type' => 'markup',
       '#markup' => $term->getDescription(),
     ];
-
-    // Manually trigger popup.
-    $data['add_action'] = [
-      '#type' => 'markup',
-      '#markup' => '<span class="button wizard-add-child" data-tid="' . $term->id() . '">' . t('Add child') . '</span>',
-    ];
   }
-
-  // Attach our custom handler to taxonomy overview form.
-  $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';
+  // $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';.
 }
 
 /**
