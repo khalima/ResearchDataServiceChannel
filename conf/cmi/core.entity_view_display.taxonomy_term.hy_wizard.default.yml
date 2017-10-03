@@ -1,0 +1,31 @@
+uuid: fcb97ebb-06da-4bb8-899d-25f1ead53b64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.hy_wizard.field_services
+    - taxonomy.vocabulary.hy_wizard
+  module:
+    - text
+id: taxonomy_term.hy_wizard.default
+targetEntityType: taxonomy_term
+bundle: hy_wizard
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_services:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  langcode: true

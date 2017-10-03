@@ -1,0 +1,28 @@
+uuid: 2311cc92-2da8-4ee9-bf95-5f58030b976d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_services
+    - node.type.services
+    - taxonomy.vocabulary.hy_wizard
+id: taxonomy_term.hy_wizard.field_services
+field_name: field_services
+entity_type: taxonomy_term
+bundle: hy_wizard
+label: Services
+description: 'A service that is referenced from this question.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      services: services
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

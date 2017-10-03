@@ -1,0 +1,18 @@
+uuid: 94bbf34f-481b-43c6-89f5-094c8f530c59
+langcode: en
+status: true
+dependencies:
+  module:
+    - hy_wizard
+    - serialization
+    - user
+id: question_rest_resource
+plugin_id: question_rest_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie
