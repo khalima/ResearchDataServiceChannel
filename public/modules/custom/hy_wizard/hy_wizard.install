@@ -42,5 +42,6 @@ function hy_wizard_uninstall() {
   // We could remove the wizard installed taxonomy here in case it is not
   // needed. This would be best practice but we don't want remove this
   // vocabulary and its terms in case of user error.
+  // @todo remove menu link when disabling module (might happen already)
   drupal_set_message('Wizard includes taxonomy "hy_wizard" which is not removed by default.');
 }

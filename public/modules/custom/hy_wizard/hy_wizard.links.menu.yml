@@ -1,0 +1,7 @@
+hy_wizard.menu_link:
+  title: 'Wizard'
+  description: 'Helper to select service'
+  parent: main
+  menu_name: main
+  route_name: hy_wizard.wizard_controller_page
+  weight: 10
