@@ -10,13 +10,6 @@
   .layout__region--second {
     padding: 4em;
   }
-
-  .masonry-layout {
-    .masonry-item {
-      width: 49%;
-      background: $lightsilver;
-    }
-  }
 }
 
 /* A bit easier to read */
@@ -29,4 +22,8 @@
       right: 4em;
     }
   }
+}
+
+.service-views--page .form__item {
+  width: 100%;
 }
