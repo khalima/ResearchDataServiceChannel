@@ -50,6 +50,33 @@
     {{ page.top_bar }}
   </div>
 
+  <section class="l-overlay">
+    <div class="l-overlay__container">
+      <div class="l-overlay__top">
+        <div class="l-header-bar">
+          <div class="l-header-bar__top">
+            <div class="l-header-bar__left">
+              {{ page.overlay_header_left }}
+            </div>
+            <div class="l-header-bar__middle">
+                {{ page.overlay_header_middle }}
+            </div>
+            <div class="l-header-bar__right">
+                {{ page.overlay_header_right }}
+            </div>
+          </div>
+        </div>
+        {{ page.overlay_top }}
+      </div>
+      <div class="l-overlay__main">
+        {{ page.overlay_main }}
+      </div>
+      <div class="l-overlay__bottom">
+        {{ page.overlay_bottom }}
+      </div>
+    </div>
+  </section>
+
   <header role="banner" class="l-header">
     <div class="l-header-bar">
       <div class="l-header-bar__top">

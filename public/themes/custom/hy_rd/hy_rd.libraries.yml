@@ -4,3 +4,10 @@ styles:
     theme:
       css/styles.css: {}
       css/flexboxgrid.min.css: {}
+  js:
+    js/custom_menu.js: {}
+  dependencies:
+    - core/matchmedia
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
