@@ -277,6 +277,7 @@ display:
         arguments: false
         header: false
         use_ajax: false
+        empty: false
       row:
         type: fields
         options:
@@ -423,7 +424,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "  <a href=\"{{ path }}\" class=\"box-story__link-wrapper\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n    <div class=\"box-story__content\">\n      {{ field_description }} \n    </div>\n     <div class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </div>\n  </a>"
+            text: "  <a href=\"{{ path }}\" class=\"box-story__link-wrapper textarea-infobox\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n    <div class=\"box-story__content\">\n      {{ field_description }} \n    </div>\n     <div class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </div>\n  </a>"
             make_link: false
             path: ''
             absolute: false
@@ -856,7 +857,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
+          empty: true
           tokenize: false
           content:
             value: "<h2>Service catalogue</h2>\n<p>Here you can browse & search all the services we provide. You can narrow down the selection with the filters below.</p>"
@@ -872,6 +873,20 @@ display:
         weight: 5
         context: '0'
         menu_name: main
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'Selected options did not match any service.'
+            format: basic_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
