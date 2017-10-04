@@ -18,12 +18,14 @@ module:
   dblog: 0
   dynamic_page_cache: 0
   editor: 0
+  externalauth: 0
   field: 0
   field_ui: 0
   file: 0
   filter: 0
   help: 0
   history: 0
+  hy_wizard: 0
   image: 0
   language: 0
   layout_discovery: 0
@@ -39,7 +41,11 @@ module:
   pathauto: 0
   quickedit: 0
   rdf: 0
+  rest: 0
+  restui: 0
+  samlauth: 0
   search: 0
+  serialization: 0
   shortcut: 0
   swiftmailer: 0
   system: 0

@@ -1,0 +1,9 @@
+uuid: e01a201a-020f-48a8-ae01-a0d677b0d01b
+langcode: en
+status: true
+dependencies: {  }
+name: Wizard
+vid: hy_wizard
+description: 'Used to create hierarchy of questions'
+hierarchy: 1
+weight: 0

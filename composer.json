@@ -13,8 +13,10 @@
     "drupal/core": "~8.3",
     "drupal/ds": "~3.1",
     "drupal/pathauto": "^1.0",
+    "drupal/restui": "^1.15",
     "drupal/swiftmailer": "^1.0@beta",
     "drupal/token": "~1.0",
+    "drupal/samlauth": "^2.0@alpha",
     "drupal/system_status": "^2.4",
     "drupal/webform": "~5.0@beta",
     "drush/drush": "^8.1.12"
@@ -46,6 +48,9 @@
     "patches": {
       "drupal/core": {
         "Twig debug output does not display all suggestions when an array of suggestions is passed to #theme": "https://www.drupal.org/files/issues/2118743-139-twig-debug-info.patch"
+      },
+      "drupal/samlauth": {
+        "2860473-11": "https://www.drupal.org/files/issues/2860473-11.patch"
       }
     }
   },
@@ -90,6 +95,7 @@
       "@composer install --prefer-dist --no-suggest --ignore-platform-reqs --ansi",
       "cp -R ./vendor/drupal/coder/coder_sniffer/Drupal ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal",
       "cp -R ./vendor/drupal/coder/coder_sniffer/DrupalPractice ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice",
+      "chmod -R 0775 public/sites/default/",
       "@symlink-files",
       "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
       "ln -sfn ../../../conf/env_development/services.env.yml public/sites/default/services.env.yml",
