@@ -34,7 +34,7 @@ $settings['trusted_host_patterns'] = array(
  * Configure SAML Authentication module.
  */
 $config['samlauth.authentication']['drupal_saml_login'] = FALSE;
-$config['samlauth.authentication']['sp_entity_id'] = 'https://dev.researchdata-hy.com/samlauth';
+$config['samlauth.authentication']['sp_entity_id'] = 'https://dev.researchdata-hy.com';
 $config['samlauth.authentication']['sp_name_id_format'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 $config['samlauth.authentication']['sp_cert_type'] = 'folder';
 $config['samlauth.authentication']['sp_cert_folder'] = '/var/www/saml';
