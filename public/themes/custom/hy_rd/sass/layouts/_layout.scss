@@ -4,13 +4,8 @@
   }
 
   .layout__region--first {
-    background: $blue;
-    color: $white;
+    background: $lightsilver;
     padding: 4em;
-
-    h3, h6, a {
-      color: $white;
-    }
 
     .field--name-field-links a {
       text-decoration: underline;
