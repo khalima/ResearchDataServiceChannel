@@ -50,6 +50,7 @@ class WizardController extends ControllerBase {
 
     // @todo Add page title
     // @todo Rethink about xss in template.
+    // @todo Add more drupalSettings
     $build = [
       '#theme' => 'hy_wizard',
       '#data' => $taxonomy_list,

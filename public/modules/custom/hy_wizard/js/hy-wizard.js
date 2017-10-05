@@ -8,11 +8,16 @@
   var $wizardHeaderContent = $('.wizard__header__content');
   var $wizardSelections = $('.wizard__selections');
   var $wizardServices = $('.wizard__services');
-  var $wizardFooterContent = $('.wizard__footer__content');
+  // var $wizardFooterContent = $('.wizard__footer__content');
+  var $wizardFooterLinks = $('.wizard__footer__links');
 
   // Default values
   var page_title = $wizardHeaderTitle.text();
   var page_content = $wizardHeaderContent.html();
+
+  // DrupalSettings
+  // @todo Add these as Drupal settings
+  var $consultationLink = $('<a class="button--action icon--arrow-right theme-transparent right" href="#">I need consultation</a>');
 
   // This should be injected from JS.
   // @todo inject this from JS.
@@ -75,6 +80,14 @@
       }
     }
 
+    // Prevent empty page and add default 'not found' text. Should
+    // very rarely happen.
+    // @todo Add this from Drupal settings!
+    // Check if terms is an array
+    if (terms.length === 0) {
+      $selections.append('<p>No values found.</p>');
+    }
+
     $wizardSelections.html($selections);
 
     // Append services if there are any. First clear any services
@@ -100,12 +113,16 @@
 
     // Add back button and link to it.
     if (data.parents) {
-      $wizardFooterContent.html(
-        $('<a class="wizard-button button--action-before icon--arrow-left theme-transparent" data-tid="' + data.parents[0] + '">Back</a>')
+
+      $wizardFooterLinks.html(
+        $('<a class="wizard-button button--action-before icon--arrow-left theme-transparent left" data-tid="' + data.parents[0] + '">Back</a>')
       );
+
+      $wizardFooterLinks.append($consultationLink);
+
     }
     else {
-      $wizardFooterContent.html('');
+      $wizardFooterLinks.html('');
     }
 
     attachHandlers();
