@@ -50,6 +50,19 @@ class WizardAdminForm extends ConfigFormBase {
       '#format' => $config->get('content_format'),
     ];
 
+    // Wizard attributes
+    $form['consultation_link_target'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Consultation link url'),
+      '#default_value' => $config->get('consultation_link_target'),
+    ];
+
+    $form['consultation_link_text'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Consultation link text'),
+      '#default_value' => $config->get('consultation_link_text'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -70,11 +83,15 @@ class WizardAdminForm extends ConfigFormBase {
     // @todo Add filter xss to prevent malicious code.
     $content = Xss::filterAdmin($form_state->getValue('content')['value']);
     $format = Html::escape($form_state->getValue('content')['format']);
+    $consultation_link_target = Html::escape($form_state->getValue('consultation_link_target'));
+    $consultation_link_text = Html::escape($form_state->getValue('consultation_link_text'));
 
     $this->config('hy_wizard.wizardadmin')
       ->set('title', $form_state->getValue('title'))
       ->set('content_value', $content)
       ->set('content_format', $format)
+      ->set('consultation_link_target', $consultation_link_target)
+      ->set('consultation_link_text', $consultation_link_text)
       ->save();
   }
 

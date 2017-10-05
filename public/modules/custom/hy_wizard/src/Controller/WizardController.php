@@ -61,6 +61,8 @@ class WizardController extends ControllerBase {
       '#attached' => [
         'drupalSettings' => [
           'questions' => $taxonomy_list,
+          'consult_text' => $config->get('consultation_link_text'),
+          'consult_target' => $config->get('consultation_link_target'),
         ],
         'library' => ['hy_wizard/hy_wizard_controller'],
       ],

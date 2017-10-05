@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, settings) {
   'use strict';
 
   // jQuerified variables.
@@ -15,12 +15,11 @@
   var page_title = $wizardHeaderTitle.text();
   var page_content = $wizardHeaderContent.html();
 
-  // DrupalSettings
-  // @todo Add these as Drupal settings
-  var $consultationLink = $('<a class="button--action icon--arrow-right theme-transparent right" href="#">I need consultation</a>');
+  // @todo Add fallback for this
+  var $consultationLink = $('<a class="button--action icon--arrow-right theme-transparent right" href="' + settings.consult_target + '">' + settings.consult_text + '</a>');
 
   // This should be injected from JS.
-  // @todo inject this from JS.
+  // @todo inject this from settings.
   var api_url = '/api/wizard-questions/';
 
   Drupal.behaviors.hy_wizard_controller = {
@@ -128,4 +127,4 @@
     attachHandlers();
 
   }
-})(jQuery, Drupal);
+})(jQuery, Drupal, drupalSettings);
