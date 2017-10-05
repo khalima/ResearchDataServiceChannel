@@ -2,9 +2,13 @@
 
 namespace Drupal\hy_wizard\Form;
 
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+// @todo Add Xss and HTML from component utility.
+// use Drupal\Component\Utility;
 /**
  * Class WizardAdminForm.
  */
@@ -30,7 +34,22 @@ class WizardAdminForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // @todo this should be gotten from a service probably.
     $config = $this->config('hy_wizard.wizardadmin');
+
+    $form['title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Wizard title'),
+      '#default_value' => $config->get('title'),
+    ];
+
+    $form['content'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Wizard frontpage content'),
+      '#default_value' => $config->get('content_value'),
+      '#format' => $config->get('content_format'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -48,8 +67,14 @@ class WizardAdminForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
+    // @todo Add filter xss to prevent malicious code.
+    $content = Xss::filterAdmin($form_state->getValue('content')['value']);
+    $format = Html::escape($form_state->getValue('content')['format']);
 
     $this->config('hy_wizard.wizardadmin')
+      ->set('title', $form_state->getValue('title'))
+      ->set('content_value', $content)
+      ->set('content_format', $format)
       ->save();
   }
 

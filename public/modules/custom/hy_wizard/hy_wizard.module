@@ -87,6 +87,7 @@ function hy_wizard_theme($existing, $type, $theme, $path) {
       'variables' => [
         'data' => [],
         'title' => '',
+        'content' => '',
         'description' => '',
         'is_admin' => FALSE,
       ],
