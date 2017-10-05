@@ -50,7 +50,7 @@ class WizardAdminForm extends ConfigFormBase {
       '#format' => $config->get('content_format'),
     ];
 
-    // Wizard attributes
+    // Wizard attributes start here.
     $form['consultation_link_target'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Consultation link url'),
