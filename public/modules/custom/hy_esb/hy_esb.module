@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains hy_esb.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function hy_esb_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the hy_esb module.
+    case 'help.page.hy_esb':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Integrations to ESB') . '</p>';
+      return $output;
+
+    default:
+  }
+}

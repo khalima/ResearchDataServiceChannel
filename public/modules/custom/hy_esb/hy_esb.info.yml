@@ -1,0 +1,5 @@
+name: HY ESB integrations
+type: module
+description: Integrations to ESB
+core: 8.x
+package: Helsinki University
