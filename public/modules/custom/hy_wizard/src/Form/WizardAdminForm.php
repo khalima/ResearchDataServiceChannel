@@ -38,8 +38,8 @@ class WizardAdminForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    // Comment to surpress validation.
-    $var = 'foo';
+    // Comment to surpress validation error in phpcs.
+    $var = '';
     parent::validateForm($form, $form_state);
   }
 
