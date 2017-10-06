@@ -1,0 +1,25 @@
+uuid: 4d7e7cfe-9487-4a61-8239-0345762c3eb9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:0afeeafa-ea39-41ca-a685-48f9648c0987'
+  module:
+    - block_content
+  theme:
+    - hy_rd
+id: hynavigationtoggle_2
+theme: hy_rd
+region: overlay_header_right
+weight: 0
+provider: null
+plugin: 'block_content:0afeeafa-ea39-41ca-a685-48f9648c0987'
+settings:
+  id: 'block_content:0afeeafa-ea39-41ca-a685-48f9648c0987'
+  label: 'Hy - navigation toggle'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

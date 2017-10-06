@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "846f34842b9ce053f549fd97db915de2",
+    "content-hash": "972e3834131e15e233b7495f2c214b59",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1729,109 +1729,6 @@
             }
         },
         {
-            "name": "drupal/masonry",
-            "version": "1.0.0-rc2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/masonry",
-                "reference": "8.x-1.0-rc2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/masonry-8.x-1.0-rc2.zip",
-                "reference": "8.x-1.0-rc2",
-                "shasum": "b16e57dd55ac90d09914aa2731a7b639d3dc1788"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/libraries": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-rc2",
-                    "datestamp": "1456138139",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "BWPanda",
-                    "homepage": "https://www.drupal.org/user/289407"
-                },
-                {
-                    "name": "Dom.",
-                    "homepage": "https://www.drupal.org/user/801982"
-                }
-            ],
-            "description": "Provides an API for integrating the jQuery Masonry plugin with Drupal.",
-            "homepage": "https://www.drupal.org/project/masonry",
-            "support": {
-                "source": "http://cgit.drupalcode.org/masonry"
-            }
-        },
-        {
-            "name": "drupal/masonry_views",
-            "version": "1.0.0-rc1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/masonry_views",
-                "reference": "8.x-1.0-rc1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/masonry_views-8.x-1.0-rc1.zip",
-                "reference": "8.x-1.0-rc1",
-                "shasum": "9b7d26465bffbd83ed38815a2afd88ee7e350378"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/masonry": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-rc1",
-                    "datestamp": "1456138139",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                },
-                "patches_applied": {
-                    "Not working on some 8 themes": "https://www.drupal.org/files/issues/not_working_with_custom_theme--2716399-6.patch"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Dom.",
-                    "homepage": "https://www.drupal.org/user/801982"
-                }
-            ],
-            "description": "Provides a Views plugin for displaying content in a Masonry layout.",
-            "homepage": "https://www.drupal.org/project/masonry_views",
-            "support": {
-                "source": "http://cgit.drupalcode.org/masonry_views"
-            }
-        },
-        {
             "name": "drupal/pathauto",
             "version": "1.0.0",
             "source": {
@@ -2274,16 +2171,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "8.1.13",
+            "version": "8.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "f93fc2bed05ba58cf65fb65f799429bf6354b205"
+                "reference": "b1f1e421185da5468eedfd25eeb5b51e705d3cef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/f93fc2bed05ba58cf65fb65f799429bf6354b205",
-                "reference": "f93fc2bed05ba58cf65fb65f799429bf6354b205",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/b1f1e421185da5468eedfd25eeb5b51e705d3cef",
+                "reference": "b1f1e421185da5468eedfd25eeb5b51e705d3cef",
                 "shasum": ""
             },
             "require": {
@@ -2375,7 +2272,7 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2017-08-22T17:28:25+00:00"
+            "time": "2017-10-03T16:20:45+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -8225,7 +8122,7 @@
     "stability-flags": {
         "drupal/better_exposed_filters": 15,
         "drupal/block_class": 15,
-        "drupal/masonry": 5,
+        "drupal/libraries": 20,
         "drupal/swiftmailer": 10,
         "drupal/samlauth": 15,
         "drupal/webform": 10

@@ -1,0 +1,14 @@
+hy_wizard.index_tab: # The first plugin ID
+  route_name: hy_wizard.wizard_controller_page
+  title: 'View'
+  base_route: hy_wizard.wizard_controller_page
+hy_wizard.settings_tab: # The first plugin ID
+  route_name: hy_wizard.wizard_admin_form
+  title: 'Settings'
+  base_route: hy_wizard.wizard_controller_page
+hy_wizard.taxonomy_tab: # The first plugin ID
+  route_name: entity.taxonomy_vocabulary.overview_form
+  title: 'Edit questions'
+  base_route: hy_wizard.wizard_controller_page
+  route_parameters:
+    taxonomy_vocabulary: 'hy_wizard'

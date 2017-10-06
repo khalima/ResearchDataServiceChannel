@@ -6,7 +6,7 @@
   <div class="wizard__header-wrapper">
     <div class="wizard__header">
       <h2 class="wizard__header__title">{{ title }}</h2>
-      <div class="wizard__header__content"><p>In case you're new here or don't exactly know what service is good for you, this wizard is meant to guide you through the selection process.</p></div>
+      <div class="wizard__header__content">{{ content | raw }}</div>
     </div>
   </div>
   <div class="wizard__content">
@@ -22,6 +22,7 @@
   </div>
   <div class="wizard__footer">
     <div class="wizard__footer__content"></div>
+    <div class="wizard__footer__links"></div>
   </div>
 </div>
 <div class="wizard__after">
