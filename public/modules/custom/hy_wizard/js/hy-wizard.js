@@ -14,9 +14,12 @@
   // Default values
   var page_title = $wizardHeaderTitle.text();
   var page_content = $wizardHeaderContent.html();
+  var $consultationLink = '';
 
-  // @todo Add fallback for this
-  var $consultationLink = $('<a class="button--action icon--arrow-right theme-transparent right" href="' + settings.consult_target + '">' + settings.consult_text + '</a>');
+  // If consultation settings are not set, do not show link.
+  if (settings.consult_target && settings.consult_text) {
+    $consultationLink = $('<a class="button--action icon--arrow-right theme-transparent right" href="' + settings.consult_target + '">' + settings.consult_text + '</a>');
+  }
 
   // This should be injected from JS.
   // @todo inject this from settings.
@@ -83,10 +86,12 @@
     // very rarely happen.
     // @todo Add this from Drupal settings!
     // Check if terms is an array
-    if (terms.length === 0) {
+    if (terms.length === 0 && (data.services && data.services.length === 0)) {
       $selections.append('<p>No values found.</p>');
     }
 
+    // This is always triggered so that selections are visible or
+    // empty.
     $wizardSelections.html($selections);
 
     // Append services if there are any. First clear any services
@@ -94,6 +99,7 @@
     $wizardServices.html('');
 
     if (data.services && data.services.length > 0) {
+
       // @todo Add this as a value that is obtained from admin.
       $wizardServices.append('<h2>Recommended services</h2>');
 
@@ -112,13 +118,11 @@
 
     // Add back button and link to it.
     if (data.parents) {
-
       $wizardFooterLinks.html(
         $('<a class="wizard-button button--action-before icon--arrow-left theme-transparent left" data-tid="' + data.parents[0] + '">Back</a>')
       );
 
       $wizardFooterLinks.append($consultationLink);
-
     }
     else {
       $wizardFooterLinks.html('');
