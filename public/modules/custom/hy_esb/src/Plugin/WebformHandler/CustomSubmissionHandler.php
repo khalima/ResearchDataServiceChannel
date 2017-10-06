@@ -61,6 +61,8 @@ class CustomSubmissionHandler extends WebformHandlerBase {
   public function preSave(WebformSubmissionInterface $webform_submission) {
     $this->displayMessage(__FUNCTION__);
     // @todo Marko adds field 'status' to webform or delegates it to Tuomas
+    // @todo Marko double checks that 'efecte_id' is present. No submissions are
+    // supposed to go through without it.
     // @todo Marko gathers data or uses a service to normalize webform data
     // @todo Marko sends out a REST call for HY with correct data
     // @todo Marko checks REST call status
