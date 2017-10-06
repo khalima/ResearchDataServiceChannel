@@ -25,18 +25,28 @@
   @include default-region;
 }
 
-.wizard__after {
-
-}
+.wizard__after {}
 
 .wizard__selection {
   margin-bottom: $horz-spacing-unit / 2;
 }
 
-.wizard__footer__content {
-  border-top: 1px solid black;
-}
+.wizard__footer__content {}
 
+.wizard__footer__links:empty,
 .wizard__footer__content:empty {
   display: none;
+}
+
+.wizard__footer__links {
+  @include clearfix;
+  border-top: 1px solid $black;
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
 }

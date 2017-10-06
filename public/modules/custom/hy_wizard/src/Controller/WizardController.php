@@ -33,6 +33,7 @@ class WizardController extends ControllerBase {
    */
   public function page() {
     $user = \Drupal::currentUser();
+    $config = \Drupal::config('hy_wizard.wizardadmin');
 
     $build = [];
 
@@ -48,15 +49,20 @@ class WizardController extends ControllerBase {
     $vocabulary = Vocabulary::load(HY_WIZARD_VOCABULARY_VID);
 
     // @todo Add page title
+    // @todo Rethink about xss in template.
+    // @todo Add more drupalSettings
     $build = [
       '#theme' => 'hy_wizard',
       '#data' => $taxonomy_list,
       '#is_admin' => $user->hasPermission('access administration pages'),
-      '#title' => $vocabulary->get('name'),
+      '#title' => $config->get('title'),
+      '#content' => $config->get('content_value'),
       '#description' => $vocabulary->get('description'),
       '#attached' => [
         'drupalSettings' => [
           'questions' => $taxonomy_list,
+          'consult_text' => $config->get('consultation_link_text'),
+          'consult_target' => $config->get('consultation_link_target'),
         ],
         'library' => ['hy_wizard/hy_wizard_controller'],
       ],

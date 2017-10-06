@@ -1,0 +1,6 @@
+hy_wizard.wizardadmin:
+  title: 'Wizard'
+  content_value: 'In case you are new here or do not exactly know what service is good for you, this wizard is meant to guide you through the selection process.'
+  content_format: 'basic_html'
+  consultation_link_target: '/contact'
+  consultation_link_text: 'I need consultation'
