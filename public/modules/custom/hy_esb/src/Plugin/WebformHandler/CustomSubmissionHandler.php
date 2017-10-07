@@ -68,20 +68,6 @@ class CustomSubmissionHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  public function preCreate(array $values) {
-    $this->displayMessage(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postCreate(WebformSubmissionInterface $webform_submission) {
-    $this->displayMessage(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function postLoad(WebformSubmissionInterface $webform_submission) {
     $this->displayMessage(__FUNCTION__);
   }
