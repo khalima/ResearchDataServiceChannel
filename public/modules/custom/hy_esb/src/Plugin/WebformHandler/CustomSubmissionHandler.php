@@ -75,11 +75,6 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     $url = \Drupal::config('esb')->get('url');
     $data = $webform_submission->getData();
 
-    if (!isset($data['efecte_id'])) {
-      drupal_set_message('Ei oo asoo APIIN ilman efecte IIDEETÄ!');
-      //return;
-    }
-
     // @todo Marko adds field 'status' to webform or delegates it to Tuomas
     // @todo Marko double checks that 'efecte_id' is present. No submissions are
     // supposed to go through without it.
@@ -93,9 +88,12 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     $service_url = Url::fromRoute('entity.node.canonical', ['node' => $service->id()])->setAbsolute()->toString();
     $data['service'] = $service->getTitle() .' ('. $service_url .')';
 
-    //echo '<pre>';
-    //print_r($data);
-    //exit;
+    $efecte_id = $service->get('field_efecte_id')->getString();
+
+    if ($efecte_id === '') {
+      drupal_set_message('Ei oo asoo APIIN ilman efecte IIDEETÄ!');
+      return;
+    }
 
     $request_options['json'] = $data;
 
@@ -104,10 +102,12 @@ class CustomSubmissionHandler extends WebformHandlerBase {
       $status = $response->getStatusCode();
 
       if ($status === 200) {
-        drupal_set_message('Kaikk män hirmu hyvin, rajapintakin sano notta "'. $response->getBody() .'"!');
+        drupal_set_message('All good with following json response: "'. $response->getBody() .'"');
       }
-      //$body = $response->getBody();
-      //print_r(json_decode($body)); exit;
+      else {
+        drupal_set_message('Parse the error message from json response "'. $response->getBody() .'"', 'error');
+        return;
+      }
     }
     catch (RequestException $request_exception) {
       drupal_set_message($request_exception->getMessage(), 'error');
