@@ -91,14 +91,20 @@ class QuestionRestResource extends ResourceBase {
       $terms = $this->find($terms, $tid);
     }
 
-    // This is usually not necessary but just a precaution.
-    uasort($terms, function ($a, $b) {
-      return (int) $a['weight'] > (int) $b['weight'];
-    });
+    $output['terms'] = $terms;
 
-    $response = new ResourceResponse($terms);
+    // Get breadcrumbs as an array.
+    // @todo When wizard is converted to use front end UI library
+    // this function becomes redundant.
+    $output['breadcrumb'] = $wizard->loadBreadCrumb($tid);
+
+    // One thing good to know is that javascript objects
+    // do not retain order so they have to be manually
+    // sorted in the front end.
+    $response = new ResourceResponse($output);
 
     // There is no need to cache for now.
+    // @todo Set correct cache context.
     $response->addCacheableDependency(NULL);
 
     return $response;

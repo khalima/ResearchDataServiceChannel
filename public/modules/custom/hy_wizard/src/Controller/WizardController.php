@@ -88,12 +88,45 @@ class WizardController extends ControllerBase {
     }
 
     $terms = $this->entityTypeManager()->getStorage('taxonomy_term')->loadTree($vocabulary);
+
     $tree = [];
     foreach ($terms as $tree_object) {
       $this->buildTree($tree, $tree_object, $vocabulary);
     }
 
     return $tree;
+  }
+
+  /**
+   * Get breadcrumb trail from tid.
+   *
+   * @todo Convert this to be in a service.
+   */
+  public function loadBreadcrumb($tid = NULL) {
+    $breadcrumb = [];
+
+    if ($tid) {
+      // Load breadcrumb tree for this tid.
+      $parents = $this->entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($tid);
+
+      foreach ($parents as $parent_tid => $parent_term) {
+        $breadcrumb[] = [
+          'name' => $parent_term->getName(),
+          'tid' => $parent_term->id(),
+        ];
+      }
+    }
+
+    $base_term = [
+      'name' => $this->t('Wizard'),
+      'tid' => 0,
+    ];
+
+    $breadcrumb[] = $base_term;
+
+    // We need to reverse order so that the array is easier to
+    // traverse through in the front end.
+    return array_reverse($breadcrumb);
   }
 
   /**
