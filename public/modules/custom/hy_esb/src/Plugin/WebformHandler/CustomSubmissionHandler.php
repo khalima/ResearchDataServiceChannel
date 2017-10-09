@@ -95,6 +95,8 @@ class CustomSubmissionHandler extends WebformHandlerBase {
       return;
     }
 
+    $data['efecte_id'] = $efecte_id;
+
     $request_options['json'] = $data;
 
     try {
