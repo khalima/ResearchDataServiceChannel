@@ -2,6 +2,8 @@
 
 namespace Drupal\hy_esb\Plugin\WebformHandler;
 
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -9,6 +11,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -68,31 +71,15 @@ class CustomSubmissionHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  public function postLoad(WebformSubmissionInterface $webform_submission) {
-    $this->displayMessage(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preDelete(WebformSubmissionInterface $webform_submission) {
-    $this->displayMessage(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postDelete(WebformSubmissionInterface $webform_submission) {
-    $this->displayMessage(__FUNCTION__);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function preSave(WebformSubmissionInterface $webform_submission) {
     $url = \Drupal::config('esb')->get('url');
+    $data = $webform_submission->getData();
 
-    $this->displayMessage(get_class($this->httpClient));
+    if (!isset($data['efecte_id'])) {
+      drupal_set_message('Ei oo asoo APIIN ilman efecte IIDEETÄ!');
+      //return;
+    }
+
     // @todo Marko adds field 'status' to webform or delegates it to Tuomas
     // @todo Marko double checks that 'efecte_id' is present. No submissions are
     // supposed to go through without it.
@@ -100,20 +87,46 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     // @todo Marko sends out a REST call for HY with correct data
     // @todo Marko checks REST call status
     // @todo Marko adds webform status accordingly
+
+    // Load service node
+    $service = Node::load($data['service']);
+    $service_url = Url::fromRoute('entity.node.canonical', ['node' => $service->id()])->setAbsolute()->toString();
+    $data['service'] = $service->getTitle() .' ('. $service_url .')';
+
+    //echo '<pre>';
+    //print_r($data);
+    //exit;
+
+    $request_options['json'] = $data;
+
+    try {
+      $response = $this->httpClient->post($url, $request_options);
+      $status = $response->getStatusCode();
+
+      if ($status === 200) {
+        drupal_set_message('Kaikk män hirmu hyvin, rajapintakin sano notta "'. $response->getBody() .'"!');
+      }
+      //$body = $response->getBody();
+      //print_r(json_decode($body)); exit;
+    }
+    catch (RequestException $request_exception) {
+      drupal_set_message($request_exception->getMessage(), 'error');
+      return;
+    }
+
+    // All good, set webform status 'ordered'
+    /*$submission_data = $webform_submission->getData();
+    $submission_data['some_fancy_pants_status'] = 'ordered';
+    $webform_submission->setData($submission_data);
+    if ($this->isResultsEnabled()) {
+      $this->submissionStorage->saveData($webform_submission);
+    }*/
   }
 
   /**
    * {@inheritdoc}
    */
   public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
-    $this->displayMessage(__FUNCTION__, $update ? 'update' : 'insert');
-  }
-
-  /**
-   * Show messages in drupal messages.
-   */
-  public function displayMessage($msg) {
-    drupal_set_message($msg);
   }
 
 }
