@@ -183,7 +183,10 @@ class WizardController extends ControllerBase {
     // Add edit link to the mix.
     $tree[$object->tid]['children'] = [];
     $object_children = &$tree[$object->tid]['children'];
-    $children = $this->entityTypeManager->getStorage('taxonomy_term')->loadChildren($object->tid);
+    $children = $this
+      ->entityTypeManager
+      ->getStorage('taxonomy_term')
+      ->loadChildren($object->tid);
 
     if (!$children) {
       return;

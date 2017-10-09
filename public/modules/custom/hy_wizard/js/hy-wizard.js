@@ -63,6 +63,8 @@
    * Helper to render wizard.
    */
   function renderWizard(output) {
+    // All data is coming from the backend. We just need
+    // to refresh page with newly acquired data.
     var breadcrumb = output.breadcrumb;
     var data = output.terms;
 
@@ -85,6 +87,7 @@
     var terms = data.children ? data.children : data;
 
     // @todo Add front end sorting.
+    // @todo Convert terms to be an array.
     for (var tid in terms) {
       if (terms.hasOwnProperty(tid)) {
         var term = terms[tid];

@@ -91,6 +91,27 @@ class QuestionRestResource extends ResourceBase {
       $terms = $this->find($terms, $tid);
     }
 
+    // Convert children to an array for frontend traversing.
+    if (isset($terms['children'])) {
+      $children = [];
+
+      foreach ($terms['children'] as $child) {
+        $children[] = $child;
+      }
+
+      $terms['children'] = $children;
+
+    }
+    else {
+      // If there are no childen, we are on the top level.
+      $temp = [];
+      foreach ($terms as $term) {
+        $temp[] = $term;
+      }
+
+      $terms = $temp;
+    }
+
     $output['terms'] = $terms;
 
     // Get breadcrumbs as an array.
