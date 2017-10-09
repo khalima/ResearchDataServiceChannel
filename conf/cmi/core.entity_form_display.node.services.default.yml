@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.services.field_data_size
     - field.field.node.services.field_description
     - field.field.node.services.field_efecte_id
+    - field.field.node.services.field_guide_link
     - field.field.node.services.field_how_to_access
     - field.field.node.services.field_image
     - field.field.node.services.field_links
@@ -32,7 +33,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 31
+    weight: 7
     settings:
       rows: 9
       summary_rows: 3
@@ -41,12 +42,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_costs:
-    weight: 34
+    weight: 10
     settings:
       rows: 5
       placeholder: ''
@@ -54,25 +55,25 @@ content:
     type: text_textarea
     region: content
   field_data_process:
-    weight: 39
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_data_sensitivity:
-    weight: 40
+    weight: 16
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_data_size:
-    weight: 41
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_description:
-    weight: 38
+    weight: 14
     settings:
       rows: 5
       placeholder: ''
@@ -80,14 +81,22 @@ content:
     type: text_textarea
     region: content
   field_efecte_id:
-    weight: 35
+    weight: 11
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
+  field_guide_link:
+    weight: 22
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_how_to_access:
-    weight: 33
+    weight: 9
     settings:
       rows: 5
       placeholder: ''
@@ -95,7 +104,7 @@ content:
     type: text_textarea
     region: content
   field_image:
-    weight: 36
+    weight: 12
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -103,7 +112,7 @@ content:
     type: image_image
     region: content
   field_links:
-    weight: 37
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -111,31 +120,31 @@ content:
     type: link_default
     region: content
   field_project_members_access_to_:
-    weight: 42
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_project_phase:
-    weight: 43
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_publishing_options:
-    weight: 44
+    weight: 20
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_service_type:
-    weight: 45
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_who_is_this_for:
-    weight: 32
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
@@ -144,13 +153,13 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -158,19 +167,19 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 4
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
@@ -178,7 +187,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
