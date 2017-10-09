@@ -116,4 +116,4 @@ if (file_exists(__DIR__ . '/services.local.yml')) {
 /**
  * ESB API endpoint settings.
  */
-$config['esb_url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticket';
+$config['esb']['url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticket';

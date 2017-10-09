@@ -59,4 +59,4 @@ $config['samlauth.authentication']['security_request_authn_context'] = FALSE;
 /**
  * ESB API endpoint settings.
  */
-$config['esb_url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticket';
+$config['esb']['url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticket';

@@ -90,6 +90,8 @@ class CustomSubmissionHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function preSave(WebformSubmissionInterface $webform_submission) {
+    $url = \Drupal::config('esb')->get('url');
+
     $this->displayMessage(get_class($this->httpClient));
     // @todo Marko adds field 'status' to webform or delegates it to Tuomas
     // @todo Marko double checks that 'efecte_id' is present. No submissions are
