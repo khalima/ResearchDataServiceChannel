@@ -135,29 +135,30 @@ function hy_rd_preprocess_select(array &$variables) {
  * Implements hook_preprocess_field().
  */
 function hy_rd_preprocess_field(array &$variables, $hook) {
-    $user = \Drupal::currentUser();
+  $user = \Drupal::currentUser();
 
-    if (!$user->isAnonymous()) {
-      if($variables['field_name'] == "dynamic_token_field:node-login_in_to_order") {
-        unset($variables['items'][0]['content']);
-      }
+  if (!$user->isAnonymous()) {
+    if ($variables['field_name'] == "dynamic_token_field:node-login_in_to_order") {
+      unset($variables['items'][0]['content']);
+    }
 
-      if ($variables['field_name'] == "dynamic_token_field:node-tilauslomake_linkki") {
-        $efecte = $variables['element']['#object']->field_efecte_id->getValue();
+    if ($variables['field_name'] == "dynamic_token_field:node-tilauslomake_linkki") {
+      $efecte = $variables['element']['#object']->field_efecte_id->getValue();
 
-        if (!$efecte) {
-          unset($variables['items'][0]['content']);
-        }
-      }
-    } else {
-      if ($variables['field_name'] == "dynamic_token_field:node-tilauslomake_linkki") {
-        unset($variables['items'][0]['content']);
-      }
-
-      if ($variables['field_name'] == "field_guide_link") {
+      if (!$efecte) {
         unset($variables['items'][0]['content']);
       }
     }
+  }
+  else {
+    if ($variables['field_name'] == "dynamic_token_field:node-tilauslomake_linkki") {
+      unset($variables['items'][0]['content']);
+    }
+
+    if ($variables['field_name'] == "field_guide_link") {
+      unset($variables['items'][0]['content']);
+    }
+  }
 }
 
 /**
