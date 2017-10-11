@@ -1,0 +1,11 @@
+id: login_in_to_order
+label: 'Login in to order'
+ui_limit: ''
+properties:
+  content:
+    value: '<a class="button" href="#">Log in to order this service</a>'
+    format: hy_unrestricted
+type: token
+type_label: 'Token field'
+entities:
+  node: node
