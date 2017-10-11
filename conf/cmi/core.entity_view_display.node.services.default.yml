@@ -5,11 +5,19 @@ dependencies:
   config:
     - field.field.node.services.body
     - field.field.node.services.field_costs
+    - field.field.node.services.field_data_process
+    - field.field.node.services.field_data_sensitivity
+    - field.field.node.services.field_data_size
     - field.field.node.services.field_description
     - field.field.node.services.field_efecte_id
+    - field.field.node.services.field_guide_link
     - field.field.node.services.field_how_to_access
     - field.field.node.services.field_image
     - field.field.node.services.field_links
+    - field.field.node.services.field_project_members_access_to_
+    - field.field.node.services.field_project_phase
+    - field.field.node.services.field_publishing_options
+    - field.field.node.services.field_service_type
     - field.field.node.services.field_who_is_this_for
     - node.type.services
   module:
@@ -52,6 +60,18 @@ content:
     third_party_settings: {  }
     type: number_integer
     region: content
+  field_guide_link:
+    weight: 109
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_how_to_access:
     weight: 103
     label: above
@@ -93,4 +113,11 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_data_process: true
+  field_data_sensitivity: true
+  field_data_size: true
+  field_project_members_access_to_: true
+  field_project_phase: true
+  field_publishing_options: true
+  field_service_type: true
   langcode: true

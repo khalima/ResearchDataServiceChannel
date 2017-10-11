@@ -6,11 +6,19 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.services.body
     - field.field.node.services.field_costs
+    - field.field.node.services.field_data_process
+    - field.field.node.services.field_data_sensitivity
+    - field.field.node.services.field_data_size
     - field.field.node.services.field_description
     - field.field.node.services.field_efecte_id
+    - field.field.node.services.field_guide_link
     - field.field.node.services.field_how_to_access
     - field.field.node.services.field_image
     - field.field.node.services.field_links
+    - field.field.node.services.field_project_members_access_to_
+    - field.field.node.services.field_project_phase
+    - field.field.node.services.field_publishing_options
+    - field.field.node.services.field_service_type
     - field.field.node.services.field_who_is_this_for
     - node.type.services
   module:
@@ -38,6 +46,8 @@ third_party_settings:
         - field_image
         - body
         - 'dynamic_token_field:node-tilauslomake_linkki'
+        - field_order_link
+        - field_guide_link
     fields:
       'dynamic_token_field:node-tilauslomake_linkki':
         plugin_id: 'dynamic_token_field:node-tilauslomake_linkki'
@@ -74,6 +84,23 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+  field_guide_link:
+    type: link
+    weight: 9
+    region: second
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fico:
+        fico:
+          condition: hide_not_empty
+          settings:
+            target_field: field_efecte_id
   field_how_to_access:
     weight: 3
     label: above
