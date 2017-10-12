@@ -25,11 +25,17 @@ third_party_settings:
         - 'dynamic_block_field:node-order_form_service_block'
       second:
         - body
+        - 'dynamic_token_field:node-login_in_to_order'
         - webform
     fields:
       'dynamic_block_field:node-order_form_service_block':
         plugin_id: 'dynamic_block_field:node-order_form_service_block'
         weight: 0
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-login_in_to_order':
+        plugin_id: 'dynamic_token_field:node-login_in_to_order'
+        weight: 2
         label: hidden
         formatter: default
 _core:
@@ -48,7 +54,7 @@ content:
       trim_length: 600
     third_party_settings: {  }
   webform:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       source_entity: true
