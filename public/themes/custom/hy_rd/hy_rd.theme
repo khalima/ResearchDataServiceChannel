@@ -52,7 +52,7 @@ function hy_rd_preprocess_page(array &$variables) {
     $parts = parse_url($current_uri);
     parse_str($parts['query'], $query);
 
-    if (!array_key_exists ("ordered_service", $query) && !is_numeric ($query)) {
+    if (!array_key_exists("ordered_service", $query) && !is_numeric($query)) {
       $response = new RedirectResponse('/services');
       $response->send();
       exit;
