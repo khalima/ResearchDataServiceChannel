@@ -156,7 +156,7 @@ class WizardController extends ControllerBase {
       // Create a simpler array from Drupal Node object.
       foreach ($services as $service) {
         $services_array[] = [
-          'body' => $service->get('body')->value,
+          'body' => $service->get('field_description')->value,
           'title' => $service->getTitle(),
           'nid' => $service->id(),
           'path' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/' . $service->id()),
