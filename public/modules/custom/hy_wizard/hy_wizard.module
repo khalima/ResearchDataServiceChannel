@@ -96,6 +96,16 @@ function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $form
 }
 
 /**
+ * Implemenents hook_form_FORM_ID_alert().
+ */
+function hy_wizard_form_taxonomy_term_hy_wizard_form_alter(&$form, $form_state) {
+  // Sanity check but we cannot risk anything.
+  if ($form['#form_id'] == 'taxonomy_term_hy_wizard_form' && isset($form['relations'])) {
+    $form['relations']['parent']['#size'] = 25;
+  }
+}
+
+/**
  * Implements hook_twig_theme().
  */
 function hy_wizard_theme($existing, $type, $theme, $path) {
