@@ -57,9 +57,9 @@ function _hy_wizard_popup_content() {
  *
  * Basically a placeholder for modifying overview list.
  */
-function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $vocabulary) {
+function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $form_id) {
 
-  if ($vocabulary === 'hy_wizard') {
+  if ($form_id === 'taxonomy_overview_terms' && \Drupal::routeMatch()->getParameter('taxonomy_vocabulary')->id() === 'hy_wizard') {
     // Add description field to array.
     $form['terms']['#header'][] = t('Services');
     $form['terms']['#header'][] = t('Description');
