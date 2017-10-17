@@ -59,38 +59,40 @@ function _hy_wizard_popup_content() {
  */
 function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $vocabulary) {
 
-  // Add description field to array.
-  $form['terms']['#header'][] = t('Services');
-  $form['terms']['#header'][] = t('Description');
+  if ($vocabulary === 'hy_wizard') {
+    // Add description field to array.
+    $form['terms']['#header'][] = t('Services');
+    $form['terms']['#header'][] = t('Description');
 
-  // Construct a new table structure.
-  foreach ($form['terms'] as $term_name => &$data) {
-    if (0 === strpos($term_name, '#')) {
-      continue;
+    // Construct a new table structure.
+    foreach ($form['terms'] as $term_name => &$data) {
+      if (0 === strpos($term_name, '#')) {
+        continue;
+      }
+
+      $term = $data['#term'];
+
+      // Get link to node edit form for easier handling.
+      $services_array = $term->field_services->referencedEntities();
+      $service_link = '';
+
+      foreach ($services_array as $service) {
+        // @todo Convert this to use Drupal inbuilt url generator.
+        $service_link .= '<a href="' . $service->toUrl('edit-form')->toString() . '">' . $service->getTitle() . '</a><br />';
+      }
+
+      $data['services'] = [
+        '#type' => 'markup',
+        '#markup' => $service_link,
+      ];
+
+      $data['description'] = [
+        '#type' => 'markup',
+        '#markup' => $term->getDescription(),
+      ];
     }
-
-    $term = $data['#term'];
-
-    // Get link to node edit form for easier handling.
-    $services_array = $term->field_services->referencedEntities();
-    $service_link = '';
-
-    foreach ($services_array as $service) {
-      // @todo Convert this to use Drupal inbuilt url generator.
-      $service_link .= '<a href="' . $service->toUrl('edit-form')->toString() . '">' . $service->getTitle() . '</a><br />';
-    }
-
-    $data['services'] = [
-      '#type' => 'markup',
-      '#markup' => $service_link,
-    ];
-
-    $data['description'] = [
-      '#type' => 'markup',
-      '#markup' => $term->getDescription(),
-    ];
+    // $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';.
   }
-  // $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';.
 }
 
 /**
