@@ -46,7 +46,6 @@ third_party_settings:
         - field_image
         - body
         - 'dynamic_token_field:node-tilauslomake_linkki'
-        - field_order_link
         - field_guide_link
     fields:
       'dynamic_token_field:node-tilauslomake_linkki':
@@ -70,10 +69,9 @@ mode: full
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 6
-    settings:
-      trim_length: 600
+    settings: {  }
     third_party_settings: {  }
     region: second
   field_description:
