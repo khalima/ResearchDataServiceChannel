@@ -1,0 +1,23 @@
+uuid: cb488fc7-d687-4d50-92d7-721d7ed535d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lift_link
+    - node.type.lifts
+  module:
+    - link
+id: node.lifts.field_lift_link
+field_name: field_lift_link
+entity_type: node
+bundle: lifts
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 1
+  title: 1
+field_type: link

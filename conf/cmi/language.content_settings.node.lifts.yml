@@ -1,0 +1,11 @@
+uuid: d20b754c-99e1-4bfb-ad72-2dd3e07fdad0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.lifts
+id: node.lifts
+target_entity_type_id: node
+target_bundle: lifts
+default_langcode: site_default
+language_alterable: false
