@@ -16,13 +16,8 @@
 
 
 .lift {
-  @media screen and (max-width: $bp-medium) {
-    width: 100%;
-  }
-}
-
-.lift__wrapper {
-  display: inline-block;
+  padding-top: $vert-spacing-unit / 2;
+  padding-bottom: $vert-spacing-unit / 2;
 
   /* 62em is in the row class */
   @media screen and (max-width: 62em) {
@@ -31,6 +26,28 @@
     border-bottom: 1px solid $silver;
     padding: $vert-spacing-unit $horz-spacing-unit;
   }
+
+  @media screen and (max-width: $bp-medium) {
+    width: 100%;
+  }
+}
+
+.lift--inverted {
+  background-color: $blue;
+  color: $white;
+
+  .lift__title,
+  .lift__wrapper,
+  .lift__link.theme-transparent.button--action,
+  .lift__link.theme-transparent.button--action:after,
+  .lift__content {
+    color: $white;
+  }
+}
+
+.lift__wrapper {
+  display: inline-block;
+  width: 100%;
 
   @media screen and (min-width: $bp-small) {
     display: flex;
