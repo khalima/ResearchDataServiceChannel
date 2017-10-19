@@ -1,0 +1,122 @@
+.lifts {
+  @include default-region;
+  padding-left: $horz-spacing-unit;
+  padding-right: $horz-spacing-unit;
+
+  /* Remove that pesky padding / margin from bootstrap */
+  @media screen and (max-width: $bp-medium) {
+    padding: 0;
+
+    .row {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+
+.lift {
+  padding-top: $vert-spacing-unit / 2;
+  padding-bottom: $vert-spacing-unit / 2;
+
+  /* 62em is in the row class */
+  @media screen and (max-width: 62em) {
+    width: 100%;
+    background-color: $lightsilver;
+    border-bottom: 1px solid $silver;
+    padding: $vert-spacing-unit $horz-spacing-unit;
+  }
+
+  @media screen and (max-width: $bp-medium) {
+    width: 100%;
+  }
+}
+
+.lift--inverted {
+  background-color: $blue;
+  color: $white;
+
+  .lift__title,
+  .lift__wrapper,
+  .lift__link.theme-transparent.button--action,
+  .lift__link.theme-transparent.button--action:after,
+  .lift__content {
+    color: $white;
+  }
+}
+
+.lift__wrapper {
+  display: inline-block;
+  width: 100%;
+
+  @media screen and (min-width: $bp-small) {
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (min-width: $bp-medium) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.lift__image {
+  text-align: center;
+
+  @media screen and (min-width: $bp-small) {
+    max-width: 25%;
+    min-width: 25%;
+    margin-right: 5%;
+    text-align: left;
+  }
+}
+
+.lift__content {
+  text-align: center;
+
+  @media screen and (min-width: $bp-small) {
+    text-align: left;
+  }
+}
+
+.lift__link {
+  @media screen and (max-width: $bp-small) {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/**
+$bp-small: 48em;
+$bp-medium: 62.5em;
+$bp-large: 75em;
+
+<div class="lifts">
+  <div class="row">
+    <div class="lift col-md-6">
+      <a class="lift__wrapper" href="/">
+        <div class="lift__image">
+          <img src="/sites/default/files/public/inline-images/infographics_normalized.png">
+        </div>
+        <div class="lift__content">
+          <h4 class="lift__title">Research Data Services</h4>
+          <p>​Research data services support you through the entire life cycle of your data.</p>
+          <span class="lift__link button--action icon--arrow-right theme-transparent">Browse services</span>
+        </div>
+      </a>
+    </div>
+    <div class="lift col-md-6">
+      <a class="lift__wrapper" href="/">
+        <div class="lift__image">
+          <img src="/sites/default/files/public/inline-images/data_normalized.png">
+        </div>
+        <div class="lift__content">
+          <h4 class="lift__title">Wizard to identify services</h4>
+          <p>​Answer these questions of your data to identify the specific service suitable for your needs.</p>
+          <span class="lift__link button--action icon--arrow-right theme-transparent">Browse Wizard</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+*/
