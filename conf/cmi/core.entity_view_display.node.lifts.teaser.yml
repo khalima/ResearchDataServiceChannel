@@ -1,0 +1,49 @@
+uuid: ceb89303-dd9a-445f-ac29-8d5d0cbd6e69
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.lifts.body
+    - field.field.node.lifts.field_lift_image
+    - field.field.node.lifts.field_lift_link
+    - node.type.lifts
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - 'dynamic_token_field:node-lifts'
+    fields:
+      'dynamic_token_field:node-lifts':
+        plugin_id: 'dynamic_token_field:node-lifts'
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.lifts.teaser
+targetEntityType: node
+bundle: lifts
+mode: teaser
+content: {  }
+hidden:
+  body: true
+  field_lift_image: true
+  field_lift_link: true
+  langcode: true
+  links: true

@@ -1,0 +1,11 @@
+id: lifts
+label: Lifts
+ui_limit: ''
+properties:
+  content:
+    value: "<a class=\"lift__wrapper\" href=\"[node:field_lift_link:uri]\">\r\n  <div class=\"lift__image\">\r\n     <img src=\"[node:field_lift_image:medium:url]\">\r\n  </div>\r\n  <div class=\"lift__content\">\r\n    <h4 class=\"lift__title\">[node:title]</h4>\r\n    [node:body]\r\n     <span class=\"lift__link button--action icon--arrow-right theme-transparent\">[node:field_lift_link:title]</span>\r\n  </div>\r\n</a>\r\n"
+    format: hy_unrestricted
+type: token
+type_label: 'Token field'
+entities:
+  node: node

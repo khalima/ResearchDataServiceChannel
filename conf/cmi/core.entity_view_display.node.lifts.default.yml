@@ -1,0 +1,52 @@
+uuid: b512be95-26f4-4e53-915c-9f0862cb5dcd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.lifts.body
+    - field.field.node.lifts.field_lift_image
+    - field.field.node.lifts.field_lift_link
+    - node.type.lifts
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.lifts.default
+targetEntityType: node
+bundle: lifts
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_lift_image:
+    weight: 103
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_lift_link:
+    weight: 102
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true
