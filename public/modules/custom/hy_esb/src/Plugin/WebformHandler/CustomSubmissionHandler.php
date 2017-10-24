@@ -86,16 +86,19 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     // Load service node
     $service = Node::load($data['service']);
     $service_url = Url::fromRoute('entity.node.canonical', ['node' => $service->id()])->setAbsolute()->toString();
-    $data['service'] = $service->getTitle() .' ('. $service_url .')';
 
-    $efecte_id = $service->get('field_efecte_id')->getString();
+    $efecte_category = $service->get('field_efecte_id')->getString();
 
-    if ($efecte_id === '') {
+    if ($efecte_category === '') {
       drupal_set_message('Ei oo asoo APIIN ilman efecte IIDEETÄ!');
       return;
     }
 
-    $data['efecte_id'] = $efecte_id;
+    $data['subject'] = 'Service order: '. $service->getTitle();
+    $data['message'] = 'Service order: '. $service->getTitle() .' ('. $service_url .')';
+    $data['message'] .= '\n\n'; // TODO add form fields here
+    $data['category'] = $efecte_category;
+    $data['email'] = 'todo@helsinki.fi';
 
     $request_options['json'] = $data;
 
