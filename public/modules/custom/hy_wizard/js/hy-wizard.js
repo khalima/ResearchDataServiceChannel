@@ -2,7 +2,7 @@
   'use strict';
 
   // jQuerified variables.
-  // var $wizard               = $('.wizard');
+  // var $wizard = $('.wizard');
   // var $wizardContent = $('.wizard__content');
   var $wizardHeaderTitle = $('.wizard__header__title');
   var $wizardHeaderContent = $('.wizard__header__content');
@@ -10,6 +10,7 @@
   var $wizardServices = $('.wizard__services');
   // var $wizardFooterContent = $('.wizard__footer__content');
   var $wizardFooterLinks = $('.wizard__footer__links');
+  var $wizardBreadcrumbs = $('.wizard__breadcrumbs');
 
   // Default values
   var page_title = $wizardHeaderTitle.text();
@@ -61,7 +62,22 @@
   /**
    * Helper to render wizard.
    */
-  function renderWizard(data) {
+  function renderWizard(output) {
+    // All data is coming from the backend. We just need
+    // to refresh page with newly acquired data.
+    var breadcrumb = output.breadcrumb;
+    var data = output.terms;
+
+    // Empty up current breadcrumbs.
+    $wizardBreadcrumbs.html('');
+
+    $(breadcrumb).each(function (index, value) {
+      var $elem = $('<span class="breadcrumbs__item"></span>');
+      $elem.append('<a class="wizard-button" data-tid="' + value.tid + '">' + value.name + '</a>');
+      $wizardBreadcrumbs.append($elem);
+      $wizardBreadcrumbs.append('<span class="breadcrumbs__divider">/</span>');
+    });
+
     $wizardHeaderTitle.text(data.name ? data.name : page_title);
     $wizardHeaderContent.html((data.parents) ? data.description : page_content);
 
@@ -71,6 +87,7 @@
     var terms = data.children ? data.children : data;
 
     // @todo Add front end sorting.
+    // @todo Convert terms to be an array.
     for (var tid in terms) {
       if (terms.hasOwnProperty(tid)) {
         var term = terms[tid];

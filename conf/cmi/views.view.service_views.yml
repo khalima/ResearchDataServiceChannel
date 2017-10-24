@@ -11,11 +11,10 @@ dependencies:
     - taxonomy.vocabulary.data_sensitivity
     - taxonomy.vocabulary.data_size
     - taxonomy.vocabulary.project_members_access_to_uh_net
-    - taxonomy.vocabulary.project_phase
-    - taxonomy.vocabulary.publishing_options
   content:
     - 'taxonomy_term:data_process:2ab2e1c4-6272-4d61-9a7c-7a361ed23d15'
     - 'taxonomy_term:data_process:68639f30-1c85-435d-b8b3-e79e92d3636d'
+    - 'taxonomy_term:data_process:c133be65-7e27-442b-a233-76bc7e133790'
     - 'taxonomy_term:data_process:e526b35c-c235-4c35-9fca-9f0eabc57b3e'
     - 'taxonomy_term:data_process:f93a7d92-7f12-4bd5-9f7e-aedba16e2d0c'
     - 'taxonomy_term:data_sensitivity:0404a50e-d218-4b10-9fcb-99c7006b24fa'
@@ -26,11 +25,6 @@ dependencies:
     - 'taxonomy_term:project_members_access_to_uh_net:1dc2f013-8582-4e39-a286-da5d087a2404'
     - 'taxonomy_term:project_members_access_to_uh_net:c619fc6f-77f6-406d-aabb-aa8a063b5f66'
     - 'taxonomy_term:project_members_access_to_uh_net:d86202e1-3ba1-4444-8433-ebeaeabd1aad'
-    - 'taxonomy_term:project_phase:412ef090-bb35-4701-b174-79cab9264511'
-    - 'taxonomy_term:project_phase:7e2136cc-b8fa-4141-8d7b-910277479dc6'
-    - 'taxonomy_term:project_phase:8c03cdc5-7db9-4965-8d2c-e7d60c7c3e48'
-    - 'taxonomy_term:publishing_options:91871706-4ae2-40b0-b53e-3a9c752d5ec5'
-    - 'taxonomy_term:publishing_options:a185e149-c8f2-4e2b-86ee-11a9da5d70e1'
   module:
     - better_exposed_filters
     - ds
@@ -424,7 +418,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "  <a href=\"{{ path }}\" class=\"box-story__link-wrapper textarea-infobox\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n    <div class=\"box-story__content\">\n      {{ field_description }} \n    </div>\n     <div class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </div>\n  </a>"
+            text: "  <div class=\"textarea-infobox\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n      {{ field_description }} \n     <div class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </div>\n  </div>"
             make_link: false
             path: ''
             absolute: false
@@ -497,6 +491,7 @@ display:
           value:
             4: 4
             5: 5
+            62: 62
             6: 6
             7: 7
           group: 1
@@ -639,14 +634,14 @@ display:
           admin_label: ''
           operator: or
           value:
-            10: 10
             12: 12
+            10: 10
             11: 11
           group: 1
           exposed: true
           expose:
             operator_id: field_project_members_access_to__target_id_op
-            label: 'Project members access to UH network'
+            label: 'Share data during project'
             description: ''
             use_operator: false
             operator: field_project_members_access_to__target_id_op
@@ -675,101 +670,6 @@ display:
           type: select
           limit: true
           vid: project_members_access_to_uh_net
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_project_phase_target_id:
-          id: field_project_phase_target_id
-          table: node__field_project_phase
-          field: field_project_phase_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            3: 3
-            1: 1
-            2: 2
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_project_phase_target_id_op
-            label: 'Project phase'
-            description: ''
-            use_operator: false
-            operator: field_project_phase_target_id_op
-            identifier: field_project_phase_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          type: select
-          limit: true
-          vid: project_phase
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_publishing_options_target_id:
-          id: field_publishing_options_target_id
-          table: node__field_publishing_options
-          field: field_publishing_options_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            16: 16
-            17: 17
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_publishing_options_target_id_op
-            label: 'Publishing options'
-            description: ''
-            use_operator: false
-            operator: field_publishing_options_target_id_op
-            identifier: field_publishing_options_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          type: select
-          limit: true
-          vid: publishing_options
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid

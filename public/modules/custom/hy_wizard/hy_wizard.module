@@ -57,24 +57,52 @@ function _hy_wizard_popup_content() {
  *
  * Basically a placeholder for modifying overview list.
  */
-function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $vocabulary) {
+function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $form_id) {
 
-  // Add description field to array.
-  $form['terms']['#header'][] = t('Description');
+  if ($form_id === 'taxonomy_overview_terms' && \Drupal::routeMatch()->getParameter('taxonomy_vocabulary')->id() === 'hy_wizard') {
+    // Add description field to array.
+    $form['terms']['#header'][] = t('Services');
+    $form['terms']['#header'][] = t('Description');
 
-  // Construct a new table structure.
-  foreach ($form['terms'] as $term_name => &$data) {
-    if (0 === strpos($term_name, '#')) {
-      continue;
+    // Construct a new table structure.
+    foreach ($form['terms'] as $term_name => &$data) {
+      if (0 === strpos($term_name, '#')) {
+        continue;
+      }
+
+      $term = $data['#term'];
+
+      // Get link to node edit form for easier handling.
+      $services_array = $term->field_services->referencedEntities();
+      $service_link = '';
+
+      foreach ($services_array as $service) {
+        // @todo Convert this to use Drupal inbuilt url generator.
+        $service_link .= '<a href="' . $service->toUrl('edit-form')->toString() . '">' . $service->getTitle() . '</a><br />';
+      }
+
+      $data['services'] = [
+        '#type' => 'markup',
+        '#markup' => $service_link,
+      ];
+
+      $data['description'] = [
+        '#type' => 'markup',
+        '#markup' => $term->getDescription(),
+      ];
     }
-
-    $term = $data['#term'];
-    $data['description'] = [
-      '#type' => 'markup',
-      '#markup' => $term->getDescription(),
-    ];
+    // $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';.
   }
-  // $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';.
+}
+
+/**
+ * Implemenents hook_form_FORM_ID_alert().
+ */
+function hy_wizard_form_taxonomy_term_hy_wizard_form_alter(&$form, $form_state) {
+  // Sanity check but we cannot risk anything.
+  if ($form['#form_id'] == 'taxonomy_term_hy_wizard_form' && isset($form['relations'])) {
+    $form['relations']['parent']['#size'] = 25;
+  }
 }
 
 /**

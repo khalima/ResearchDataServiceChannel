@@ -1,0 +1,23 @@
+uuid: 9e3ecfd2-28bf-47c3-8c51-3b826f19cb32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guide_link
+    - node.type.services
+  module:
+    - link
+id: node.services.field_guide_link
+field_name: field_guide_link
+entity_type: node
+bundle: services
+label: 'Guide link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 1
+field_type: link

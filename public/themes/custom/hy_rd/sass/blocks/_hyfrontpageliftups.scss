@@ -1,19 +1,14 @@
 #block-hyfrontpageliftups {
-  @include default-region--tall;
+  @include default-region;
+  padding-left: $horz-spacing-unit;
+  padding-right: $horz-spacing-unit;
 
-  @media screen and (max-width: $bp-small) {
-    padding-bottom: 0;
+  @media screen and (max-width: $bp-medium) {
+    padding: 0;
 
     .row {
-      margin: 0;
       padding: 0;
-    }
-
-    .row > div {
-      padding: $horz-spacing-unit $vert-spacing-unit;
-      background-color: $lightsilver;
-      border-top: 1px solid $silver;
-      width: 100%;
+      margin: 0;
     }
   }
 }
