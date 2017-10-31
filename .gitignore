@@ -1,6 +1,7 @@
 # Ignore project files that should not be in version control
 /ansible/roles/*
 /bin
+/deploy
 /drush/contrib/
 /files
 /files_private
@@ -15,6 +16,8 @@
 /public/sites
 /tools/init-tools-status
 /vendor/
+
+artifact.tar.gz
 
 # Ignore the folder created by PhpStorm
 .idea/*

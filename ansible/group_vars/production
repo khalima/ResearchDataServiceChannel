@@ -3,6 +3,9 @@
 # PROJECT
 #
 
+project_env: production
+git_branch: dev
+
 projects_root: /var/www
 
 projects:

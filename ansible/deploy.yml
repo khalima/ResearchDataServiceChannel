@@ -1,0 +1,59 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    deploy_folder: "../deploy"
+
+  tasks:
+
+#    - name: "Get code from Github ({{ git_branch }} branch)"
+#      local_action:
+#        module: git
+#        repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
+#        dest: "{{ deploy_folder }}"
+#        version: "{{ git_branch }}"
+#        force: yes
+#        depth: 1
+#
+#    - name: "Build codebase for {{ project_env }} environment"
+#      local_action: "command composer run-script build-{{ project_env }}"
+#      args:
+#        chdir: "{{ deploy_folder }}"
+#
+#    - name: Create release artifact
+#      local_action: "command composer run-script artifact"
+#      args:
+#        chdir: "{{ deploy_folder }}"
+
+    - name: Gather facts about remote
+      setup:
+
+    - name: Get timestamp for the release
+      set_fact: timestamp="{{ ansible_date_time.epoch }}"
+
+    - block:
+
+        - name: Make sure releases folder exists
+          file:
+            path: "{{ projects.default.root }}/releases/{{ timestamp }}"
+            state: directory
+            mode: 0755
+
+        - name: "Extract artifact into {{ projects.default.root }}/releases/{{ timestamp }}"
+          unarchive:
+            src: "{{ deploy_folder }}/artifact.tar.gz"
+            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
+
+        - name: "Set symlinks"
+          file:
+            src: "{{ projects.default.root }}/releases/{{ timestamp }}/public"
+            dest: "{{ projects.default.public_root }}"
+            state: link
+
+      become: yes
+
+#- hosts: all
+#  become: yes
+#  tasks:
+#    - name: Build
+#      debug: msg="terve"
