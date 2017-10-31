@@ -1,0 +1,103 @@
+---
+#
+# Default variables
+#
+# Use group specific group vars to overwrite these
+#
+
+#
+# MISC
+#
+
+extra_packages:
+  - unzip
+  - curl
+  - vim
+distro_extra_packages: []
+project_cron_jobs: []
+
+#
+# DRUSH
+#
+
+drush_version: "8.1.15"
+drush_keep_updated: yes
+drush_force_update: no
+drush_clone_depth: 0
+
+#
+# MARIADB / MYSQL
+#
+
+# Misc
+mysql_bind_address: '127.0.0.1'
+# Slow query logging
+mysql_slow_query_log_enabled: yes
+mysql_slow_query_log_file: /var/log/mysql-slow.log
+mysql_slow_query_time: 2
+# Root password
+mysql_root_password: myrootpassword
+mysql_databases:
+  - name: rds_db
+    encoding: utf8
+    collation: utf8_swedish_ci
+mysql_users:
+  - name: rds_user
+    host: "%"
+    password: 3kb3öl2n3v!2wev1dfg
+    priv: "rds_db.*:ALL"
+
+#
+# CERTBOT
+#
+
+certbot_install_from_source: yes
+
+#
+# NGINX
+#
+
+
+
+#
+# PHP
+#
+
+# Version
+php_version: "7.1"
+
+# Misc
+php_install_recommends: no
+php_enable_webserver: false
+php_expose_php: "On"
+php_memory_limit: "256M"
+php_max_execution_time: "60"
+php_max_input_time: "60"
+php_max_input_vars: "1000"
+php_realpath_cache_size: "32K"
+php_upload_max_filesize: "64M"
+php_post_max_size: "32M"
+php_date_timezone: "Europe/Helsinki"
+
+# Errors
+php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+php_display_errors: "Off"
+php_display_startup_errors: "Off"
+
+# PHP-FPM
+php_enable_php_fpm: true
+php_fpm_pm_max_requests: 1000
+php_fpm_pool_user: "{{ nginx_user }}"
+php_fpm_pool_group: "{{ nginx_user }}"
+
+# Opcache
+php_opcache_enabled_in_ini: true
+php_opcache_enable: "1"
+php_opcache_enable_cli: "0"
+php_opcache_memory_consumption: "96"
+php_opcache_interned_strings_buffer: "16"
+php_opcache_max_accelerated_files: "4096"
+php_opcache_max_wasted_percentage: "5"
+php_opcache_validate_timestamps: "1"
+php_opcache_revalidate_freq: "2"
+php_opcache_max_file_size: "0"

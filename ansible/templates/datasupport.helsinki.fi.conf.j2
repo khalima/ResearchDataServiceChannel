@@ -1,0 +1,100 @@
+#{{ ansible_managed }}
+
+# Redirect HTTP
+server {
+  listen 80;
+  server_name {{ projects.default.hosts | join(" ") }};
+
+  location ~ /.well-known {
+    auth_basic off;
+    allow all;
+  }
+
+  client_max_body_size {{ php_upload_max_filesize }};
+
+  location / {
+    proxy_pass  http://127.0.0.1:8080;
+  }
+}
+
+# PHP backend
+server {
+  listen 8080;
+  server_name {{ projects.default.hosts | join(" ") }};
+  root {{ projects.default.public_root }};
+  index index.php;
+
+  location / {
+      # Don't touch PHP for static content.
+      try_files $uri /index.php?$query_string;
+  }
+
+  # Don't allow direct access to PHP files in the vendor directory.
+  location ~ /vendor/.*\.php$ {
+      deny all;
+      return 404;
+  }
+
+  # Use fastcgi for all php files.
+  location ~ \.php$|^/update.php {
+      fastcgi_split_path_info ^(.+?\.php)(|/.*)$;
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME $request_filename;
+      fastcgi_intercept_errors on;
+      #fastcgi_read_timeout {{ php_max_execution_time }};
+      include fastcgi_params;
+      fastcgi_pass 127.0.0.1:9000;
+  }
+
+  location @rewrite {
+      rewrite ^ /index.php;
+  }
+
+  location ~* files/advagg_(?:css|js)/ {
+      gzip_static on;
+      access_log  off;
+      expires     max;
+      add_header  ETag "";
+      add_header  Cache-Control "max-age=31449600, no-transform, public";
+      try_files   $uri @rewrite;
+  }
+
+  location ~ ^/sites/.*/files/styles/ {
+      try_files $uri @rewrite;
+  }
+
+  location = /favicon.ico {
+      log_not_found off;
+      access_log off;
+  }
+
+  location = /robots.txt {
+      allow all;
+      log_not_found off;
+      access_log off;
+  }
+
+  location ~* \.(txt|log)$ {
+      allow 192.168.0.0/16;
+      deny all;
+  }
+
+  location ~ (^|/)\. {
+      return 403;
+  }
+
+  # Fighting with ImageCache? This little gem is amazing.
+  location ~ ^sites/.*/files/imagecache/ {
+      try_files $uri @rewrite;
+  }
+
+  # Catch image styles for D7 too.
+  location ~ ^/sites/.*/files/styles/ {
+      try_files $uri @rewrite;
+  }
+
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+      expires max;
+      log_not_found off;
+  }
+}

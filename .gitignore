@@ -1,4 +1,5 @@
 # Ignore project files that should not be in version control
+/ansible/roles/*
 /bin
 /drush/contrib/
 /files
