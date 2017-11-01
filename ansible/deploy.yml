@@ -6,24 +6,24 @@
 
   tasks:
 
-#    - name: "Get code from Github ({{ git_branch }} branch)"
-#      local_action:
-#        module: git
-#        repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
-#        dest: "{{ deploy_folder }}"
-#        version: "{{ git_branch }}"
-#        force: yes
-#        depth: 1
-#
-#    - name: "Build codebase for {{ project_env }} environment"
-#      local_action: "command composer run-script build-{{ project_env }}"
-#      args:
-#        chdir: "{{ deploy_folder }}"
-#
-#    - name: Create release artifact
-#      local_action: "command composer run-script artifact"
-#      args:
-#        chdir: "{{ deploy_folder }}"
+    - name: "Get code from Github ({{ git_branch }} branch)"
+      local_action:
+        module: git
+        repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
+        dest: "{{ deploy_folder }}"
+        version: "{{ git_branch }}"
+        force: yes
+        depth: 1
+
+    - name: "Build codebase for {{ project_env }} environment"
+      local_action: "command composer run-script build-{{ project_env }}"
+      args:
+        chdir: "{{ deploy_folder }}"
+
+    - name: Create release artifact
+      local_action: "command composer run-script artifact"
+      args:
+        chdir: "{{ deploy_folder }}"
 
     - name: Gather facts about remote
       setup:
@@ -44,16 +44,22 @@
             src: "{{ deploy_folder }}/artifact.tar.gz"
             dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
 
+        - name: "Make sure release has correct permissions"
+          file:
+            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
+            owner: "{{ nginx_user }}"
+            group: "{{ nginx_group }}"
+            mode: 0775
+            recurse: yes
+
         - name: "Set symlinks"
           file:
-            src: "{{ projects.default.root }}/releases/{{ timestamp }}/public"
-            dest: "{{ projects.default.public_root }}"
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
             state: link
+          with_items:
+            - { src: "{{ projects.default.root }}/releases/{{ timestamp }}/public", dest: "{{ projects.default.public_root }}" }
+            - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/settings.local.php" }
+            - { src: "{{ projects.default.root }}/shared/files", dest: "{{ projects.default.public_root }}/sites/default/files" }
 
       become: yes
-
-#- hosts: all
-#  become: yes
-#  tasks:
-#    - name: Build
-#      debug: msg="terve"
