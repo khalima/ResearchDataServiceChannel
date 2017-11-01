@@ -3,6 +3,7 @@
 # PROJECT
 #
 
+secrets: /root/ansible
 project_env: production
 git_branch: dev
 
@@ -23,6 +24,21 @@ project_cron_jobs:
   - name: "Drupal Cron"
     minute: "*/3"
     job: "{{ drush_path }} -r {{ project.root }}/current cron >/dev/null 2>&1 |/usr/bin/logger -t nsca_check_disk"
+
+#
+# MARIADB / MYSQL
+#
+
+mysql_root_password: "{{ secrets.db_root_pass }}"
+mysql_databases:
+  - name: "{{ secrets.db_name }}"
+    encoding: utf8
+    collation: utf8_swedish_ci
+mysql_users:
+  - name: "{{ secrets.db_user }}"
+    host: "%"
+    password: "{{ secrets.db_pass }}"
+    priv: "{{ secrets.db_name }}.*:ALL"
 
 #
 # NGINX
