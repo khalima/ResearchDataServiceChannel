@@ -40,3 +40,9 @@ $config['samlauth.authentication']['security_authn_requests_sign'] = TRUE;
 $config['samlauth.authentication']['security_messages_sign'] = TRUE;
 $config['samlauth.authentication']['security_name_id_sign'] = FALSE;
 $config['samlauth.authentication']['security_request_authn_context'] = FALSE;
+
+/**
+ * ESB API endpoint settings.
+ */
+$config['esb']['url'] = 'https://esbpub2.it.helsinki.fi/devel/mildred/createticket';
+//$config['esb']['url'] = 'https://esbpub1.it.helsinki.fi/mildred/createticket';
