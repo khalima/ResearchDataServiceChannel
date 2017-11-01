@@ -27,7 +27,6 @@
     - { role: geerlingguy.drush,          tags: [ 'drush' ] }
     - { role: jdauphant.nginx,            tags: [ 'nginx' ] }
     - { role: jdauphant.ssl-certs,        tags: [ 'ssl' ] }
-#    - { role: geerlingguy.certbot,        tags: [ 'ssl' ] }
 
   post_tasks:
     - template:
