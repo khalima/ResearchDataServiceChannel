@@ -4,10 +4,9 @@
 
   pre_tasks:
     - include_vars: "RedHat.yml"
-      tags: [ always ]
     - import_tasks: tasks/init-redhat.yml
-      tags: [ always ]
     - import_tasks: tasks/load-secrets.yml
+      tags: [ always ]
 
   tasks:
     - name: Install extra packages
