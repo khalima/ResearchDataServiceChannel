@@ -21,5 +21,3 @@
   version: 1.2.0
 - src: jdauphant.nginx
   version: v2.11.1
-- src: jdauphant.ssl-certs
-  version: v1.4

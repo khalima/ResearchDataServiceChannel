@@ -26,7 +26,6 @@
     - { role: geerlingguy.composer,       tags: [ 'composer' ] }
     - { role: geerlingguy.drush,          tags: [ 'drush' ] }
     - { role: jdauphant.nginx,            tags: [ 'nginx' ] }
-    - { role: jdauphant.ssl-certs,        tags: [ 'ssl' ] }
 
   post_tasks:
     - template:
