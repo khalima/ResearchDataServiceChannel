@@ -1,15 +1,19 @@
 ---
 - hosts: all
   become: yes
+
   pre_tasks:
     - include_vars: "RedHat.yml"
       tags: [ always ]
     - import_tasks: tasks/init-redhat.yml
       tags: [ always ]
+    - import_tasks: tasks/load-secrets.yml
+
   tasks:
     - name: Install extra packages
       package: name="{{ item }}" state=installed
       with_items: "{{extra_packages | list}}"
+
   roles:
     - { role: geerlingguy.repo-remi,      tags: [ 'repo' ] }
     - { role: geerlingguy.repo-epel,      tags: [ 'repo' ] }
@@ -23,4 +27,9 @@
     - { role: geerlingguy.drush,          tags: [ 'drush' ] }
     - { role: jdauphant.nginx,            tags: [ 'nginx' ] }
     - { role: jdauphant.ssl-certs,        tags: [ 'ssl' ] }
-    - { role: geerlingguy.certbot,        tags: [ 'ssl' ] }
+#    - { role: geerlingguy.certbot,        tags: [ 'ssl' ] }
+
+  post_tasks:
+    - template:
+        src: settings.local.php.j2
+        dest: "{{ projects.default.root }}/shared/settings.local.php"
