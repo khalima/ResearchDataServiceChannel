@@ -35,17 +35,6 @@ mysql_bind_address: '127.0.0.1'
 mysql_slow_query_log_enabled: yes
 mysql_slow_query_log_file: /var/log/mysql-slow.log
 mysql_slow_query_time: 2
-# Root password
-mysql_root_password: myrootpassword
-mysql_databases:
-  - name: rds_db
-    encoding: utf8
-    collation: utf8_swedish_ci
-mysql_users:
-  - name: rds_user
-    host: "%"
-    password: 3kb3öl2n3v!2wev1dfg
-    priv: "rds_db.*:ALL"
 
 #
 # CERTBOT
@@ -57,7 +46,8 @@ certbot_install_from_source: yes
 # NGINX
 #
 
-
+nginx_user: nginx
+nginx_group: "{{ nginx_user }}"
 
 #
 # PHP
