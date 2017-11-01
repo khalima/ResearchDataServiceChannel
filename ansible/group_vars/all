@@ -1,0 +1,103 @@
+---
+#
+# Default variables
+#
+# Use group specific group vars to overwrite these
+#
+
+#
+# MISC
+#
+
+extra_packages:
+  - unzip
+  - curl
+  - vim
+distro_extra_packages: []
+project_cron_jobs: []
+
+#
+# DRUSH
+#
+
+drush_version: "8.1.15"
+drush_keep_updated: yes
+drush_force_update: no
+drush_clone_depth: 0
+
+#
+# MARIADB / MYSQL
+#
+
+# Misc
+mysql_bind_address: '127.0.0.1'
+# Slow query logging
+mysql_slow_query_log_enabled: yes
+mysql_slow_query_log_file: /var/log/mysql-slow.log
+mysql_slow_query_time: 2
+
+#
+# NGINX
+#
+
+nginx_user: nginx
+nginx_group: "{{ nginx_user }}"
+nginx_configs:
+  gzip:
+    - gzip on
+    - gzip_disable "msie6"
+    - gzip_vary on
+    - gzip_proxied any
+    - gzip_comp_level 6
+    - gzip_buffers 16 8k
+    - gzip_http_version 1.1
+    - gzip_min_length 256
+    - gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon
+  ssl:
+    - ssl_protocols TLSv1 TLSv1.1 TLSv1.2
+    - ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4"
+    - ssl_prefer_server_ciphers on
+    - ssl_session_cache shared:SSL:10m
+
+#
+# PHP
+#
+
+# Version
+php_version: "7.1"
+
+# Misc
+php_install_recommends: no
+php_enable_webserver: false
+php_expose_php: "On"
+php_memory_limit: "256M"
+php_max_execution_time: "60"
+php_max_input_time: "60"
+php_max_input_vars: "1000"
+php_realpath_cache_size: "32K"
+php_upload_max_filesize: "64M"
+php_post_max_size: "32M"
+php_date_timezone: "Europe/Helsinki"
+
+# Errors
+php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+php_display_errors: "Off"
+php_display_startup_errors: "Off"
+
+# PHP-FPM
+php_enable_php_fpm: true
+php_fpm_pm_max_requests: 1000
+php_fpm_pool_user: "{{ nginx_user }}"
+php_fpm_pool_group: "{{ nginx_user }}"
+
+# Opcache
+php_opcache_enabled_in_ini: true
+php_opcache_enable: "1"
+php_opcache_enable_cli: "0"
+php_opcache_memory_consumption: "96"
+php_opcache_interned_strings_buffer: "16"
+php_opcache_max_accelerated_files: "4096"
+php_opcache_max_wasted_percentage: "5"
+php_opcache_validate_timestamps: "1"
+php_opcache_revalidate_freq: "2"
+php_opcache_max_file_size: "0"

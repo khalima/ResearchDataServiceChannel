@@ -1,0 +1,26 @@
+---
+- name: Enable remi repo for MySQL.
+  set_fact: mysql_enablerepo="remi"
+  when: mysql_enablerepo is not defined or mysql_enablerepo == ""
+
+- name: Enable remi repo for PHP 7.0.
+  set_fact: php_enablerepo="remi,remi-php70"
+  when: php_version == "7.0"
+
+- name: Enable remi repo for PHP 7.1
+  set_fact: php_enablerepo="remi,remi-php71"
+  when: php_version == "7.1"
+
+- name: Do yum update to avoid yum-cron conflicts
+  yum: name=yum state=latest
+
+- name: Create nginx group, avoiding startup problems
+  group:
+    name: nginx
+    state: present
+
+- name: Create nginx user, avoiding startup problems
+  user:
+    name: nginx
+    group: nginx
+    state: present
