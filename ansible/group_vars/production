@@ -5,7 +5,7 @@
 
 secrets: /root/ansible
 project_env: production
-git_branch: dev
+git_branch: master
 
 projects_root: /var/www
 
