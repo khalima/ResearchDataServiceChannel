@@ -1,0 +1,10 @@
+app-server-1 ansible_host=datasupport.helsinki.fi
+
+[app_servers]
+app-server-1
+
+[production:children]
+app_servers
+
+[production:vars]
+project_env=production
