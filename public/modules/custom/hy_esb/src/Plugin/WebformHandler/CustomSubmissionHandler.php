@@ -94,11 +94,11 @@ class CustomSubmissionHandler extends WebformHandlerBase {
       return;
     }
 
-    $data['subject'] = 'Service order: '. $service->getTitle();
-    $data['message'] = 'Service order: '. $service->getTitle() .' ('. $service_url .')';
-    $data['message'] .= '\n\n'; // TODO add form fields here
+    $data['title'] = 'Service order: '. $service->getTitle();
+    $data['description'] = 'Service order: '. $service->getTitle() .' ('. $service_url .')';
+    $data['description'] .= '\n\n'; // TODO add form fields here
     $data['category'] = $efecte_category;
-    $data['email'] = 'todo@helsinki.fi';
+    $data['customer'] = 'todo@helsinki.fi';
 
     $request_options['json'] = $data;
 
