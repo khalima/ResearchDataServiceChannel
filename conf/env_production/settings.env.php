@@ -4,27 +4,12 @@
  * Environment specific settings.
  */
 
-// Database configuration for the project.
-$databases['default']['default'] = array (
-    'database' => 'rds_db',
-    'username' => 'rds_user',
-    'password' => 'changethistocorrectone',
-    'prefix' => '',
-    'host' => 'localhost',
-    'port' => '3306',
-    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-    'driver' => 'mysql',
-);
-
 /**
  * Environment indication.
  */
 $config['environment']['env'] = 'production';
 
 $settings['hash_salt'] = 'bvZQQ28Qq1xxTW7uEND-XWGIKso9tClM0nzWJ8xoYM9cG0j_a_mlH8thumoZiGDkRHIpPKCHGQ';
-
-//$settings['reverse_proxy'] = TRUE;
-//$settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
 
 $settings['trusted_host_patterns'] = array(
     '^datasupport\.helsinki\.fi',
