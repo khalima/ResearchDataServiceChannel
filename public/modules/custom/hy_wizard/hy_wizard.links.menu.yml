@@ -1,0 +1,13 @@
+hy_wizard.menu_link:
+  title: 'Wizard'
+  description: 'Helper to select service'
+  parent: main
+  menu_name: main
+  route_name: hy_wizard.wizard_controller_page
+  weight: 10
+hy_wizard.wizard_admin_form:
+  title: 'Wizard settings'
+  route_name: hy_wizard.wizard_admin_form
+  description: 'Manage Wizard settings'
+  parent: system.admin_config_system
+  weight: 99

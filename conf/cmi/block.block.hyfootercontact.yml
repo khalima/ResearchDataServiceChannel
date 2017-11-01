@@ -1,0 +1,25 @@
+uuid: 1de9e785-97d2-41ac-893e-00ddf62d0947
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:e1bd74b6-15e3-49f4-8def-b81e3c1dfc4d'
+  module:
+    - block_content
+  theme:
+    - hy_rd
+id: hyfootercontact
+theme: hy_rd
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:e1bd74b6-15e3-49f4-8def-b81e3c1dfc4d'
+settings:
+  id: 'block_content:e1bd74b6-15e3-49f4-8def-b81e3c1dfc4d'
+  label: 'Hy - footer contact'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

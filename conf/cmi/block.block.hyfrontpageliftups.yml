@@ -1,0 +1,31 @@
+uuid: 54a53b7d-895a-4e6e-a716-c1b5e4b828a9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ec070724-e2ec-419f-879e-7503ba7facdf'
+  module:
+    - block_content
+    - system
+  theme:
+    - hy_rd
+id: hyfrontpageliftups
+theme: hy_rd
+region: content
+weight: -3
+provider: null
+plugin: 'block_content:ec070724-e2ec-419f-879e-7503ba7facdf'
+settings:
+  id: 'block_content:ec070724-e2ec-419f-879e-7503ba7facdf'
+  label: 'Hy - Frontpage liftups'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

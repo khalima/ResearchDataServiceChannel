@@ -1,0 +1,32 @@
+// Import external libraries.
+// @import "compass";
+@import "breakpoint";
+@import "singularitygs";
+
+// Generate normalize.css.
+@import "normalize";
+
+// Import styles from Style Guide.
+@import "../libraries/styleguide/sass/variables/**/*";
+@import "../libraries/styleguide/sass/mixins/**/*";
+@import "../libraries/styleguide/sass/icons/_icons.scss";
+@import "../libraries/styleguide/sass/objects/**/*";
+@import "../libraries/styleguide/sass/typography/**/*";
+@import "../libraries/styleguide/sass/layouts/**/*";
+@import "../libraries/styleguide/sass/common-elements/**/*";
+@import "../libraries/styleguide/sass/components/**/*";
+@import "../libraries/styleguide/sass/_states.scss";
+
+// Import styles from Helsink University - RD Application
+// Mimics structure from global style guide.
+@import "variables/**/*";
+@import "mixins/**/*";
+@import "_base.scss";
+@import "blocks/**/*";
+@import "layouts/**/*";
+@import "navigation/**/*";
+@import "regions/**/*";
+@import "views/**/*";
+@import "webforms/**/*";
+@import "components/**/*";
+@import "drupal/**/*";

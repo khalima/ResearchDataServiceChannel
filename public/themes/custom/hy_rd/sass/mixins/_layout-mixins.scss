@@ -1,0 +1,38 @@
+@mixin condensed {
+  margin: 0 auto;
+  max-width: 75em;
+  padding: 4em 0;
+}
+
+@mixin condensed--narrow {
+  margin: 0 auto;
+  max-width: 75em;
+}
+
+@mixin default-region-padding {
+  // Mobile
+  padding-left: $vert-spacing-unit / 2;
+  padding-right: $vert-spacing-unit / 2;
+  margin-top: $horz-spacing-unit;
+  margin-bottom: $horz-spacing-unit;
+
+  // Tab
+  @media screen and (min-width: $medium) {
+    padding-left: $vert-spacing-unit;
+    padding-right: $vert-spacing-unit;
+  }
+}
+
+@mixin default-region {
+  @include condensed--narrow;
+  @include default-region-padding;
+}
+
+@mixin default-region--tall {
+  @include condensed;
+
+  @media screen and (min-width: $medium) {
+    margin-top: $vert-spacing-unit * 2;
+    margin-bottom: $vert-spacing-unit * 2;
+  }
+}

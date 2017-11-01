@@ -1,0 +1,24 @@
+uuid: 8c608f50-88c7-4e07-8f2f-a6575a32d14c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - hy_rd
+id: mainnavigation
+theme: hy_rd
+region: overlay_main
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }

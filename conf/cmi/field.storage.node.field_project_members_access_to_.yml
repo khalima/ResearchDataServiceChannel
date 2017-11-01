@@ -1,0 +1,20 @@
+uuid: 77cb6c89-4347-4860-ba21-2a558e3bc91d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_project_members_access_to_
+field_name: field_project_members_access_to_
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

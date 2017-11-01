@@ -1,0 +1,100 @@
+uuid: 0279649a-c656-4a98-baae-c0996678a3f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.services.body
+    - field.field.node.services.field_costs
+    - field.field.node.services.field_description
+    - field.field.node.services.field_efecte_id
+    - field.field.node.services.field_how_to_access
+    - field.field.node.services.field_image
+    - field.field.node.services.field_links
+    - field.field.node.services.field_who_is_this_for
+    - node.type.services
+  module:
+    - ds
+    - link
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - node_title
+        - field_description
+        - field_who_is_this_for
+        - field_how_to_access
+        - field_links
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: ''
+          link: false
+id: node.services.teaser
+targetEntityType: node
+bundle: services
+mode: teaser
+content:
+  field_description:
+    type: text_trimmed
+    weight: 1
+    region: content
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_how_to_access:
+    type: text_trimmed
+    weight: 3
+    region: content
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_links:
+    type: link
+    weight: 4
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_who_is_this_for:
+    type: text_trimmed
+    weight: 2
+    region: content
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_costs: true
+  field_data_process: true
+  field_data_sensitivity: true
+  field_data_size: true
+  field_efecte_id: true
+  field_image: true
+  field_project_members_access_to_: true
+  field_project_phase: true
+  field_publishing_options: true
+  field_service_type: true
+  langcode: true
+  links: true

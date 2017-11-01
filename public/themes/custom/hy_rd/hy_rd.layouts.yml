@@ -1,0 +1,12 @@
+layout_onecol_hero:
+  label: 'One column with Hero'
+  path: templates/onecol_hero
+  category: 'Columns: 1 with hero'
+  default_region: content
+  regions:
+    top:
+      label: Top
+    content:
+      label: Content
+    bottom:
+      label: Bottom

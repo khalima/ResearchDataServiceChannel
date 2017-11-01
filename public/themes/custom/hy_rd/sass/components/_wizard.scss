@@ -1,0 +1,56 @@
+.wizard__before {
+
+}
+
+.wizard {
+
+}
+
+.wizard__content {
+  @include default-region;
+}
+
+.wizard__header-wrapper {
+  background-color: $lightsilver;
+  display: inline-block;
+  width: 100%;
+}
+
+.wizard__header {
+  @include default-region;
+  min-height: 5vw;
+}
+
+.wizard__footer {
+  @include default-region;
+}
+
+.wizard__after {}
+
+.wizard__selection {
+  margin-bottom: $horz-spacing-unit / 2;
+}
+
+.wizard__footer__content {}
+
+.wizard__footer__links:empty,
+.wizard__footer__content:empty {
+  display: none;
+}
+
+.wizard__footer__links {
+  @include clearfix;
+  border-top: 1px solid $black;
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+}
+
+.wizard__breadcrumbs a:hover {
+  cursor: pointer;
+}

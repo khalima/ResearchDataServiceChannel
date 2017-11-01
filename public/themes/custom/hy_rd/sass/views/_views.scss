@@ -1,0 +1,29 @@
+.service-views--page {
+  display: flex;
+  flex-wrap: wrap;
+
+  .layout__region--first {
+    background: $lightsilver;
+    padding: 4em;
+  }
+
+  .layout__region--second {
+    padding: 4em;
+  }
+}
+
+/* A bit easier to read */
+.service-views--page .layout_region--second .item-list {
+  .box-story {
+    background: $lightsilver;
+
+    .box-story__link {
+      bottom: 0.9em;
+      right: 4em;
+    }
+  }
+}
+
+.service-views--page .form__item {
+  width: 100%;
+}

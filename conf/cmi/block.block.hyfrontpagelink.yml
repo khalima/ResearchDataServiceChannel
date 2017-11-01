@@ -1,0 +1,31 @@
+uuid: 20470ead-c201-40fb-8eb1-58fa7bfe984b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8a886bd0-4ab5-45ff-a673-646440a46b2b'
+  module:
+    - block_content
+    - system
+  theme:
+    - hy_rd
+id: hyfrontpagelink
+theme: hy_rd
+region: content
+weight: -4
+provider: null
+plugin: 'block_content:8a886bd0-4ab5-45ff-a673-646440a46b2b'
+settings:
+  id: 'block_content:8a886bd0-4ab5-45ff-a673-646440a46b2b'
+  label: 'Hy - Frontpage link'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

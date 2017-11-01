@@ -1,0 +1,13 @@
+#block-hyfrontpagelink {
+  @include default-region;
+
+  // Override from hy theme.
+  a.button--action {
+    max-width: 50%;
+
+    @media screen and (max-width: $bp-small) {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+}

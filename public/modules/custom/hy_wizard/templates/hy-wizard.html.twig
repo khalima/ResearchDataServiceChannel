@@ -1,0 +1,38 @@
+<!-- Add you custom twig html here -->
+<div class="wizard__before">
+  <!-- Insert any block with description here, optional information -->
+</div>
+<div class="wizard">
+  <div class="wizard__header-wrapper">
+    <div class="wizard__header">
+      <div class="wizard__breadcrumbs breadcrumbs">
+        <div class="breadcrumbs__item">
+          <span class="breadcrumbs__item">
+            <a class="wizard-button" data-tid="0">Wizard</a>
+            </span>
+            <span class="breadcrumbs__divider">/</span>
+        </div>
+      </div>
+      <h2 class="wizard__header__title">{{ title }}</h2>
+      <div class="wizard__header__content">{{ content | raw }}</div>
+    </div>
+  </div>
+  <div class="wizard__content">
+    <div class="wizard__selections">
+      {% for key,value in data %}
+        <div class="wizard__selection">
+          <a class="wizard-button button--action icon--arrow-right" data-tid="{{ value.tid }}">{{ value.name }}</a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="wizard__services"></div>
+    <noscript>Unfortunately, wizard requires javascript to work.</noscript>
+  </div>
+  <div class="wizard__footer">
+    <div class="wizard__footer__content"></div>
+    <div class="wizard__footer__links"></div>
+  </div>
+</div>
+<div class="wizard__after">
+  <!-- Insert any block with description here, maybe feedback form? -->
+</div>

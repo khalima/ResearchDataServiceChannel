@@ -1,0 +1,52 @@
+uuid: 483b732d-d446-4ca6-abcd-f8cd04600878
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_hero_body
+    - field.field.node.basic_page.field_hero_image
+    - field.field.node.basic_page.field_hero_title
+    - node.type.basic_page
+  module:
+    - ds
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol_hero
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      top:
+        - 'dynamic_token_field:node-hero_field'
+      content:
+        - body
+    fields:
+      'dynamic_token_field:node-hero_field':
+        plugin_id: 'dynamic_token_field:node-hero_field'
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.basic_page.full
+targetEntityType: node
+bundle: basic_page
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_hero_body: true
+  field_hero_image: true
+  field_hero_title: true
+  langcode: true
+  links: true

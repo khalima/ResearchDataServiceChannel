@@ -1,0 +1,25 @@
+---
+
+#
+# PHP
+#
+php_packages:
+  - php
+  - php-cli
+  - php-common
+  - php-curl
+  - php-devel
+  - php-fpm
+  - php-gd
+  - php-imap
+  - php-ldap
+  - php-json
+  - php-mbstring
+  - php-mcrypt
+  - php-opcache
+  - php-pdo
+  - php-pear
+  - php-pecl-apcu
+  - php-xml
+  - php-xmlrpc
+  - php-yaml

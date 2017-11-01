@@ -1,0 +1,22 @@
+uuid: 0ae10310-178d-49a8-b041-33c8af9f1639
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: hy_rd_help
+theme: hy_rd
+region: content
+weight: -8
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

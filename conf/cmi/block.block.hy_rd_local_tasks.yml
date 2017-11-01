@@ -1,0 +1,22 @@
+uuid: ee0b7568-4e98-4465-97e4-37e47f5f8b30
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: hy_rd_local_tasks
+theme: hy_rd
+region: content
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

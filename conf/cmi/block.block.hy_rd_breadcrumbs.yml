@@ -1,0 +1,22 @@
+uuid: a586dfb9-7f8c-43b6-b28f-7c5cee280eb1
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: hy_rd_breadcrumbs
+theme: hy_rd
+region: content
+weight: -2
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

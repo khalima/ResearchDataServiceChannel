@@ -1,0 +1,196 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the hy_rd theme.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ */
+function hy_rd_preprocess_html(array &$vars) {
+  /* Add class to html tag */
+  // $vars['html_attributes']->addClass('no-js');
+  // Don't display site name twice on the front page (and potentially others)
+  /*
+  if (
+  isset($vars['head_title_array']['title']) &&
+  isset($vars['head_title_array']['name']) &&
+  (
+  $vars['head_title_array']['title'] == $vars['head_title_array']['name'])
+  ) {
+  $vars['head_title'] = $vars['head_title_array']['name'];
+  }
+   */
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function hy_rd_page_attachments_alter(array &$page) {
+  // Tell IE to use latest rendering engine (not to use compatibility mode).
+  /*$ie_edge = [
+  '#type' => 'html_tag',
+  '#tag' => 'meta',
+  '#attributes' => [
+  'http-equiv' => 'X-UA-Compatible',
+  'content' => 'IE=edge',
+  ],
+  ];
+  $page['#attached']['html_head'][] = [$ie_edge, 'ie_edge'];*/
+}
+
+/**
+ * Implements hook_preprocess_page() for page.html.twig.
+ */
+function hy_rd_preprocess_page(array &$variables) {
+
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function hy_rd_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ */
+function hy_rd_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  /*$node = $variables['elements']['#node'];
+
+  if ($variables['elements']['#view_mode'] == "full") {
+
+  }*/
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for Block document templates.
+ */
+function hy_rd_preprocess_block(array &$variables) {
+
+  // TODO: Turn this into a switch statement.
+  // TODO: There is probably a better way with smaller
+  // nested arrays.
+  if ($variables['elements']['#id'] == 'hy_rd_main_menu') {
+    $variables['attributes']['class'][] = 'quick-menu';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_field_alter().
+ */
+function hy_rd_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  /*
+  $elm = $variables['element'];
+  $suggestions[] = 'field__' . $elm['#view_mode'];
+  $suggestions[] = 'field__' . $elm['#view_mode'] . '__' . $elm['#field_name'];
+   */
+}
+
+/**
+ * Implements hook_theme_suggestions_field_alter().
+ */
+function hy_rd_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+  /*$element = $variables['element'];
+  if (
+  isset($element['#attributes']['class']) &&
+  in_array('form-composite', $element['#attributes']['class']))
+  {
+  $suggestions[] = 'fieldset__form_composite';
+  }*/
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function hy_rd_preprocess_node(array &$variables) {
+  // Default to turning off byline/submitted.
+  // $variables['display_submitted'] = FALSE;.
+}
+
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ */
+function hy_rd_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function hy_rd_preprocess_form(array &$variables) {
+  // $variables['attributes']['novalidate'] = 'novalidate';.
+}
+
+/**
+ * Implements hook_preprocess_select().
+ */
+function hy_rd_preprocess_select(array &$variables) {
+  // $variables['attributes']['class'][] = 'select-chosen';.
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function hy_rd_preprocess_field(array &$variables, $hook) {
+  if ($variables['field_name'] == "dynamic_token_field:node-tilauslomake_linkki") {
+    $efecte = $variables['element']['#object']->field_efecte_id->getValue();
+    if (!$efecte) {
+      unset($variables['items'][0]['content']);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_details().
+ */
+function hy_rd_preprocess_details(array &$variables) {
+  /*$variables['attributes']['class'][] = 'details';
+  $variables['summary_attributes']['class'] = 'summary';*/
+}
+
+/**
+ * Implements template_preprocess_region().
+ */
+function hy_rd_preprocess_region(array &$variables) {
+
+  switch ($variables['region']) {
+    case 'before_content':
+      $variables['wrapper'] = TRUE;
+      $variables['attributes']['class'] = [
+        'l-region',
+        'l-region--before-content',
+      ];
+      break;
+
+    case 'after_content':
+      $variables['wrapper'] = TRUE;
+      $variables['attributes']['class'] = [
+        'l-region',
+        'l-region--before-content',
+      ];
+      break;
+
+    default:
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_details_alter().
+ */
+function hy_rd_theme_suggestions_details_alter(array &$suggestions, array $variables) {
+
+}
+
+/**
+ * Implements hook_preprocess_menu_local_task().
+ */
+function hy_rd_preprocess_menu_local_task(array &$vars) {
+  /*
+  $url = $vars['element']['#link']['url'];
+  $url->setOption('attributes', ['class'=>'rounded']);
+   */
+}

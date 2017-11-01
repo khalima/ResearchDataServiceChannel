@@ -1,0 +1,25 @@
+uuid: 16d89273-a7eb-4696-8291-3818798bed9c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: hy_rd_branding
+theme: hy_rd
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

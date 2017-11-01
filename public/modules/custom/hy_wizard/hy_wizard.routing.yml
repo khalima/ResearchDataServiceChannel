@@ -1,0 +1,16 @@
+hy_wizard.wizard_controller_page:
+  path: '/wizard'
+  defaults:
+    _controller: '\Drupal\hy_wizard\Controller\WizardController::page'
+    _title: 'Wizard'
+  requirements:
+    _permission: 'access content'
+hy_wizard.wizard_admin_form:
+  path: '/admin/config/wizard'
+  defaults:
+    _form: '\Drupal\hy_wizard\Form\WizardAdminForm'
+    _title: 'WizardAdminForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

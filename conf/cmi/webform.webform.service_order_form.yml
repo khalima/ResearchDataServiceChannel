@@ -1,0 +1,114 @@
+uuid: e14b8ecb-bcce-4186-b426-5c18a9f127ce
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+uid: 1
+template: false
+id: service_order_form
+title: 'Service order form'
+description: ''
+category: ''
+elements: "webform_container:\n  '#type': container\n  '#attributes':\n    class:\n      - row\n  webform_container_top:\n    '#type': container\n    '#attributes':\n      class:\n        - col-sm-12\n    webform_text:\n      '#type': webform_markup\n      '#markup': \"<strong>ORDER FORM</strong>\\n<p><strong>You are about to submit an order. Please check your information and provide additional information when applicable.</strong></p>\"\n  layout__region__first:\n    '#type': container\n    '#attributes':\n      class:\n        - col-sm-6\n    intended_use_of_service:\n      '#type': textfield\n      '#title': 'Intended use of service?'\n    when_do_you_need_the_service:\n      '#type': textfield\n      '#title': 'When do you need the service'\n    who_will_pay_for_this:\n      '#type': textfield\n      '#title': 'Who will pay for this?'\n    additional_information:\n      '#type': textarea\n      '#title': 'Additional information?'\n    service:\n      '#type': entity_autocomplete\n      '#title': Service\n      '#default_value': '[current-page:query:ordered_service]'\n      '#disabled': true\n      '#required': true\n      '#target_type': node\n      '#selection_handler': 'default:node'\n      '#selection_settings':\n        target_bundles:\n          services: services\n  layout__region__second:\n    '#type': container\n    '#attributes':\n      class:\n        - col-sm-6\n    webform_user_information:\n      '#type': processed_text\n      '#text': \"<h4>YOUR INFORMATION</h4>\\r\\n\\r\\n<p><span class=\\\"icon icon--person\\\"></span> Francisco Mason<br />\\r\\n<span class=\\\"icon icon--mail\\\"></span> fmason@yahoo.com<br />\\r\\n<span class=\\\"icon icon--phone\\\"></span> 132-064-7230<br />\\r\\n<span class=\\\"icon icon--units-and-faculties\\\"></span> Department of silly science</p>\\r\\n\"\n      '#format': full_html\n"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_unsaved: false
+  form_disable_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  submission_label: ''
+  submission_log: false
+  submission_user_columns: {  }
+  wizard_progress_bar: false
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_start_label: ''
+  wizard_complete: false
+  wizard_complete_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  limit_total: null
+  limit_total_message: ''
+  limit_user: null
+  limit_user_message: ''
+  purge: none
+  purge_days: null
+  entity_limit_total: null
+  entity_limit_user: null
+  results_disabled: false
+  results_disabled_ignore: false
+  token_update: false
+access:
+  create:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }

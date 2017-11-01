@@ -1,0 +1,30 @@
+name: Helsinki University - RD
+type: theme
+description: Helsinki University - Research Data
+package: Helsinki
+core: 8.x
+libraries:
+  - hy_rd/styles
+
+base theme: stable
+
+regions:
+  content: Content
+  before_content: Before Content
+  after_content: After Content
+  sidebar_first: Sidebar first
+  sidebar_second: Sidebar second
+  header: Header
+  header_left: Header Left
+  header_middle: Header Middle
+  header_right: Header Right
+  header_bottom: Header Bottom
+  footer: Footer
+  top_bar: Top bar
+  overlay: Overlay
+  overlay_top: Overlay top
+  overlay_header_left: Overlay top header left
+  overlay_header_middle: Overlay top header middle
+  overlay_header_right: Overlay top header right
+  overlay_main: Overlay main
+  overlay_bottom: Overlay bottom

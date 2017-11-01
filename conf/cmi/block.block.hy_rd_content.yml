@@ -1,0 +1,22 @@
+uuid: 2866c1ca-7d2f-4bc2-9f4f-079d13201211
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hy_rd
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: hy_rd_content
+theme: hy_rd
+region: content
+weight: -5
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

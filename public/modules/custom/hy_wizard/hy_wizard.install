@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Contains install, uninstall and update functions for Hy Wizard -module.
+ */
+
+// @todo Change these constants to be used from an install file.
+define('HY_WIZARD_VOCABULARY_NAME', 'Wizard');
+define('HY_WIZARD_VOCABULARY_VID', 'hy_wizard');
+define('HY_WIZARD_VOCABULARY_DESCRIPTION', 'Used to create hierarchy of questions');
+
+use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+ * Implements hook_install().
+ */
+function hy_wizard_install() {
+  $vocabularies = Vocabulary::loadMultiple();
+
+  // Create vocabulary if it is not already done.
+  if (!isset($vocabularies[HY_WIZARD_VOCABULARY_VID])) {
+    $vocabulary = Vocabulary::create([
+      'vid' => HY_WIZARD_VOCABULARY_VID,
+          // 'machine_name' => $vid,.
+      'description' => HY_WIZARD_VOCABULARY_DESCRIPTION,
+      'name' => HY_WIZARD_VOCABULARY_NAME,
+    ]);
+
+    $vocabulary->save();
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * @todo Set message for the user that vocabulary needs to be deleted manually.
+ * @todo Add link for deleting the vocabulary in the message.
+ * @todo Convert drupal_set_message to appropriate usage of D8.
+ */
+function hy_wizard_uninstall() {
+  // We could remove the wizard installed taxonomy here in case it is not
+  // needed. This would be best practice but we don't want remove this
+  // vocabulary and its terms in case of user error.
+  // @todo remove menu link when disabling module (might happen already)
+  drupal_set_message('Wizard includes taxonomy "hy_wizard" which is not removed by default.');
+}

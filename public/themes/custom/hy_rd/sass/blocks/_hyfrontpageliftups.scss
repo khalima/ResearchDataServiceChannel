@@ -1,0 +1,15 @@
+#block-hyfrontpageliftups {
+  @include default-region;
+  padding-left: $horz-spacing-unit;
+  padding-right: $horz-spacing-unit;
+
+  @media screen and (max-width: $bp-medium) {
+    padding: 0;
+
+    .row {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+

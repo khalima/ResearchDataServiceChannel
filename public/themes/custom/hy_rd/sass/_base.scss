@@ -1,0 +1,61 @@
+/**
+ * List elements
+ */
+.menu .leaf,
+.menu .expanded,
+.menu .collapsed {
+  list-style-type: none;
+  list-style-image: none;
+}
+
+nav {
+}
+
+footer {
+}
+
+hr {
+  @include horizontal-rule(bottom);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+/**
+ * Default inputs
+ */
+.form-submit {
+  display: inline-block;
+
+  &.js-hide {
+    display: none;
+  }
+
+  & + & {
+    margin-left: 1em;
+  }
+}
+
+#edit-reset {
+  @include link-menu;
+  background: none;
+  border: none;
+  display: inline-block;
+  text-transform: none;
+}
+
+.center {
+  text-align: center;
+}
+
+@media screen and (max-width: $bp-small) {
+  .row {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    padding-left: $horz-spacing-unit / 2;
+    padding-right: $horz-spacing-unit / 2;
+  }
+}

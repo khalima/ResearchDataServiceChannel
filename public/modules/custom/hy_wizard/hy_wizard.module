@@ -1,0 +1,142 @@
+<?php
+
+/**
+ * @file
+ * Contains hy_wizard.module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+// @todo Convert these to be used from a service.
+define('HY_WIZARD_VOCABULARY_NAME', 'Wizard');
+define('HY_WIZARD_VOCABULARY_VID', 'hy_wizard');
+define('HY_WIZARD_VOCABULARY_DESCRIPTION', 'Used to create hierarchy of questions');
+
+/**
+ * Implements hook_help().
+ */
+function hy_wizard_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the hy_wizard module.
+    case 'help.page.hy_wizard':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Wizard for querying content by questions') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hy_wizard_form_taxonomy_vocabulary_form_alter(&$form, $form_state) {
+  // Basically prevent wizard form from being removed manually.
+  // @todo Implement this so that Wizard cannot be manually removed.
+  if (HY_WIZARD_VOCABULARY_VID == $form['vid']['#default_value']) {
+    // We could also unset the whole 'delete' action.
+    $form['actions']['delete']['#access'] = FALSE;
+  }
+
+  return $form;
+}
+
+/**
+ * Helper to retrieve popup content.
+ *
+ * @todo Implement admin tools for term handling.
+ */
+function _hy_wizard_popup_content() {
+  return "<h1>Title</h1>";
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Basically a placeholder for modifying overview list.
+ */
+function hy_wizard_form_taxonomy_overview_terms_alter(&$form, $form_state, $form_id) {
+
+  if ($form_id === 'taxonomy_overview_terms' && \Drupal::routeMatch()->getParameter('taxonomy_vocabulary')->id() === 'hy_wizard') {
+    // Add description field to array.
+    $form['terms']['#header'][] = t('Services');
+    $form['terms']['#header'][] = t('Description');
+
+    // Construct a new table structure.
+    foreach ($form['terms'] as $term_name => &$data) {
+      if (0 === strpos($term_name, '#')) {
+        continue;
+      }
+
+      $term = $data['#term'];
+
+      // Get link to node edit form for easier handling.
+      $services_array = $term->field_services->referencedEntities();
+      $service_link = '';
+
+      foreach ($services_array as $service) {
+        // @todo Convert this to use Drupal inbuilt url generator.
+        $service_link .= '<a href="' . $service->toUrl('edit-form')->toString() . '">' . $service->getTitle() . '</a><br />';
+      }
+
+      $data['services'] = [
+        '#type' => 'markup',
+        '#markup' => $service_link,
+      ];
+
+      $data['description'] = [
+        '#type' => 'markup',
+        '#markup' => $term->getDescription(),
+      ];
+    }
+    // $form['#attached']['library'][] = 'hy_wizard/hy_wizard_overview';.
+  }
+}
+
+/**
+ * Implemenents hook_form_FORM_ID_alert().
+ */
+function hy_wizard_form_taxonomy_term_hy_wizard_form_alter(&$form, $form_state) {
+  // Sanity check but we cannot risk anything.
+  if ($form['#form_id'] == 'taxonomy_term_hy_wizard_form' && isset($form['relations'])) {
+    $form['relations']['parent']['#size'] = 25;
+  }
+}
+
+/**
+ * Implements hook_twig_theme().
+ */
+function hy_wizard_theme($existing, $type, $theme, $path) {
+  return
+  [
+    'hy_wizard' => [
+      'variables' => [
+        'data' => [],
+        'title' => '',
+        'content' => '',
+        'description' => '',
+        'is_admin' => FALSE,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Ajax trigger for taxonomy overview form.
+ *
+ * @todo Not implemented in MVP.
+ */
+function hy_wizard_add_content() {
+
+}
+
+/**
+ * Prevent vocabulary from being deleted manually.
+ *
+ * @todo Add entity.delete method so that manually deleting is not possible.
+ */
+function hy_wizard_entity_delete(EntityInterface $entity) {
+  drupal_set_message(t('You are not allowed to manually remove this vocabulary.'), 'error');
+}
