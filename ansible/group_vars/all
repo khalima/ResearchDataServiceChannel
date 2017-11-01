@@ -37,12 +37,6 @@ mysql_slow_query_log_file: /var/log/mysql-slow.log
 mysql_slow_query_time: 2
 
 #
-# CERTBOT
-#
-
-certbot_install_from_source: yes
-
-#
 # NGINX
 #
 
