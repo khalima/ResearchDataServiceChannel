@@ -112,3 +112,8 @@ if (file_exists(__DIR__ . '/settings.local.php')) {
 if (file_exists(__DIR__ . '/services.local.yml')) {
   $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
 }
+
+/**
+ * ESB API endpoint settings.
+ */
+$config['esb']['url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticket';

@@ -1,7 +1,9 @@
 uuid: e14b8ecb-bcce-4186-b426-5c18a9f127ce
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - hy_esb
 open: null
 close: null
 uid: 1
@@ -111,4 +113,12 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  service_handler:
+    id: hy_esb_webform_handler
+    label: 'Service handler'
+    handler_id: service_handler
+    status: true
+    conditions: {  }
+    weight: 0
+    settings: {  }
