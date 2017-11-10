@@ -7,7 +7,7 @@ secrets: /root/ansible
 project_env: production
 git_branch: master
 
-projects_root: /var/www
+projects_root: /data
 
 projects:
   default:
@@ -15,6 +15,8 @@ projects:
     public_root: "{{ projects_root }}/rds/public"
     hosts:
       - datasupport.helsinki.fi
+    key: "/etc/pki/tls/private/datasupport.helsinki.fi.key"
+    crt: "/etc/pki/tls/certs/datasupport.helsinki.fi.crt"
 
 #
 # CRON

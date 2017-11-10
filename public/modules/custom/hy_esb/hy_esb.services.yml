@@ -1,0 +1,4 @@
+services:
+  plugin.manager.webform_alter_plugin:
+    class: Drupal\hy_esb\Plugin\WebformAlterPluginManager
+    parent: default_plugin_manager
