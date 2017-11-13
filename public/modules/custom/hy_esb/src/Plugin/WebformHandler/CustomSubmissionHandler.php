@@ -113,7 +113,7 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     $output['title'] = 'Service order: ' . $service->getTitle();
     $output['description'] = 'Service order: ' . $service->getTitle() . ' (' . $service_url . ')';
     $output['description'] .= $message;
-    $output['category'] = $efecte_category;
+    $output['description'] .= '\n\nCATEGORY: ' . $efecte_category;
     $output['customer'] = 'todo@helsinki.fi';
 
     $request_options['json'] = $output;
