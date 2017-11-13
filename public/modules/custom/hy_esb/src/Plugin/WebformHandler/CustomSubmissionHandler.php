@@ -2,6 +2,7 @@
 
 namespace Drupal\hy_esb\Plugin\WebformHandler;
 
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\webform\Plugin\WebformHandlerBase;
@@ -73,7 +74,20 @@ class CustomSubmissionHandler extends WebformHandlerBase {
    */
   public function preSave(WebformSubmissionInterface $webform_submission) {
     $url = \Drupal::config('esb')->get('url');
+
+    $message = '';
     $data = $webform_submission->getData();
+
+    // We need to manually extract data from webform. Service mix does not
+    // understand any excess forms and it crashes if those are found.
+    // Lets loop and form fields from key. It is not robust but works for now.
+    foreach ($data as $title => $value) {
+      $message .= str_replace('_', ' ', $title) . ': ' . Xss::filter($value);
+      // Now this is just stupid but only way to get things done quickly. Api
+      // does not recognize html nor \n markup.
+      $message .= '
+';
+    }
 
     // @todo Marko adds field 'status' to webform or delegates it to Tuomas
     // @todo Marko double checks that 'efecte_id' is present. No submissions are
@@ -83,7 +97,7 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     // @todo Marko checks REST call status
     // @todo Marko adds webform status accordingly
 
-    // Load service node
+    // Load service node.
     $service = Node::load($data['service']);
     $service_url = Url::fromRoute('entity.node.canonical', ['node' => $service->id()])->setAbsolute()->toString();
 
@@ -94,23 +108,25 @@ class CustomSubmissionHandler extends WebformHandlerBase {
       return;
     }
 
-    $data['title'] = 'Service order: '. $service->getTitle();
-    $data['description'] = 'Service order: '. $service->getTitle() .' ('. $service_url .')';
-    $data['description'] .= '\n\n'; // TODO add form fields here
-    $data['category'] = $efecte_category;
-    $data['customer'] = 'todo@helsinki.fi';
+    $output = [];
 
-    $request_options['json'] = $data;
+    $output['title'] = 'Service order: ' . $service->getTitle();
+    $output['description'] = 'Service order: ' . $service->getTitle() . ' (' . $service_url . ')';
+    $output['description'] .= $message;
+    $output['category'] = $efecte_category;
+    $output['customer'] = 'todo@helsinki.fi';
+
+    $request_options['json'] = $output;
 
     try {
       $response = $this->httpClient->post($url, $request_options);
       $status = $response->getStatusCode();
 
       if ($status === 200) {
-        drupal_set_message('All good with following json response: "'. $response->getBody() .'"');
+        drupal_set_message('All good with following json response: "' . $response->getBody() . '"');
       }
       else {
-        drupal_set_message('Parse the error message from json response "'. $response->getBody() .'"', 'error');
+        drupal_set_message('Parse the error message from json response "' . $response->getBody() . '"', 'error');
         return;
       }
     }
@@ -124,7 +140,7 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     $submission_data['some_fancy_pants_status'] = 'ordered';
     $webform_submission->setData($submission_data);
     if ($this->isResultsEnabled()) {
-      $this->submissionStorage->saveData($webform_submission);
+    $this->submissionStorage->saveData($webform_submission);
     }*/
   }
 

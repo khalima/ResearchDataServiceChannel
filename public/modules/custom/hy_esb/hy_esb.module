@@ -5,7 +5,6 @@
  * Contains hy_esb.module.
  */
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
