@@ -1374,11 +1374,6 @@
                 "symfony/phpunit-bridge": "~3.2.8"
             },
             "type": "drupal-core",
-            "extra": {
-                "patches_applied": {
-                    "Twig debug output does not display all suggestions when an array of suggestions is passed to #theme": "https://www.drupal.org/files/issues/2118743-139-twig-debug-info.patch"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",
@@ -2174,8 +2169,7 @@
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
                     }
-                },
-                "patches_applied": []
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
@@ -5697,7 +5691,7 @@
             "version": "8.2.12",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/coder.git",
+                "url": "https://github.com/klausi/coder.git",
                 "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
             },
             "dist": {
