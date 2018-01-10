@@ -1,0 +1,8 @@
+name: Helsinki Univeristy - SAML2 Authentication for ResearchDataServiceChannel
+type: module
+description: Adds additional logic on top of the original SAML2 Authentication module.
+core: 8.x
+version: VERSION
+package: Helsinki University
+dependencies:
+  - samlauth

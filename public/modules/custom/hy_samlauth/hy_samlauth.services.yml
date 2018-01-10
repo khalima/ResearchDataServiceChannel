@@ -1,0 +1,10 @@
+services:
+  hy_samlauth.route_subscriber:
+    class: Drupal\hy_samlauth\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+  hy_samlauth.event_subscriber:
+    class: Drupal\hy_samlauth\EventSubscriber\RedirectAnonymousSubscriber
+    arguments: ['@request_stack', '@path.validator']
+    tags:
+      - { name: event_subscriber }
