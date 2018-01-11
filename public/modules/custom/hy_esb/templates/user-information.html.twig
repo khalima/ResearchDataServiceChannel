@@ -1,0 +1,23 @@
+<div class="box-card">
+    <h4>Your information</h4>
+  {% if name %}
+    <div class="box-card__field icon--person">
+      {{ name }}
+    </div>
+  {% endif %}
+  {% if phone %}
+    <div class="box-card__field icon--mail">
+      <a href="tel:{{ phone }}" class="is-tel">{{ phone }}</a>
+    </div>
+  {% endif %}
+  {% if email %}
+    <div class="box-card__field icon--mail">
+      <a href="mailto:{{ email }}">{{ email }}</a>
+    </div>
+  {% endif %}
+  {% if group %}
+    <div class="box-card__field icon--units-and-faculties">
+      {{ group }}
+    </div>
+  {% endif %}
+</div>

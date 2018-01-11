@@ -36,12 +36,52 @@ function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
     return;
   }
 
+  $form['actions']['submit']['#validate'][] = 'hy_esb_form_validate';
+
   $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
   $name = $tempstore->get(SamlService::SESSION_SAML_NAME);
   $email = $tempstore->get(SamlService::SESSION_SAML_EMAIL);
   $group = $tempstore->get(SamlService::SESSION_SAML_GROUP);
   $user = $tempstore->get(SamlService::SESSION_SAML_USER);
+  $phone = '';
 
-  $form['elements']['webform_container']['layout__region__second']['webform_user_information']['#text'] = $name . ' ' .$email;
+  $render_array = [
+    '#theme' => 'user_information',
+    '#name' => $name,
+    '#phone' => $phone,
+    '#email' => $email,
+    '#group' => $group,
+    '#user' => $user,
+  ];
+  $markup = \Drupal::service('renderer')->render($render_array);
+  $form['elements']['webform_container']['layout__region__second']['webform_user_information']['#text'] = $markup;
 }
 
+/**
+ * Add user information as input hidden values.
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function hy_esb_form_validate($form, FormStateInterface $form_state) {
+  // Load private tempstore and fill in values.
+  $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
+  $form_state->setValue('name', $tempstore->get(SamlService::SESSION_SAML_NAME));
+  $form_state->setValue('email', $tempstore->get(SamlService::SESSION_SAML_EMAIL));
+  $form_state->setValue('group', $tempstore->get(SamlService::SESSION_SAML_GROUP));
+  $form_state->setValue('user', $tempstore->get(SamlService::SESSION_SAML_USER));
+}
+
+function hy_esb_theme($existing, $type, $theme, $path) {
+  return [
+    'user_information' => [
+      'variables' => [
+        'name' => NULL,
+        'email' => NULL,
+        'group' => NULL,
+        'user' => NULL,
+        'phone' => NULL
+      ],
+    ],
+  ];
+}
