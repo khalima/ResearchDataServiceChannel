@@ -418,7 +418,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "  <div class=\"textarea-infobox\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n      {{ field_description }} \n     <div class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </div>\n  </div>"
+            text: "  <div class=\"textarea-infobox\">\n    <h4 class=\"box-story__title\">\n      {{ title }} \n    </h4>\n      {{ field_description }} \n     <a href=\"{{ path }}\" class=\"button--action icon--arrow-right theme-transparent\">\n      Click for more info\n    </a>\n  </div>"
             make_link: false
             path: ''
             absolute: false

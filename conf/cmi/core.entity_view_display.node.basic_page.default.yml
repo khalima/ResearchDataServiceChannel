@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.basic_page.field_hero_title
     - node.type.basic_page
   module:
+    - fico
     - image
     - text
     - user
@@ -37,7 +38,10 @@ content:
     settings:
       image_style: ''
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      fico:
+        fico:
+          condition: ''
     type: image
     region: content
   field_hero_title:

@@ -27,6 +27,7 @@ module:
   google_analytics: 0
   help: 0
   hy_esb: 0
+  hy_samlauth: 0
   hy_wizard: 0
   image: 0
   language: 0
