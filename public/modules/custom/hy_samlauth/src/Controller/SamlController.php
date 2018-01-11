@@ -86,25 +86,19 @@ class SamlController extends OriginalSamlController {
       return new RedirectResponse('/');
     }
 
+    // Set default redirect.
     $url = "/";
 
-    $test = $this->requestStack->getCurrentRequest()->cookies->keys();
-    drupal_set_message($test);
+    // Check if redirection cookie is set.
     if ($this->requestStack->getCurrentRequest()->cookies->has(SamlService::COOKIE_SAML_REDIRECT)) {
-      $cookie_url = $this->requestStack->getCurrentRequest()->cookies->get(SamlService::COOKIE_SAML_REDIRECT);
-      if ($valid_url = $this->pathValidator->getUrlIfValid($cookie_url)) {
-        $url = $valid_url;
+      $cookie_url = unserialize($this->requestStack->getCurrentRequest()->cookies->get(SamlService::COOKIE_SAML_REDIRECT));
+      if (!empty($cookie_url)) {
+        $url = $cookie_url;
       }
     }
 
+    // Return redirect response.
     $response = new RedirectResponse($url);
-    // Add the $url object as a dependency of whatever you're returning. Probably a response.
-
-//    $this->saml->getPostLoginDestination()->toString();
-//    $response = new TrustedRedirectResponse($url);
-//    $response->addCacheableDependency($url);
-//    $this->saml->removePostLoginLogoutDestination();
-
     return $response;
   }
 

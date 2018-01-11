@@ -9,6 +9,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\hy_samlauth\SamlService;
+use Drupal\hy_samlauth\Event\HySamlauthUserSyncEvent;
+use Symfony\Component\HttpFoundation\Session;
 
 /**
  * Implements hook_help().
@@ -33,26 +35,13 @@ function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
   if ($form['#webform_id'] !== 'service_order_form') {
     return;
   }
-  $name = $_COOKIE[SamlService::COOKIE_SAML_NAME];
-  $email = $_COOKIE[SamlService::COOKIE_SAML_EMAIL];
 
-  $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth.userinfo');
-  $form['elements']['webform_container']['layout__region__second']['webform_user_information']['#text'] = $name . '<br />' .$email;
+  $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
+  $name = $tempstore->get(SamlService::SESSION_SAML_NAME);
+  $email = $tempstore->get(SamlService::SESSION_SAML_EMAIL);
+  $group = $tempstore->get(SamlService::SESSION_SAML_GROUP);
+  $user = $tempstore->get(SamlService::SESSION_SAML_USER);
+
+  $form['elements']['webform_container']['layout__region__second']['webform_user_information']['#text'] = $name . ' ' .$email;
 }
-
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-//function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
-// $a = 1;
-//  $nodeId = \Drupal::request()->attributes->get('node');
-//   load node entity
-//  $node = is_numeric($nodeId) ? \Drupal\node\Entity\Node::load($nodeId) : null;
-//
-//  if ($node && isset($form['field_album'])) {
-//     set default value for reference field
-//    $form['field_album']['widget'][0]['target_id']['#default_value'] = $node;
-//  }
-//}
 

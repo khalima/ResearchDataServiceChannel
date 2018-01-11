@@ -19,15 +19,5 @@ class HySamlauthServiceProvider extends ServiceProviderBase {
     $definition->addArgument(new Reference('request_stack'));
     $definition->addArgument(new Reference('session'));
     $definition->addArgument(new Reference('path.validator'));
-
-    $user_sync_definition = $container->getDefinition('samlauth.event_subscriber.user_sync');
-    $user_sync_definition->setClass('Drupal\hy_samlauth\EventSubscriber\UserSyncEventSubscriber');
-    $user_sync_definition->addArgument(new Reference('config.factory'));
-    $user_sync_definition->addArgument(new Reference('entity_type.manager'));
-    $user_sync_definition->addArgument(new Reference('typed_data_manager'));
-    $user_sync_definition->addArgument(new Reference('email.validator'));
-    $user_sync_definition->addArgument(new Reference('user.private_tempstore'));
-    $user_sync_definition->addArgument(new Reference('session_manager'));
-    $user_sync_definition->addArgument(new Reference('current_user'));
   }
 }

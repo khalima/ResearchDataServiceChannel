@@ -83,7 +83,7 @@ class UserSyncEventSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    $events[self::USER_SYNC][] = ['onUserSync'];
+    $events[HySamlauthUserSyncEvent::USER_COOKIE][] = ['onUserSync'];
     return $events;
   }
 
@@ -94,9 +94,8 @@ class UserSyncEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function onUserSync(HySamlauthUserSyncEvent $event) {
-    // If the account is new, we are in the middle of a user save operation;
-    // the current user name is 'samlauth_AUTHNAME' (as set by externalauth) and
-    // e-mail is not set yet.
+    $session = $event->getSession();
+    print_r($session); 
     $this->requestStack->getCurrentRequest()->cookies->set(self::USER_NAME, $this->getAttributeByConfig('cn', $event));
     $this->requestStack->getCurrentRequest()->cookies->set(self::USER_EMAIL, $this->getAttributeByConfig('mail', $event));
     $this->requestStack->getCurrentRequest()->cookies->set('TEST-NAME', $this->getAttributeByConfig('urn:oid:0.9.2342.19200300.100.1.1', $event));

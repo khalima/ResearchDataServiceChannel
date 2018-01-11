@@ -9,6 +9,8 @@ use Symfony\Component\EventDispatcher\Event;
  */
 class HySamlauthUserSyncEvent extends Event {
 
+  const USER_COOKIE = 'hy_samlauth.user_cookie';
+
   /**
    * The SAML attributes received from the IDP.
    *
@@ -17,18 +19,17 @@ class HySamlauthUserSyncEvent extends Event {
    * @var array
    */
   protected $attributes;
-
+  protected $session;
 
   /**
    * Constructs a samlauth user sync event object.
    *
-   * @param \Drupal\user\UserInterface $account
-   *   The Drupal user account.
    * @param array $attributes
    *   The SAML attributes received from the IDP.
    */
   public function __construct(array $attributes) {
     $this->attributes = $attributes;
+    $this->session = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
   }
 
   /**
@@ -41,4 +42,36 @@ class HySamlauthUserSyncEvent extends Event {
     return $this->attributes;
   }
 
+  /**
+   * Get session.
+   *
+   * @return mixed
+   */
+  public function getSession() {
+    return $this->session;
+  }
+
+  /**
+   * Set attributes to session.
+   *
+   * @param $name
+   *   Session attribute name.
+   * @param $value
+   *   Session attribute value.
+   * @return
+   */
+  public function setAttribute($name, $value) {
+    return $this->session->set($name, $value);
+  }
+
+  /**
+   * Get attribute from session.
+   *
+   * @param $name
+   *   Session attribute name.
+   * @return
+   */
+  public function getAttribute($name) {
+    return $this->session->get($name);
+  }
 }

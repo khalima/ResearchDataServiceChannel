@@ -22,9 +22,6 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
   public function __construct(RequestStack $request_stack, PathValidator $pathValidator) {
     $this->pathValidator = $pathValidator;
     $this->requestStack = $request_stack;
-
-    // todo When custom session is available - change me!
-//    $this->account = \Drupal::currentUser();
   }
 
   public function checkAuthStatus(GetResponseEvent $event) {
@@ -35,15 +32,17 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
       return;
     }
 
-    // Redirect to login if no user is present..
-    if (!$this->requestStack->getCurrentRequest()->cookies->has(SamlService::COOKIE_SAML_USER)) {
-      $response = new RedirectResponse('/saml/login', 301);
-
-      $cookie_saml_redirect = new Cookie(SamlService::COOKIE_SAML_REDIRECT, serialize(\Drupal::request()->getRequestUri()));
-      $response->headers->setCookie($cookie_saml_redirect);
-      $event->setResponse($response);
-      $event->stopPropagation();
-    }
+    // Check if user has logged in already.
+    $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
+    $user = $tempstore->get(SamlService::SESSION_SAML_USER);
+//    if (empty($user)) {
+//      $response = new RedirectResponse('/saml/login', 301);
+//
+//      $cookie_saml_redirect = new Cookie(SamlService::COOKIE_SAML_REDIRECT, serialize(\Drupal::request()->getRequestUri()));
+//      $response->headers->setCookie($cookie_saml_redirect);
+//      $event->setResponse($response);
+//      $event->stopPropagation();
+//    }
   }
 
   public static function getSubscribedEvents() {

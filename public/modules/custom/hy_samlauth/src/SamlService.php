@@ -7,28 +7,22 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Path\PathValidator;
 use Drupal\Core\Url;
 use Drupal\externalauth\ExternalAuth;
+use Drupal\hy_samlauth\Event\HySamlauthUserSyncEvent;
 use Drupal\samlauth\SamlService as OriginalSamlService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Drupal\hy_samlauth\EventSubscriber\RedirectAnonymousSubscriber;
-use Drupal\hy_samlauth\Event\HySamlauthUserLinkEvent;
-use Drupal\user\PrivateTempStoreFactory;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Session\SessionManagerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Cookie;
 use Drupal\user\UserInterface;
 
 class SamlService extends OriginalSamlService {
 
   const SESS_VALUE_KEY = 'postLoginLogoutDestination';
   const COOKIE_SAML_REDIRECT = 'UHRDS_REDIRECT_URL';
-  const COOKIE_SAML_NAME = 'UHRDS_USER_NAME';
-  const COOKIE_SAML_USER = 'UHRDS_USER_USERNAME';
-  const COOKIE_SAML_EMAIL = 'UHRDS_USER_EMAIL';
-
+  const SESSION_SAML_NAME = 'UHRDS_USER_NAME';
+  const SESSION_SAML_USER = 'UHRDS_USER_USERNAME';
+  const SESSION_SAML_EMAIL = 'UHRDS_USER_EMAIL';
+  const SESSION_SAML_GROUP = 'UHRDS_USER_GROUP';
 
   /**
    * @var RequestStack
@@ -65,7 +59,6 @@ class SamlService extends OriginalSamlService {
 
   /**
    * Constructor for Drupal\hy_samlauth\SamlService.
-   *
    * @param \Drupal\externalauth\ExternalAuth $external_auth
    *   The ExternalAuth service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -75,17 +68,13 @@ class SamlService extends OriginalSamlService {
    * @param \Psr\Log\LoggerInterface $logger
    *   A logger instance.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-   *   Event dispatcher
-   * @param \Symfony\Component\HttpFoundation\Session\Session
-   *   Session.
-   * @param \Drupal\Core\Path\PathValidator
-   *   Path validator.
-   * @param \Drupal\user\PrivateTempStoreFactory $temp_store_factory
-   *   Fill me in.
-   * @param \Drupal\Core\Session\SessionManagerInterface $session_manager
-   *   Fill me in
-   * @param \Drupal\Core\Session\AccountInterface $current_user
-   *   fill me in.
+   *   Event dispatcher.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
+   *   Request stack.
+   * @param \Symfony\Component\HttpFoundation\Session\Session $session
+   *   Symfony session.
+   * @param \Drupal\Core\Path\PathValidator $pathValidator
+   *   Pathvalidator.
    */
   public function __construct(ExternalAuth $external_auth, ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, EventDispatcherInterface $event_dispatcher, RequestStack $requestStack, Session $session, PathValidator $pathValidator) {
     parent::__construct($external_auth, $config_factory, $entity_type_manager, $logger, $event_dispatcher);
@@ -197,45 +186,16 @@ class SamlService extends OriginalSamlService {
    * @throws Exception
    */
   public function acs() {
-    // This call can either set an error condition or throw a
-    // \OneLogin_Saml2_Error exception, depending on whether or not we are
-    // processing a POST request. Don't catch the exception.
+    // Get samlAuth response.
     $this->getSamlAuth()->processResponse();
-    // Now look if there were any errors and also throw.
-    $errors = $this->getSamlAuth()->getErrors();
-    if (!empty($errors)) {
-      // We have one or multiple error types / short descriptions, and one
-      // 'reason' for the last error.
-      throw new RuntimeException('Error(s) encountered during processing of ACS response. Type(s): ' . implode(', ', array_unique($errors)) . '; reason given for last error: ' . $
-    }
 
-    if (!$this->isAuthenticated()) {
-      throw new RuntimeException('Could not authenticate.');
-    }
-
-    $cookie_name = new Cookie(self::COOKIE_SAML_NAME, $this->getAttributeByConfig('user_name_attribute'));
-    $cookie_mail = new Cookie(self::COOKIE_SAML_EMAIL, $this->getAttributeByConfig('user_mail_attribute'));
-    $cookie_username = new Cookie(self::COOKIE_SAML_USER, $this->getAttributeByConfig('user_username_attribute'));
-
-    if ($this->requestStack->getCurrentRequest()->cookies->has(self::COOKIE_SAML_REDIRECT)) {
-      $cookie_url = $this->requestStack->getCurrentRequest()->cookies->get(self::COOKIE_SAML_REDIRECT);
-      if ($valid_url = $this->pathValidator->getUrlIfValid($cookie_url)) {
-        $url = $valid_url;
-      }
-    }
-
-    $response = new RedirectResponse($url);
-    $response->headers->setCookie($cookie_name);
-    $response->headers->setCookie($cookie_mail);
-    $response->headers->setCookie($cookie_username);
-
-    // Add the $url object as a dependency of whatever you're returning. Probably a response.
-    return $response;
-
-    //    $this->saml->getPostLoginDestination()->toString();
-//    $response = new TrustedRedirectResponse($url);
-//    $response->addCacheableDependency($url);
-//    $this->saml->removePostLoginLogoutDestination();
+    // Set samlauth attributes to user.temp session via eventDispatcher.
+    $event = new HySamlauthUserSyncEvent($this->getAttributes());
+    $this->eventDispatcher->dispatch(HySamlauthUserSyncEvent::USER_COOKIE, $event);
+    $event->setAttribute(self::SESSION_SAML_NAME, $this->getAttributeByConfig('user_name_attribute'));
+    $event->setAttribute(self::SESSION_SAML_EMAIL, $this->getAttributeByConfig('user_mail_attribute'));
+    $event->setAttribute(self::SESSION_SAML_USER, $this->getAttributeByConfig('user_username_attribute'));
+    $event->setAttribute(self::SESSION_SAML_GROUP, $this->getAttributeByConfig('user_group_attribute'));
   }
 
   /**
