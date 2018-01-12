@@ -35,14 +35,14 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
     // Check if user has logged in already.
     $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
     $user = $tempstore->get(SamlService::SESSION_SAML_USER);
-//    if (empty($user)) {
-//      $response = new RedirectResponse('/saml/login', 301);
-//
-//      $cookie_saml_redirect = new Cookie(SamlService::COOKIE_SAML_REDIRECT, serialize(\Drupal::request()->getRequestUri()));
-//      $response->headers->setCookie($cookie_saml_redirect);
-//      $event->setResponse($response);
-//      $event->stopPropagation();
-//    }
+    if (empty($user)) {
+      $response = new RedirectResponse('/saml/login', 301);
+
+      $cookie_saml_redirect = new Cookie(SamlService::COOKIE_SAML_REDIRECT, serialize(\Drupal::request()->getRequestUri()));
+      $response->headers->setCookie($cookie_saml_redirect);
+      $event->setResponse($response);
+      $event->stopPropagation();
+    }
   }
 
   public static function getSubscribedEvents() {
