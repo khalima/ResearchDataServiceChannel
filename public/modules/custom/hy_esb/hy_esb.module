@@ -41,7 +41,7 @@ function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
   $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
   $name = $tempstore->get(SamlService::SESSION_SAML_NAME);
   $email = $tempstore->get(SamlService::SESSION_SAML_EMAIL);
-  $group = $tempstore->get(SamlService::SESSION_SAML_GROUP);
+  $group = ''; // $tempstore->get(SamlService::SESSION_SAML_GROUP);
   $user = $tempstore->get(SamlService::SESSION_SAML_USER);
   $phone = '';
 
